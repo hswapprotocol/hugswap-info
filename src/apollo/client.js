@@ -4,7 +4,7 @@ import { HttpLink } from 'apollo-link-http'
 
 export const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://127.0.0.1:8000/subgraphs/name/hswapprotocol/hugswap',
+    uri: 'http://10.154.102.15/subgraphs/name/hswapprotocol/hugswap',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
@@ -12,7 +12,7 @@ export const client = new ApolloClient({
 
 export const healthClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://localhost:9086/index-node/graphql',
+    uri: 'http://10.154.102.15/index-node/graphql',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
@@ -36,7 +36,7 @@ export const stakingClient = new ApolloClient({
 
 export const blockClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://localhost:8000/subgraphs/name/hswapprotocol/heco-blocks',
+    uri: 'http://10.154.102.15/subgraphs/name/hswapprotocol/heco-blocks',
   }),
   cache: new InMemoryCache(),
 })
