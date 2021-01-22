@@ -21,7 +21,7 @@ WrappedLink.propTypes = {
 }
 
 const Link = styled(WrappedLink)`
-  color: ${({ color, theme }) => (color ? color : theme.text7)};
+  color: ${({ color, theme }) => (color ? color : theme.text11)};
 `
 
 export default Link
@@ -40,7 +40,7 @@ export const CustomLink = styled(RouterLink)`
     cursor: pointer;
     text-decoration: none;
     underline: none;
-    color: ${({ color, theme }) => (color ? darken(0.1, color) : darken(0.1, theme.text7))};
+    color: ${({ color, theme }) => (color ? darken(0.1, color) : darken(0.1, theme.text11))};
   }
 `
 
