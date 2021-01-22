@@ -72,7 +72,10 @@ function GlobalPage() {
       </SecondHeader>
       <ContentWrapper>
         <div>
-          <GlobalStats />
+          <AutoColumn gap="24px" style={{ paddingBottom: below800 ? '0' : '30px' }}>
+            <TYPE.largeHeader>{below800 ? 'Protocol Analytics' : 'Husswap Protocol Analytics'}</TYPE.largeHeader>
+            <GlobalStats />
+          </AutoColumn>
           {below800 && ( // mobile card
             <Box mb={20}>
               <Panel>
