@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import Link from '../components/Link'
 import Panel from '../components/Panel'
 import SecondHeader from '../components/SecondHeader'
-import OutNav from '../components/OutNav'
 import TokenLogo from '../components/TokenLogo'
 import PairList from '../components/PairList'
 import Loader from '../components/LocalLoader'
@@ -171,26 +170,14 @@ function TokenPage({ address, history }) {
 
   return (
     <PageWrapper>
-      <ThemedBackground backgroundColor={transparentize(0.6, backgroundColor)} />
       <SecondHeader>
-        <OutNav />
-      </SecondHeader>
-      <Warning
-        type={'token'}
-        show={!dismissed && listedTokens && !listedTokens.includes(address)}
-        setShow={markAsDismissed}
-        address={address}
-      />
-      <ContentWrapper>
-        <RowBetween style={{ flexWrap: 'wrap', alingItems: 'start' }}>
-          <AutoRow align="flex-end" style={{ width: 'fit-content' }}>
+        <AutoRow align="flex-end" style={{ width: 'fit-content' }}>
             <TYPE.body>
               <BasicLink to="/tokens">{'Tokens '}</BasicLink>→ {symbol}
               {'  '}
             </TYPE.body>
             <Link
               style={{ width: 'fit-content' }}
-              color={backgroundColor}
               external
               href={'https://scan.hecochain.com/address/' + address}
             >
@@ -199,8 +186,14 @@ function TokenPage({ address, history }) {
               </Text>
             </Link>
           </AutoRow>
-          {!below600 && <Search small={true} />}
-        </RowBetween>
+      </SecondHeader>
+      <Warning
+        type={'token'}
+        show={!dismissed && listedTokens && !listedTokens.includes(address)}
+        setShow={markAsDismissed}
+        address={address}
+      />
+      <ContentWrapper>
 
         <WarningGrouping disabled={!dismissed && listedTokens && !listedTokens.includes(address)}>
           <DashboardWrapper style={{ marginTop: below1080 ? '0' : '1rem' }}>
@@ -246,10 +239,10 @@ function TokenPage({ address, history }) {
                         <></>
                       )}
                   <Link href={getPoolLink(address)} target="_blank">
-                    <ButtonLight color={backgroundColor}>+ Add Liquidity</ButtonLight>
+                    <ButtonLight>+ Add Liquidity</ButtonLight>
                   </Link>
                   <Link href={getSwapLink(address)} target="_blank">
-                    <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
+                    <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'}>
                       Trade
                     </ButtonDark>
                   </Link>
@@ -325,25 +318,25 @@ function TokenPage({ address, history }) {
                     gridRow: below1080 ? '' : '1/4',
                   }}
                 >
-                  <TokenChart address={address} color={backgroundColor} base={priceUSD} />
+                  <TokenChart address={address} base={priceUSD} />
                 </Panel>
               </PanelWrapper>
             </>
 
             <span>
-              <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '3rem' }}>
+              <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '2.5rem' }}>
                 Top Pairs
               </TYPE.main>
             </span>
             <Panel
               rounded
               style={{
-                marginTop: '1.5rem',
+                marginTop: '0.6875rem',
                 padding: '1.125rem 0 ',
               }}
             >
               {address && fetchedPairsList ? (
-                <PairList color={backgroundColor} address={address} pairs={fetchedPairsList} />
+                <PairList address={address} pairs={fetchedPairsList} />
               ) : (
                   <Loader />
                 )}
@@ -352,16 +345,16 @@ function TokenPage({ address, history }) {
               <TYPE.main fontSize={'1.125rem'}>Transactions</TYPE.main> <div />
             </RowBetween>
             <Panel rounded>
-              {transactions ? <TxnList color={backgroundColor} transactions={transactions} /> : <Loader />}
+              {transactions ? <TxnList transactions={transactions} /> : <Loader />}
             </Panel>
             <>
-              <RowBetween style={{ marginTop: '3rem' }}>
+              <RowBetween style={{ marginTop: '2.5rem' }}>
                 <TYPE.main fontSize={'1.125rem'}>Token Information</TYPE.main>{' '}
               </RowBetween>
               <Panel
                 rounded
                 style={{
-                  marginTop: '1.5rem',
+                  marginTop: '0.6875rem',
                 }}
                 p={20}
               >
@@ -387,8 +380,8 @@ function TokenPage({ address, history }) {
                       <CopyHelper toCopy={address} />
                     </AutoRow>
                   </Column>
-                  <ButtonLight color={backgroundColor}>
-                    <Link color={backgroundColor} external href={'https://scan.hecochain.com/address/' + address}>
+                  <ButtonLight>
+                    <Link external href={'https://scan.hecochain.com/address/' + address}>
                       View on Hecoscan ↗
                     </Link>
                   </ButtonLight>
