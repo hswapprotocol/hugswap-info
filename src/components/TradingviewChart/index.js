@@ -150,7 +150,7 @@ const TradingViewChart = ({
               topColor: '#BA40F3',
               bottomColor: 'rgba(186, 64, 243, 0.17)',
               lineColor: '#BA40F3',
-              lineWidth: 3,
+              lineWidth: 1,
             })
 
       series.setData(formattedData)
