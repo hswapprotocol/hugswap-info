@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { useUserTransactions, useUserPositions, useMiningPositions } from '../contexts/User'
 import TxnList from '../components/TxnList'
 import Panel from '../components/Panel'
+import SecondHeader from '../components/SecondHeader'
+import OutNav from '../components/OutNav'
 import { formattedNum } from '../utils'
 import Row, { AutoRow, RowFixed, RowBetween } from '../components/Row'
 import { AutoColumn } from '../components/Column'
@@ -162,6 +164,9 @@ function AccountPage({ account }) {
 
   return (
     <PageWrapper>
+      <SecondHeader>
+        <OutNav />
+      </SecondHeader>
       <ContentWrapper>
         <RowBetween>
           <TYPE.body>
