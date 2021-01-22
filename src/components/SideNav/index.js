@@ -7,23 +7,28 @@ import { useMedia } from 'react-use'
 import { transparentize } from 'polished'
 import { TYPE } from '../../Theme'
 import { withRouter } from 'react-router-dom'
-import { TrendingUp, List, PieChart, Disc } from 'react-feather'
 import Link from '../Link'
 import { useSessionStart } from '../../contexts/Application'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 import Toggle from '../Toggle'
 
+import { ReactSVG } from 'react-svg'
+import iconOverview from '../../assets/icon_overview.svg'
+import iconTokens from '../../assets/icon_tokens.svg'
+import iconPairs from '../../assets/icon_pairs.svg'
+import iconAccounts from '../../assets/icon_accounts.svg'
+
 const Wrapper = styled.div`
   height: ${({ isMobile }) => (isMobile ? 'initial' : '100vh')};
   background-color: ${({ theme }) => transparentize(0.4, theme.bg1)};
   color: ${({ theme }) => theme.text1};
-  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
   position: sticky;
   top: 0px;
   z-index: 9999;
   box-sizing: border-box;
-  /* background-color: #1b1c22; */
-  background: linear-gradient(193.68deg, #1b1c22 0.68%, #000000 100.48%);
+  background: ${({ theme }) => theme.bg1};
+  box-shadow: ${({ theme }) => theme.shadow};
   color: ${({ theme }) => theme.bg2};
 
   @media screen and (max-width: 800px) {
@@ -36,15 +41,47 @@ const Wrapper = styled.div`
   }
 `
 
+const NavLink = styled(BasicLink)`
+  margin-right: 1.5rem;
+  div {
+    padding-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+  }
+`
 const Option = styled.div`
+  position: relative;
   font-weight: 500;
   font-size: 14px;
-  opacity: ${({ activeText }) => (activeText ? 1 : 0.6)};
-  color: ${({ theme }) => theme.white};
+  padding-left: 2.5rem;
+  color: ${({ activeText, theme }) => (activeText ? theme.text7 : theme.text3)};
+  background: ${({ activeText, theme }) => (activeText ? theme.bg5 : 'none')};
+  border-radius: 0px 8px 8px 0px;
   display: flex;
+  cursor: ${({ activeText }) => (activeText ? 'default' : 'pointer')};
+
   :hover {
-    opacity: 1;
+    color: ${({ theme }) => theme.text7};
+    span {
+      color: ${({ theme }) => theme.text7};
+    }
   }
+
+  :after {
+    content: "";
+    display: ${({ activeText }) => (activeText ? 'block' : 'none')};
+    height: 1.1875rem;
+    width: 0.25rem;
+    background-color: ${({ theme }) => theme.primary1};
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  span {
+    color: ${({ activeText, theme }) => (activeText ? theme.text7 : theme.text4)}
+  }
+
 `
 
 const DesktopWrapper = styled.div`
@@ -71,7 +108,7 @@ const HeaderText = styled.div`
     opacity: 1;
   }
   a {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.text3};
   }
 `
 
@@ -81,7 +118,7 @@ const Polling = styled.div`
   left: 0;
   bottom: 0;
   padding: 1rem;
-  color: white;
+  color: ${({ theme }) => theme.text1};
   opacity: 0.4;
   transition: opacity 0.25s ease;
   :hover {
@@ -112,17 +149,17 @@ function SideNav({ history }) {
     <Wrapper isMobile={below1080}>
       {!below1080 ? (
         <DesktopWrapper>
-          <AutoColumn gap="1rem" style={{ marginLeft: '.75rem', marginTop: '1.5rem' }}>
-            <Title />
+          <AutoColumn gap="2rem" style={{ marginTop: '1rem' }}>
+            <Title/>
             {!below1080 && (
-              <AutoColumn gap="1.25rem" style={{ marginTop: '1rem' }}>
-                <BasicLink to="/home">
+              <AutoColumn>
+                <NavLink to="/home">
                   <Option activeText={history.location.pathname === '/home' ?? undefined}>
-                    <TrendingUp size={20} style={{ marginRight: '.75rem' }} />
+                    <ReactSVG wrapper="span" src={iconOverview} style={{ marginRight: '.5rem' }} />
                     Overview
                   </Option>
-                </BasicLink>
-                <BasicLink to="/tokens">
+                </NavLink>
+                <NavLink to="/tokens">
                   <Option
                     activeText={
                       (history.location.pathname.split('/')[1] === 'tokens' ||
@@ -130,11 +167,11 @@ function SideNav({ history }) {
                       undefined
                     }
                   >
-                    <Disc size={20} style={{ marginRight: '.75rem' }} />
+                    <ReactSVG wrapper="span" src={iconTokens} style={{ marginRight: '.5rem' }} />
                     Tokens
                   </Option>
-                </BasicLink>
-                <BasicLink to="/pairs">
+                </NavLink>
+                <NavLink to="/pairs">
                   <Option
                     activeText={
                       (history.location.pathname.split('/')[1] === 'pairs' ||
@@ -142,12 +179,12 @@ function SideNav({ history }) {
                       undefined
                     }
                   >
-                    <PieChart size={20} style={{ marginRight: '.75rem' }} />
+                    <ReactSVG wrapper="span" src={iconPairs} style={{ marginRight: '.5rem' }} />
                     Pairs
                   </Option>
-                </BasicLink>
+                </NavLink>
 
-                <BasicLink to="/accounts">
+                <NavLink to="/accounts">
                   <Option
                     activeText={
                       (history.location.pathname.split('/')[1] === 'accounts' ||
@@ -155,46 +192,26 @@ function SideNav({ history }) {
                       undefined
                     }
                   >
-                    <List size={20} style={{ marginRight: '.75rem' }} />
+                    <ReactSVG wrapper="span" src={iconAccounts} style={{ marginRight: '.5rem' }} />
                     Accounts
                   </Option>
-                </BasicLink>
+                </NavLink>
               </AutoColumn>
             )}
           </AutoColumn>
-          <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
+          <AutoColumn gap="0.5rem" style={{ marginLeft: '2.5rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://uniswap.org" target="_blank">
-                Uniswap.org
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://v1.uniswap.info" target="_blank">
-                V1 Analytics
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://uniswap.org/docs/v2" target="_blank">
-                Docs
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://discord.com/invite/XErMcTq" target="_blank">
-                Discord
-              </Link>
-            </HeaderText>
-            <HeaderText>
-              <Link href="https://twitter.com/UniswapProtocol" target="_blank">
-                Twitter
+              <Link href="https://app.hugswap.com" target="_blank">
+                Hugswap.com
               </Link>
             </HeaderText>
             <Toggle isActive={isDark} toggle={toggleDarkMode} />
           </AutoColumn>
           {!below1180 && (
-            <Polling style={{ marginLeft: '.5rem' }}>
+            <Polling style={{ marginLeft: '1.5rem' }}>
               <PollingDot />
-              <a href="/" style={{ color: 'white' }}>
-                <TYPE.small color={'white'}>
+              <a href="/">
+                <TYPE.small>
                   Updated {!!seconds ? seconds + 's' : '-'} ago <br />
                 </TYPE.small>
               </a>

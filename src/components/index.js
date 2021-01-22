@@ -102,7 +102,7 @@ export const SubNavEl = styled.li`
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 36px;
+  padding-top: 1px;
   padding-bottom: 80px;
 
   @media screen and (max-width: 600px) {

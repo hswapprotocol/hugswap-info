@@ -11,66 +11,107 @@ export default function ThemeProvider({ children }) {
 }
 
 const theme = (darkMode, color) => ({
+
+  // special case text types
+  white: '#FFFFFF',
   customColor: color,
   textColor: darkMode ? color : 'black',
 
   panelColor: darkMode ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, 0)',
-  backgroundColor: darkMode ? '#212429' : '#F7F8FA',
+  backgroundColor: darkMode ? '#6840DD' : '#F7F8FA',
 
-  uniswapPink: darkMode ? '#ff007a' : 'black',
+  hugswapPurple: '#6840DD',
 
   concreteGray: darkMode ? '#292C2F' : '#FAFAFA',
   inputBackground: darkMode ? '#1F1F1F' : '#FAFAFA',
   shadowColor: darkMode ? '#000' : '#2F80ED',
   mercuryGray: darkMode ? '#333333' : '#E1E1E1',
 
-  text1: darkMode ? '#FAFAFA' : '#1F1F1F',
-  text2: darkMode ? '#C3C5CB' : '#565A69',
-  text3: darkMode ? '#6C7284' : '#888D9B',
-  text4: darkMode ? '#565A69' : '#C3C5CB',
-  text5: darkMode ? '#2C2F36' : '#EDEEF2',
+  // text，1-5dark下颜色越来越深
+  text1: darkMode ? '#FFFFFF' : '#000000',
+  // 一级色 大标题、正文
+  text2: darkMode ? '#E6E2F1' : '#191D2B',
+  // 二级 小标题、正文
+  text3: darkMode ? '#B0A9C2' : '#4E4E67',
+  // 三级色 辅助类提示信息
+  text4: darkMode ? '#6B6C84' : '#8E8FAB',
+  // 四级色 输入框内弱提示
+  text5: darkMode ? '#4C5466' : '#AAB3C7',
 
-  // special case text types
-  white: '#FFFFFF',
+  // 标准品牌色
+  text6: darkMode ? '#6840DD' : '#6840DD',
+
+  // 强调文字色
+  text7: darkMode ? '#9977FD' : '#9977FD',
+
+  // 涨色
+  text8: darkMode ? '#13C08C' : '#13C08C',
+
+  // 跌色
+  text9: darkMode ? '#FF3E3E' : '#FF3E3E',
+
+  // 持平色
+  text10: darkMode ? '#909B9C' : '#909B9C',
+
+  // 链接色
+  text11: darkMode ? '#3C67FF' : '#3C67FF',
+
+  // 提示文字
+  text12: darkMode ? '#FE8100' : '#FE8100',
 
   // backgrounds / greys
-  bg1: darkMode ? '#212429' : '#FAFAFA',
-  bg2: darkMode ? '#2C2F36' : '#F7F8FA',
-  bg3: darkMode ? '#40444F' : '#EDEEF2',
-  bg4: darkMode ? '#565A69' : '#CED0D9',
-  bg5: darkMode ? '#565A69' : '#888D9B',
-  bg6: darkMode ? '#000' : '#FFFFFF',
+  // 前景色
+  bg1: darkMode ? '#1E1E30' : '#FFFFFF',
+  // 背景色
+  bg2: darkMode ? '#131522' : '#F1F3F6',
+  // 辅助bg色
+  bg3: darkMode ? '#242438' : '#F6F6FB',
+  // 小标签bg
+  bg4: darkMode ? '#222C51' : '#ECEFFD',
+  // 小标签bg
+  bgTagS: darkMode ? '#2B2251' : '#F0ECFD',
+  // Hover色
+  bg5: darkMode ? '#37304B' : '#EAE7F5',
+  // 分割线 & 边框色
+  bg6: darkMode ? '#2C2B50' : '#D9D7F1',
 
   //specialty colors
-  modalBG: darkMode ? 'rgba(0,0,0,0.85)' : 'rgba(0,0,0,0.6)',
-  advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.4)',
+  modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
+  // advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
+  advancedBG: darkMode ? 'rgba(31, 31, 51, 0.9)' : 'rgba(255,255,255,0.6)',
   onlyLight: darkMode ? '#22242a' : 'transparent',
   divider: darkMode ? 'rgba(43, 43, 43, 0.435)' : 'rgba(43, 43, 43, 0.035)',
 
   //primary colors
-  primary1: darkMode ? '#2172E5' : '#ff007a',
+  primary1: darkMode ? '#6840DD' : '#6840DD',
   primary2: darkMode ? '#3680E7' : '#FF8CC3',
   primary3: darkMode ? '#4D8FEA' : '#FF99C9',
   primary4: darkMode ? '#376bad70' : '#F6DDE8',
-  primary5: darkMode ? '#153d6f70' : '#FDEAF1',
+  primary5: darkMode ? '#9977FD' : '#9977FD',
+  // 兑换按钮不可用
+  disable1: darkMode ? '#37354C' : '#DFDEED',
+  // 兑换按钮按下
+  pressed1: darkMode ? '#5431B9' : '#5431B9',
 
   // color text
-  primaryText1: darkMode ? '#6da8ff' : '#ff007a',
+  primaryText1: darkMode ? '#6840DD' : '#6840DD',
 
   // secondary colors
-  secondary1: darkMode ? '#2172E5' : '#ff007a',
+  secondary1: darkMode ? '#6840DD' : '#6840DD',
   secondary2: darkMode ? '#17000b26' : '#F6DDE8',
-  secondary3: darkMode ? '#17000b26' : '#FDEAF1',
+  secondary3: darkMode ? '#9977FD' : '#9977FD',
 
   shadow1: darkMode ? '#000' : '#2F80ED',
 
   // other
   red1: '#FF6871',
+  red2: '#F82D3A',
   green1: '#27AE60',
   yellow1: '#FFE270',
   yellow2: '#F3841E',
-  link: '#2172E5',
-  blue: '2f80ed',
+  blue1: '#2172E5',
+  shadow: darkMode ? '0px 4px 16px 4px rgba(0, 0, 0, 0.2)' : '0px 4px 16px rgba(131, 142, 163, 0.1)',
+
 
   background: darkMode ? 'black' : `radial-gradient(50% 50% at 50% 50%, #ff007a30 0%, #fff 0%)`,
 })
