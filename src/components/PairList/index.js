@@ -89,7 +89,7 @@ const ClickableText = styled(Text)`
 const DataText = styled(Flex)`
   align-items: center;
   text-align: center;
-  color: ${({ theme }) => theme.text1};
+  color: ${({ theme, area }) => area === 'apy' ? theme.text8 : theme.text1};
 
   & > * {
     font-size: 14px;
@@ -162,7 +162,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               a1={pairData.token1.id}
               margin={!below740}
             />
-            <CustomLink style={{ marginLeft: '20px', whiteSpace: 'nowrap' }} to={'/pair/' + pairAddress} color={color}>
+            <CustomLink style={{ marginLeft: '10px', whiteSpace: 'nowrap' }} to={'/pair/' + pairAddress} color={color}>
               <FormattedName
                 text={pairData.token0.symbol + '-' + pairData.token1.symbol}
                 maxCharacters={below600 ? 8 : 16}
