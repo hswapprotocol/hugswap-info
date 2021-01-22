@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 import 'feather-icons'
 import styled from 'styled-components'
 import Panel from '../components/Panel'
+import SecondHeader from '../components/SecondHeader'
+import OutNav from '../components/OutNav'
 import { PageWrapper, ContentWrapperLarge, StyledIcon } from '../components/index'
 import { AutoRow, RowBetween, RowFixed } from '../components/Row'
 import Column, { AutoColumn } from '../components/Column'
@@ -202,6 +204,9 @@ function PairPage({ pairAddress, history }) {
   return (
     <PageWrapper>
       <ThemedBackground backgroundColor={transparentize(0.6, backgroundColor)} />
+      <SecondHeader>
+        <OutNav />
+      </SecondHeader>
       <span />
       <Warning
         type={'pair'}

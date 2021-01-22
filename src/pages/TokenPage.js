@@ -5,6 +5,8 @@ import { Text } from 'rebass'
 import styled from 'styled-components'
 import Link from '../components/Link'
 import Panel from '../components/Panel'
+import SecondHeader from '../components/SecondHeader'
+import OutNav from '../components/OutNav'
 import TokenLogo from '../components/TokenLogo'
 import PairList from '../components/PairList'
 import Loader from '../components/LocalLoader'
@@ -170,7 +172,9 @@ function TokenPage({ address, history }) {
   return (
     <PageWrapper>
       <ThemedBackground backgroundColor={transparentize(0.6, backgroundColor)} />
-
+      <SecondHeader>
+        <OutNav />
+      </SecondHeader>
       <Warning
         type={'token'}
         show={!dismissed && listedTokens && !listedTokens.includes(address)}

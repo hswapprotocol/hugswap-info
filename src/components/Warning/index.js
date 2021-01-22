@@ -17,7 +17,7 @@ const WarningWrapper = styled.div`
   padding: 1rem;
   color: #f82d3a;
   display: ${({ show }) => !show && 'none'};
-  margin: 0 2rem 2rem 2rem;
+  margin: 2rem 2rem 2rem 2rem;
   position: relative;
 
   @media screen and (max-width: 800px) {

@@ -3,11 +3,12 @@ import 'feather-icons'
 
 import { TYPE } from '../Theme'
 import Panel from '../components/Panel'
+import SecondHeader from '../components/SecondHeader'
+import OutNav from '../components/OutNav'
 import { useAllPairData } from '../contexts/PairData'
 import PairList from '../components/PairList'
 import { PageWrapper, FullWrapper } from '../components'
 import { RowBetween } from '../components/Row'
-import Search from '../components/Search'
 import { useMedia } from 'react-use'
 
 function AllPairsPage() {
@@ -21,10 +22,12 @@ function AllPairsPage() {
 
   return (
     <PageWrapper>
+      <SecondHeader>
+        <OutNav />
+      </SecondHeader>
       <FullWrapper>
-        <RowBetween>
+        <RowBetween marginTop={40}>
           <TYPE.largeHeader>Top Pairs</TYPE.largeHeader>
-          {!below800 && <Search small={true} />}
         </RowBetween>
         <Panel style={{ padding: below800 && '1rem 0 0 0 ' }}>
           <PairList pairs={allPairs} disbaleLinks={true} maxItems={50} />
