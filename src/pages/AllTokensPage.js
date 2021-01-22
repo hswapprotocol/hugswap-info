@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react'
 import 'feather-icons'
-
+import styled from 'styled-components'
 import TopTokenList from '../components/TokenList'
 import { TYPE } from '../Theme'
 import Panel from '../components/Panel'
 import { useAllTokenData } from '../contexts/TokenData'
 import { PageWrapper, FullWrapper } from '../components'
+import SecondHeader from '../components/SecondHeader'
+import OutNav from '../components/OutNav'
 import { RowBetween } from '../components/Row'
-import Search from '../components/Search'
 import { useMedia } from 'react-use'
+
+const SmallWrapper = styled(FullWrapper)`
+  gap: 11px;
+`
+
 
 function AllTokensPage() {
   const allTokens = useAllTokenData()
@@ -21,15 +27,17 @@ function AllTokensPage() {
 
   return (
     <PageWrapper>
-      <FullWrapper>
-        <RowBetween>
-          <TYPE.largeHeader>Top Tokens</TYPE.largeHeader>
-          {!below600 && <Search small={true} />}
+      <SecondHeader>
+        <OutNav />
+      </SecondHeader>
+      <SmallWrapper>
+        <RowBetween style={{padding: below600 ? '1rem 0 0 0' : '2.51rem 0 0 0' }}>
+          <TYPE.largeHeader fontSize="18">Top Tokens</TYPE.largeHeader>
         </RowBetween>
         <Panel style={{ marginTop: '6px', padding: below600 && '1rem 0 0 0 ' }}>
           <TopTokenList tokens={allTokens} itemMax={50} />
         </Panel>
-      </FullWrapper>
+      </SmallWrapper>
     </PageWrapper>
   )
 }

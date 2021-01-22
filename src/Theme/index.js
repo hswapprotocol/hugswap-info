@@ -60,10 +60,10 @@ const theme = (darkMode, color) => ({
   text12: darkMode ? '#FE8100' : '#FE8100',
 
   // backgrounds / greys
-  // 前景色
+  // 前景色#FFFFFFFF
   bg1: darkMode ? '#1E1E30' : '#FFFFFF',
   // 背景色
-  bg2: darkMode ? '#131522' : '#F1F3F6',
+  bg2: darkMode ? '#111015' : '#F1F3F6',
   // 辅助bg色
   bg3: darkMode ? '#242438' : '#F6F6FB',
   // 小标签bg

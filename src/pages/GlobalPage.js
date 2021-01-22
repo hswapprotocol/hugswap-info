@@ -127,27 +127,27 @@ function GlobalPage() {
               </Panel>
             </AutoColumn>
           )}
-          <ListOptions gap="10px" style={{ marginTop: '2rem', marginBottom: '.5rem' }}>
+          <ListOptions gap="10px" style={{ marginTop: '2.5rem', marginBottom: '0.6875rem' }}>
             <RowBetween>
               <TYPE.main fontSize={'1.125rem'}>Top Tokens</TYPE.main>
               <CustomLink to={'/tokens'}>See All</CustomLink>
             </RowBetween>
           </ListOptions>
-          <Panel style={{ marginTop: '6px', padding: '1.125rem 0 ' }}>
+          <Panel>
             <TopTokenList tokens={allTokens} />
           </Panel>
-          <ListOptions gap="10px" style={{ marginTop: '2rem', marginBottom: '.5rem' }}>
+          <ListOptions gap="10px" style={{ marginTop: '2.5rem', marginBottom: '0.6875rem' }}>
             <RowBetween>
               <TYPE.main fontSize={'1rem'}>Top Pairs</TYPE.main>
               <CustomLink to={'/pairs'}>See All</CustomLink>
             </RowBetween>
           </ListOptions>
-          <Panel style={{ marginTop: '6px', padding: '1.125rem 0 ' }}>
+          <Panel>
             <PairList pairs={allPairs} />
           </Panel>
 
           <span>
-            <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '2rem' }}>
+            <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '2.5rem' }}>
               Transactions
             </TYPE.main>
           </span>
