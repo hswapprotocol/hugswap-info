@@ -9,6 +9,7 @@ const SecondHeaderWrapper = styled(RowBetween)`
   position: sticky;
   top: 0;
   z-index: 9998;
+  padding: 0 2rem;
   box-sizing: border-box;
   transfrom: translateX(-36px);
   background: ${({ theme }) => theme.bg1};
