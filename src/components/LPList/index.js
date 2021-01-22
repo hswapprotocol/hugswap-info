@@ -14,6 +14,8 @@ import { TYPE } from '../../Theme'
 import DoubleTokenLogo from '../DoubleLogo'
 import { RowFixed } from '../Row'
 
+import { DashGridHeader, HeaderText } from '../TokenList'
+
 dayjs.extend(utc)
 
 const PageButtons = styled.div`
@@ -43,7 +45,7 @@ const DashGrid = styled.div`
   grid-gap: 1em;
   grid-template-columns: 10px 1.5fr 1fr 1fr;
   grid-template-areas: 'number name pair value';
-  padding: 0 4px;
+    padding: 0 1rem;
 
   > * {
     justify-content: flex-end;
@@ -58,6 +60,13 @@ const DashGrid = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 'name pair value';
   }
+`
+const DashGridHead = styled(DashGrid)`
+  background-color: ${({ theme }) => theme.bg3};
+  border-radius: 2px;
+  align-content: center;
+  height: 2rem;
+  color: ${({ theme }) => theme.text3};
 `
 
 const ListWrapper = styled.div``
@@ -101,7 +110,7 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
 
   const ListItem = ({ lp, index }) => {
     return (
-      <DashGrid style={{ height: '48px' }} disbaleLinks={disbaleLinks} focus={true}>
+      <DashGrid style={{ height: '68px' }} disbaleLinks={disbaleLinks} focus={true}>
         {!below600 && (
           <DataText area="number" fontWeight="500">
             {index}
@@ -138,21 +147,20 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
       return (
         <div key={index}>
           <ListItem key={index} index={(page - 1) * 10 + index + 1} lp={lp} />
-          <Divider />
         </div>
       )
     })
 
   return (
     <ListWrapper>
-      <DashGrid center={true} disbaleLinks={disbaleLinks} style={{ height: 'fit-content', padding: ' 0 0 1rem 0' }}>
+      <DashGridHead center={true} disbaleLinks={disbaleLinks}>
         {!below600 && (
           <Flex alignItems="center" justifyContent="flex-start">
-            <TYPE.main area="number">#</TYPE.main>
+            <HeaderText area="number">#</HeaderText>
           </Flex>
         )}
         <Flex alignItems="center" justifyContent="flex-start">
-          <TYPE.main area="name">Account</TYPE.main>
+          <HeaderText area="name">Account</HeaderText>
         </Flex>
         {/* {!below1080 && (
           <Flex alignItems="center" justifyContent="flexEnd">
@@ -160,12 +168,12 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
           </Flex>
         )} */}
         <Flex alignItems="center" justifyContent="flexEnd">
-          <TYPE.main area="pair">Pair</TYPE.main>
+          <HeaderText area="pair">Pair</HeaderText>
         </Flex>
         <Flex alignItems="center" justifyContent="flexEnd">
-          <TYPE.main area="value">Value</TYPE.main>
+          <HeaderText area="value">Value</HeaderText>
         </Flex>
-      </DashGrid>
+      </DashGridHead>
       <Divider />
       <List p={0}>{!lpList ? <LocalLoader /> : lpList}</List>
       <PageButtons>

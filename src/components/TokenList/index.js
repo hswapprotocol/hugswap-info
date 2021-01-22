@@ -80,7 +80,7 @@ const DashGrid = styled.div`
   }
 `
 
-const DashGridHeader = styled(DashGrid)`
+export const DashGridHeader = styled(DashGrid)`
   background-color: ${({ theme }) => theme.bg3};
   border-radius: 2px;
   > * {
@@ -107,7 +107,7 @@ const ClickableText = styled(Text)`
   }
 `
 
-const HeaderText = styled(Text)`
+export const HeaderText = styled(Text)`
   color: ${({ theme }) => theme.text4};
 `
 
@@ -200,7 +200,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
   const ListItem = ({ item, index }) => {
     return (
       <DashGrid style={{ height: '48px' }} focus={true}>
-        {!below680 &&<DataText area="num">{index}</DataText>}
+        {!below680 && <DataText area="num">{index}</DataText>}
         <DataText area="name" fontWeight="500">
           <Row>
             <TokenLogo address={item.id} />
