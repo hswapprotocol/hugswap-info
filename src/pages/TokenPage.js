@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import 'feather-icons'
 import { withRouter } from 'react-router-dom'
 import { Text } from 'rebass'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import Link from '../components/Link'
 import Panel from '../components/Panel'
 import SecondHeader from '../components/SecondHeader'
@@ -34,6 +34,19 @@ import { useListedTokens } from '../contexts/Application'
 
 const DashboardWrapper = styled.div`
   width: 100%;
+`
+const TitleText = styled(TYPE.main)`
+  color: ${({ theme }) => theme.text4}
+`
+
+const AddressLink = styled(Link)`
+  font-size: 0.875rem;
+  > div {
+    color: ${({ theme }) => theme.text4}
+  }
+  :hover > div {
+    color: ${({ theme }) => theme.text7}
+  }
 `
 
 const PanelWrapper = styled.div`
@@ -105,11 +118,11 @@ function TokenPage({ address, history }) {
     oneDayTxns,
     txnChange,
   } = useTokenData(address)
-
   useEffect(() => {
     document.querySelector('body').scrollTo(0, 0)
   }, [])
 
+  const theme = useContext(ThemeContext)
   // detect color from token
   const backgroundColor = useColor(id, symbol)
 
@@ -176,7 +189,7 @@ function TokenPage({ address, history }) {
               <BasicLink to="/tokens">{'Tokens '}</BasicLink>→ {symbol}
               {'  '}
             </TYPE.body>
-            <Link
+            <AddressLink
               style={{ width: 'fit-content' }}
               external
               href={'https://scan.hecochain.com/address/' + address}
@@ -184,7 +197,7 @@ function TokenPage({ address, history }) {
               <Text style={{ marginLeft: '.15rem' }} fontSize={'14px'} fontWeight={400}>
                 ({address.slice(0, 8) + '...' + address.slice(36, 42)})
               </Text>
-            </Link>
+            </AddressLink>
           </AutoRow>
       </SecondHeader>
       <Warning
@@ -272,7 +285,7 @@ function TokenPage({ address, history }) {
                 <Panel>
                   <AutoColumn gap="20px">
                     <RowBetween>
-                      <TYPE.main>Total Liquidity</TYPE.main>
+                      <TitleText>Total Liquidity</TitleText>
                       <div />
                     </RowBetween>
                     <RowBetween align="flex-end">
@@ -286,7 +299,7 @@ function TokenPage({ address, history }) {
                 <Panel>
                   <AutoColumn gap="20px">
                     <RowBetween>
-                      <TYPE.main>Volume (24hrs) {usingUtVolume && '(Untracked)'}</TYPE.main>
+                      <TitleText>Volume (24hrs) {usingUtVolume && '(Untracked)'}</TitleText>
                       <div />
                     </RowBetween>
                     <RowBetween align="flex-end">
@@ -301,7 +314,7 @@ function TokenPage({ address, history }) {
                 <Panel>
                   <AutoColumn gap="20px">
                     <RowBetween>
-                      <TYPE.main>Transactions (24hrs)</TYPE.main>
+                      <TitleText>Transactions (24hrs)</TitleText>
                       <div />
                     </RowBetween>
                     <RowBetween align="flex-end">

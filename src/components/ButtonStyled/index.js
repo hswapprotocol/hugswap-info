@@ -141,11 +141,10 @@ export const OptionButton = styled.div`
   font-weight: 500;
   width: fit-content;
   white-space: nowrap;
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.bg4};
-  background-color: ${({ active, theme }) => active && theme.bg3};
-  color: ${({ theme }) => theme.text1};
+  padding: 0 8px;
+  border-radius: 4px;
+  border: 1px solid ${({ active, theme }) => active ? theme.primary5 : theme.bg6};
+  color: ${({ active, theme }) => active ? theme.text7 : theme.text4};
 
   :hover {
     cursor: ${({ disabled }) => !disabled && 'pointer'};
