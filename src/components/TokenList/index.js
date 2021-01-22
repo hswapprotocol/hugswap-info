@@ -50,10 +50,9 @@ const DashGrid = styled.div`
   > * {
     justify-content: flex-end;
 
-    &:first-child {
+    &:first-child, &:nth-child(2) {
       justify-content: flex-start;
       text-align: left;
-      width: 100px;
     }
   }
 
@@ -67,7 +66,7 @@ const DashGrid = styled.div`
       justify-content: flex-end;
       width: 100%;
 
-      &:first-child {
+      &:first-child, &:nth-child(2) {
         justify-content: flex-start;
       }
     }
@@ -76,12 +75,23 @@ const DashGrid = styled.div`
   @media screen and (min-width: 1080px) {
     display: grid;
     grid-gap: 0.5em;
-    grid-template-columns: 1.5fr 0.6fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 'name symbol liq vol price change';
+    grid-template-columns: 0.25fr 1.5fr 0.6fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 'num name symbol liq vol price change';
   }
 `
 
-const ListWrapper = styled.div``
+const DashGridHeader = styled(DashGrid)`
+  background-color: ${({ theme }) => theme.bg3};
+  border-radius: 2px;
+  > * {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+`
+
+const ListWrapper = styled.div`
+  // padding: 1.875rem 1.25rem;
+`
 
 const ClickableText = styled(Text)`
   text-align: end;
@@ -90,17 +100,28 @@ const ClickableText = styled(Text)`
     opacity: 0.6;
   }
   user-select: none;
-  color: ${({ theme }) => theme.text1};
+  color: ${({ theme }) => theme.text4};
 
   @media screen and (max-width: 640px) {
     font-size: 0.85rem;
   }
 `
 
+const HeaderText = styled(Text)`
+  color: ${({ theme }) => theme.text4};
+`
+
+const NameLink = styled(CustomLink)`
+  color: ${({ theme }) => theme.text2};
+  :visited {
+    color: ${({ theme }) => theme.text2};
+  }
+`
+
 const DataText = styled(Flex)`
   align-items: center;
   text-align: center;
-  color: ${({ theme }) => theme.text1};
+  color: ${({ theme }) => theme.text2};
 
   & > * {
     font-size: 14px;
@@ -179,18 +200,18 @@ function TopTokenList({ tokens, itemMax = 10 }) {
   const ListItem = ({ item, index }) => {
     return (
       <DashGrid style={{ height: '48px' }} focus={true}>
+        {!below680 &&<DataText area="num">{index}</DataText>}
         <DataText area="name" fontWeight="500">
           <Row>
-            {!below680 && <div style={{ marginRight: '1rem', width: '10px' }}>{index}</div>}
             <TokenLogo address={item.id} />
-            <CustomLink style={{ marginLeft: '16px', whiteSpace: 'nowrap' }} to={'/token/' + item.id}>
+            <NameLink style={{ marginLeft: '16px', whiteSpace: 'nowrap' }} to={'/token/' + item.id}>
               <FormattedName
                 text={below680 ? item.symbol : item.name}
                 maxCharacters={below600 ? 8 : 16}
                 adjustSize={true}
                 link={true}
               />
-            </CustomLink>
+            </NameLink>
           </Row>
         </DataText>
         {!below680 && (
@@ -212,7 +233,10 @@ function TopTokenList({ tokens, itemMax = 10 }) {
 
   return (
     <ListWrapper>
-      <DashGrid center={true} style={{ height: 'fit-content', padding: '0 1.125rem 1rem 1.125rem' }}>
+      <DashGridHeader center={true} style={{ height: 'fit-content', padding: '0 1.125rem' }}>
+        <Flex alignItems="center">
+          <HeaderText area="num">#</HeaderText>
+        </Flex>
         <Flex alignItems="center" justifyContent="flexStart">
           <ClickableText
             color="text"
@@ -290,7 +314,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
             </ClickableText>
           </Flex>
         )}
-      </DashGrid>
+      </DashGridHeader>
       <Divider />
       <List p={0}>
         {filteredList &&
