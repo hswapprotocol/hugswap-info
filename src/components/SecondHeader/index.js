@@ -16,7 +16,7 @@ const SecondHeaderWrapper = styled(RowBetween)`
 
 `
 const HeaderSearch = styled.div`
-
+  padding: 0.5rem 1.25rem 1.5rem;
 `
 
 function SecondHeader({children}) {
@@ -27,7 +27,7 @@ function SecondHeader({children}) {
 	return (
     <>
       <SecondHeaderWrapper gap="0">
-        {children}
+        {!below800 && ({children})}
         {!below800 && (<Search small={true} />)}
       </SecondHeaderWrapper>
       {below800 && (
