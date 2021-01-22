@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useState, useRef, useEffect, useContext} from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { Area, XAxis, YAxis, ResponsiveContainer, Tooltip, AreaChart, BarChart, Bar } from 'recharts'
 import { AutoRow, RowBetween, RowFixed } from '../Row'
 
@@ -14,7 +14,6 @@ import CandleStickChart from '../CandleChart'
 import LocalLoader from '../LocalLoader'
 import { AutoColumn } from '../Column'
 import { Activity } from 'react-feather'
-import { useDarkModeManager } from '../../contexts/LocalStorage'
 
 const ChartWrapper = styled.div`
   height: 100%;
@@ -47,8 +46,7 @@ const TokenChart = ({ address, color, base }) => {
   const [chartFilter, setChartFilter] = useState(CHART_VIEW.PRICE)
   const [frequency, setFrequency] = useState(DATA_FREQUENCY.HOUR)
 
-  const [darkMode] = useDarkModeManager()
-  const textColor = darkMode ? 'white' : 'black'
+  const theme = useContext(ThemeContext)
 
   // reset view on new address
   const addressPrev = usePrevious(address)
@@ -224,10 +222,11 @@ const TokenChart = ({ address, color, base }) => {
           <AreaChart margin={{ top: 0, right: 10, bottom: 6, left: 0 }} barCategoryGap={1} data={chartData}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={color} stopOpacity={0.35} />
-                <stop offset="95%" stopColor={color} stopOpacity={0} />
+                <stop offset="5%" stopColor={'#BA40F3'} stopOpacity={0.17} />
+                <stop offset="95%" stopColor={'#171426'} stopOpacity={0} />
               </linearGradient>
             </defs>
+
             <XAxis
               tickLine={false}
               axisLine={false}
@@ -236,11 +235,12 @@ const TokenChart = ({ address, color, base }) => {
               minTickGap={120}
               tickFormatter={(tick) => toNiceDate(tick)}
               dataKey="date"
-              tick={{ fill: textColor }}
+              tick={{ fill: 'none' }}
               type={'number'}
               domain={['dataMin', 'dataMax']}
             />
             <YAxis
+              hide={true}
               type="number"
               orientation="right"
               tickFormatter={(tick) => '$' + toK(tick)}
@@ -249,7 +249,7 @@ const TokenChart = ({ address, color, base }) => {
               interval="preserveEnd"
               minTickGap={80}
               yAxisId={0}
-              tick={{ fill: textColor }}
+              tick={{ fill: 'none' }}
             />
             <Tooltip
               cursor={true}
@@ -273,7 +273,7 @@ const TokenChart = ({ address, color, base }) => {
               type="monotone"
               name={'Liquidity'}
               yAxisId={0}
-              stroke={darken(0.12, color)}
+              stroke="#BA40F3"
               fill="url(#colorUv)"
             />
           </AreaChart>
@@ -285,11 +285,12 @@ const TokenChart = ({ address, color, base }) => {
             <AreaChart margin={{ top: 0, right: 10, bottom: 6, left: 0 }} barCategoryGap={1} data={chartData}>
               <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={color} stopOpacity={0.35} />
-                  <stop offset="95%" stopColor={color} stopOpacity={0} />
+                  <stop offset="5%" stopColor={'#BA40F3'} stopOpacity={0.17} />
+                  <stop offset="95%" stopColor={'#171426'} stopOpacity={0} />
                 </linearGradient>
               </defs>
               <XAxis
+                hide={true}
                 tickLine={false}
                 axisLine={false}
                 interval="preserveEnd"
@@ -297,11 +298,12 @@ const TokenChart = ({ address, color, base }) => {
                 minTickGap={120}
                 tickFormatter={(tick) => toNiceDate(tick)}
                 dataKey="date"
-                tick={{ fill: textColor }}
+                tick={{ fill: 'none' }}
                 type={'number'}
                 domain={domain}
               />
               <YAxis
+                hide={true}
                 type="number"
                 orientation="right"
                 tickFormatter={(tick) => '$' + toK(tick)}
@@ -310,7 +312,7 @@ const TokenChart = ({ address, color, base }) => {
                 interval="preserveEnd"
                 minTickGap={80}
                 yAxisId={0}
-                tick={{ fill: textColor }}
+                tick={{ fill: 'none' }}
               />
               <Tooltip
                 cursor={true}
@@ -334,7 +336,7 @@ const TokenChart = ({ address, color, base }) => {
                 type="monotone"
                 name={'Price'}
                 yAxisId={0}
-                stroke={darken(0.12, color)}
+                stroke="#BA40F3"
                 fill="url(#colorUv)"
               />
             </AreaChart>
@@ -351,6 +353,7 @@ const TokenChart = ({ address, color, base }) => {
         <ResponsiveContainer aspect={aspect}>
           <BarChart margin={{ top: 0, right: 10, bottom: 6, left: 10 }} barCategoryGap={1} data={chartData}>
             <XAxis
+              hide={true}
               tickLine={false}
               axisLine={false}
               interval="preserveEnd"
@@ -358,11 +361,12 @@ const TokenChart = ({ address, color, base }) => {
               tickMargin={14}
               tickFormatter={(tick) => toNiceDate(tick)}
               dataKey="date"
-              tick={{ fill: textColor }}
+              tick={{ fill: 'none' }}
               type={'number'}
               domain={['dataMin', 'dataMax']}
             />
             <YAxis
+              hide={true}
               type="number"
               axisLine={false}
               tickMargin={16}
@@ -372,17 +376,17 @@ const TokenChart = ({ address, color, base }) => {
               interval="preserveEnd"
               minTickGap={80}
               yAxisId={0}
-              tick={{ fill: textColor }}
+              tick={{ fill: 'none' }}
             />
             <Tooltip
-              cursor={{ fill: color, opacity: 0.1 }}
+              cursor={{ fill: '#BA40F3', opacity: 0.1 }}
               formatter={(val) => formattedNum(val, true)}
               labelFormatter={(label) => toNiceDateYear(label)}
               labelStyle={{ paddingTop: 4 }}
               contentStyle={{
                 padding: '10px 14px',
                 borderRadius: 10,
-                borderColor: color,
+                borderColor: '#BA40F3',
                 color: 'black',
               }}
               wrapperStyle={{ top: -70, left: -10 }}
@@ -391,10 +395,10 @@ const TokenChart = ({ address, color, base }) => {
               type="monotone"
               name={'Volume'}
               dataKey={'dailyVolumeUSD'}
-              fill={color}
+              fill={'#BA40F3'}
               opacity={'0.4'}
               yAxisId={0}
-              stroke={color}
+              stroke={'#BA40F3'}
             />
           </BarChart>
         </ResponsiveContainer>
