@@ -27,7 +27,7 @@ function SecondHeader({children}) {
 	return (
     <>
       <SecondHeaderWrapper gap="0">
-        {!below800 && ({children})}
+        {children}
         {!below800 && (<Search small={true} />)}
       </SecondHeaderWrapper>
       {below800 && (
