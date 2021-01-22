@@ -67,7 +67,7 @@ export function getMiningPoolLink(token0Address) {
   return `https://app.hugswap.com/#/uni/ETH/${token0Address}`
 }
 
-export function gethugswapAppLink(linkVariable) {
+export function getHugswapAppLink(linkVariable) {
   let basehugswapUrl = 'https://app.hugswap.com/#/'
   if (!linkVariable) {
     return basehugswapUrl
