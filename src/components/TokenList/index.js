@@ -79,15 +79,22 @@ const DashGrid = styled.div`
     grid-template-areas: 'num name symbol liq vol price change';
   }
 `
-
-export const DashGridHeader = styled(DashGrid)`
+export const wrapDashGridHead = (DG) => styled(DG)`
   background-color: ${({ theme }) => theme.bg3};
   border-radius: 2px;
+  padding-top: 0;
+  padding-bottom: 0;
   > * {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
 `
+
+export const HeaderText = styled(Text)`
+  color: ${({ theme }) => theme.text4};
+`
+
+const DashGridHeader = wrapDashGridHead(DashGrid)
 
 const ListWrapper = styled.div`
   // padding: 1.875rem 1.25rem;
@@ -107,9 +114,6 @@ const ClickableText = styled(Text)`
   }
 `
 
-export const HeaderText = styled(Text)`
-  color: ${({ theme }) => theme.text4};
-`
 
 const NameLink = styled(CustomLink)`
   color: ${({ theme }) => theme.text2};

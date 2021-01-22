@@ -176,7 +176,6 @@ function AccountPage({ account }) {
               {account?.slice(0, 42)}{' '}
             </Link>
           </TYPE.body>
-          {!below600 && <Search small={true} />}
         </RowBetween>
         <Header>
           <RowBetween>

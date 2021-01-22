@@ -14,7 +14,7 @@ import { TYPE } from '../../Theme'
 import DoubleTokenLogo from '../DoubleLogo'
 import { RowFixed } from '../Row'
 
-import { DashGridHeader, HeaderText } from '../TokenList'
+import { HeaderText, wrapDashGridHead } from '../TokenList'
 
 dayjs.extend(utc)
 
@@ -40,12 +40,14 @@ const List = styled(Box)`
   -webkit-overflow-scrolling: touch;
 `
 
+
+
 const DashGrid = styled.div`
   display: grid;
   grid-gap: 1em;
   grid-template-columns: 10px 1.5fr 1fr 1fr;
   grid-template-areas: 'number name pair value';
-    padding: 0 1rem;
+  padding: 0 1rem;
 
   > * {
     justify-content: flex-end;
@@ -61,13 +63,9 @@ const DashGrid = styled.div`
     grid-template-areas: 'name pair value';
   }
 `
-const DashGridHead = styled(DashGrid)`
-  background-color: ${({ theme }) => theme.bg3};
-  border-radius: 2px;
-  align-content: center;
-  height: 2rem;
-  color: ${({ theme }) => theme.text3};
-`
+
+const DashGridHead = wrapDashGridHead(DashGrid)
+
 
 const ListWrapper = styled.div``
 

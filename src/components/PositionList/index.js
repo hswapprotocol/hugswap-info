@@ -16,6 +16,7 @@ import { RowFixed } from '../Row'
 import { ButtonLight } from '../ButtonStyled'
 import { TYPE } from '../../Theme'
 import FormattedName from '../FormattedName'
+import { HeaderText, wrapDashGridHead } from '../TokenList'
 
 dayjs.extend(utc)
 
@@ -47,7 +48,7 @@ const DashGrid = styled.div`
   grid-template-columns: 5px 0.5fr 1fr 1fr;
   grid-template-areas: 'number name uniswap return';
   align-items: flex-start;
-  padding: 20px 0;
+  padding: 1rem 1.125rem;
 
   > * {
     justify-content: flex-end;
@@ -75,6 +76,7 @@ const DashGrid = styled.div`
     grid-template-areas: 'name uniswap';
   }
 `
+const DashGridHead = wrapDashGridHead(DashGrid)
 
 const ListWrapper = styled.div``
 
@@ -214,10 +216,10 @@ function PositionList({ positions }) {
                   <TYPE.small fontWeight={400}>
                     {parseFloat(position.pair.token0.derivedETH)
                       ? formattedNum(
-                          position?.fees.sum / (parseFloat(position.pair.token0.derivedETH) * ethPrice) / 2,
-                          false,
-                          true
-                        )
+                        position?.fees.sum / (parseFloat(position.pair.token0.derivedETH) * ethPrice) / 2,
+                        false,
+                        true
+                      )
                       : 0}{' '}
                   </TYPE.small>
                   <FormattedName
@@ -231,10 +233,10 @@ function PositionList({ positions }) {
                   <TYPE.small fontWeight={400}>
                     {parseFloat(position.pair.token1.derivedETH)
                       ? formattedNum(
-                          position?.fees.sum / (parseFloat(position.pair.token1.derivedETH) * ethPrice) / 2,
-                          false,
-                          true
-                        )
+                        position?.fees.sum / (parseFloat(position.pair.token1.derivedETH) * ethPrice) / 2,
+                        false,
+                        true
+                      )
                       : 0}{' '}
                   </TYPE.small>
                   <FormattedName
@@ -278,21 +280,20 @@ function PositionList({ positions }) {
         return (
           <div key={index}>
             <ListItem key={index} index={(page - 1) * 10 + index + 1} position={position} />
-            <Divider />
           </div>
         )
       })
 
   return (
     <ListWrapper>
-      <DashGrid center={true} style={{ height: '32px', padding: 0 }}>
+      <DashGridHead center={true}>
         {!below740 && (
           <Flex alignItems="flex-start" justifyContent="flexStart">
-            <TYPE.main area="number">#</TYPE.main>
+            <HeaderText area="number">#</HeaderText>
           </Flex>
         )}
         <Flex alignItems="flex-start" justifyContent="flex-start">
-          <TYPE.main area="number">Name</TYPE.main>
+          <HeaderText area="number">Name</HeaderText>
         </Flex>
         <Flex alignItems="center" justifyContent="flexEnd">
           <ClickableText
@@ -302,7 +303,9 @@ function PositionList({ positions }) {
               setSortDirection(sortedColumn !== SORT_FIELD.VALUE ? true : !sortDirection)
             }}
           >
-            {below740 ? 'Value' : 'Liquidity'} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
+            <HeaderText>
+              {below740 ? 'Value' : 'Liquidity'} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
+            </HeaderText>
           </ClickableText>
         </Flex>
         {!below500 && (
@@ -313,14 +316,14 @@ function PositionList({ positions }) {
                 setSortedColumn(SORT_FIELD.UNISWAP_RETURN)
                 setSortDirection(sortedColumn !== SORT_FIELD.UNISWAP_RETURN ? true : !sortDirection)
               }}
-            >
-              {below740 ? 'Fees' : 'Total Fees Earned'}{' '}
-              {sortedColumn === SORT_FIELD.UNISWAP_RETURN ? (!sortDirection ? '↑' : '↓') : ''}
+            ><HeaderText>
+                {below740 ? 'Fees' : 'Total Fees Earned'}{' '}
+                {sortedColumn === SORT_FIELD.UNISWAP_RETURN ? (!sortDirection ? '↑' : '↓') : ''}
+              </HeaderText>
             </ClickableText>
           </Flex>
         )}
-      </DashGrid>
-      <Divider />
+      </DashGridHead>
       <List p={0}>{!positionsSorted ? <LocalLoader /> : positionsSorted}</List>
       <PageButtons>
         <div onClick={() => setPage(page === 1 ? page : page - 1)}>

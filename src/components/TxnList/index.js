@@ -16,6 +16,7 @@ import DropdownSelect from '../DropdownSelect'
 import FormattedName from '../FormattedName'
 import { TYPE } from '../../Theme'
 import { updateNameData } from '../../utils/data'
+import { HeaderText, wrapDashGridHead } from '../TokenList'
 
 dayjs.extend(utc)
 
@@ -46,7 +47,7 @@ const DashGrid = styled.div`
   grid-gap: 1em;
   grid-template-columns: 100px 1fr 1fr;
   grid-template-areas: 'txn value time';
-
+  padding: 0 1rem;
   > * {
     justify-content: flex-end;
     width: 100%;
@@ -84,6 +85,8 @@ const DashGrid = styled.div`
     grid-template-areas: 'txn value amountToken amountOther account time';
   }
 `
+
+const DashGridHead = wrapDashGridHead(DashGrid)
 
 const ClickableText = styled(Text)`
   color: ${({ theme }) => theme.text1};
@@ -316,7 +319,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
 
   return (
     <>
-      <DashGrid center={true} style={{ height: 'fit-content', padding: '0 0 1rem 0' }}>
+      <DashGridHead center={true}>
         {below780 ? (
           <RowBetween area="txn">
             <DropdownSelect options={TXN_TYPE} active={txFilter} setActive={setTxFilter} color={color} />
@@ -367,7 +370,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
               setSortDirection(sortedColumn !== SORT_FIELD.VALUE ? true : !sortDirection)
             }}
           >
-            Total Value {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
+            <HeaderText>Total Value {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}</HeaderText>
           </ClickableText>
         </Flex>
         {!below780 && (
@@ -379,9 +382,10 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 setSortedColumn(SORT_FIELD.AMOUNT0)
                 setSortDirection(sortedColumn !== SORT_FIELD.AMOUNT0 ? true : !sortDirection)
               }}
-            >
-              {symbol0Override ? symbol0Override + ' Amount' : 'Token Amount'}{' '}
-              {sortedColumn === SORT_FIELD.AMOUNT0 ? (sortDirection ? '↑' : '↓') : ''}
+            ><HeaderText>
+                {symbol0Override ? symbol0Override + ' Amount' : 'Token Amount'}{' '}
+                {sortedColumn === SORT_FIELD.AMOUNT0 ? (sortDirection ? '↑' : '↓') : ''}
+              </HeaderText>
             </ClickableText>
           </Flex>
         )}
@@ -396,14 +400,16 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                   setSortDirection(sortedColumn !== SORT_FIELD.AMOUNT1 ? true : !sortDirection)
                 }}
               >
-                {symbol1Override ? symbol1Override + ' Amount' : 'Token Amount'}{' '}
-                {sortedColumn === SORT_FIELD.AMOUNT1 ? (sortDirection ? '↑' : '↓') : ''}
+                <HeaderText>
+                  {symbol1Override ? symbol1Override + ' Amount' : 'Token Amount'}{' '}
+                  {sortedColumn === SORT_FIELD.AMOUNT1 ? (sortDirection ? '↑' : '↓') : ''}
+                </HeaderText>
               </ClickableText>
             </Flex>
           )}
           {!below1080 && (
             <Flex alignItems="center">
-              <TYPE.body area="account">Account</TYPE.body>
+              <HeaderText area="account">Account</HeaderText>
             </Flex>
           )}
           <Flex alignItems="center">
@@ -414,13 +420,13 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 setSortedColumn(SORT_FIELD.TIMESTAMP)
                 setSortDirection(sortedColumn !== SORT_FIELD.TIMESTAMP ? true : !sortDirection)
               }}
-            >
-              Time {sortedColumn === SORT_FIELD.TIMESTAMP ? (!sortDirection ? '↑' : '↓') : ''}
+            ><HeaderText>
+                Time {sortedColumn === SORT_FIELD.TIMESTAMP ? (!sortDirection ? '↑' : '↓') : ''}
+              </HeaderText>
             </ClickableText>
           </Flex>
         </>
-      </DashGrid>
-      <Divider />
+      </DashGridHead>
       <List p={0}>
         {!filteredList ? (
           <LocalLoader />
@@ -431,7 +437,6 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 return (
                   <div key={index}>
                     <ListItem key={index} index={index + 1} item={item} />
-                    <Divider />
                   </div>
                 )
               })

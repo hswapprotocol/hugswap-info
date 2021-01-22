@@ -215,11 +215,10 @@ function PairPage({ pairAddress, history }) {
         address={pairAddress}
       />
       <ContentWrapperLarge>
-        <RowBetween>
+        <RowBetween marginTop={20}>
           <TYPE.body>
             <BasicLink to="/pairs">{'Pairs '}</BasicLink>→ {token0?.symbol}-{token1?.symbol}
           </TYPE.body>
-          {!below600 && <Search small={true} />}
         </RowBetween>
         <WarningGrouping
           disabled={
