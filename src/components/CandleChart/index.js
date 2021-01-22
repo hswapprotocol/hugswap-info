@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { createChart, CrosshairMode } from 'lightweight-charts'
 import dayjs from 'dayjs'
 import { formattedNum } from '../../utils'
 import { usePrevious } from 'react-use'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import { Play } from 'react-feather'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 
 const IconWrapper = styled.div`
   position: absolute;
   right: 10px;
-  color: ${({ theme }) => theme.text1}
+  color: ${({ theme }) => theme.text4}
   border-radius: 3px;
   height: 16px;
   width: 16px;
@@ -64,6 +64,7 @@ const CandleStickChart = ({
   const [darkMode] = useDarkModeManager()
   const textColor = darkMode ? 'white' : 'black'
   const previousTheme = usePrevious(darkMode)
+  const theme = useContext(ThemeContext)
 
   // reset the chart if theme switches
   useEffect(() => {
@@ -96,25 +97,26 @@ const CandleStickChart = ({
         height: height,
         layout: {
           backgroundColor: 'transparent',
-          textColor: textColor,
+          textColor: theme.text3,
         },
         grid: {
           vertLines: {
-            color: 'rgba(197, 203, 206, 0.5)',
+            visible: false,
           },
           horzLines: {
-            color: 'rgba(197, 203, 206, 0.5)',
+            visible: false,
           },
         },
         crosshair: {
           mode: CrosshairMode.Normal,
         },
         rightPriceScale: {
-          borderColor: 'rgba(197, 203, 206, 0.8)',
+          borderColor: 'rgba(197, 203, 206, 0)',
           visible: true,
         },
         timeScale: {
-          borderColor: 'rgba(197, 203, 206, 0.8)',
+          borderColor: 'rgba(197, 203, 206, 0)',
+          visible: true,
         },
         localization: {
           priceFormatter: (val) => formattedNum(val),
@@ -122,12 +124,12 @@ const CandleStickChart = ({
       })
 
       var candleSeries = chart.addCandlestickSeries({
-        upColor: 'green',
-        downColor: 'red',
-        borderDownColor: 'red',
-        borderUpColor: 'green',
-        wickDownColor: 'red',
-        wickUpColor: 'green',
+        upColor: theme.text8,
+        downColor: theme.text9,
+        borderDownColor: theme.text9,
+        borderUpColor: theme.text8,
+        wickDownColor: theme.text9,
+        wickUpColor: theme.text8,
       })
 
       candleSeries.setData(formattedData)
