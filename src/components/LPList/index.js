@@ -25,7 +25,7 @@ const PageButtons = styled.div`
 `
 
 const Arrow = styled.div`
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.text7};
   opacity: ${(props) => (props.faded ? 0.3 : 1)};
   padding: 0 20px;
   user-select: none;
@@ -122,7 +122,7 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
         <DataText>
           <CustomLink area="pair" to={'/pair/' + lp.pairAddress}>
             <RowFixed>
-              {!below600 && <DoubleTokenLogo a0={lp.token0} a1={lp.token1} size={16} margin={true} />}
+              {!below600 && <DoubleTokenLogo pairName={lp.token0} a1={lp.token1} size={16} margin={true} />}
               {lp.pairName}
             </RowFixed>
           </CustomLink>

@@ -1121,7 +1121,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
@@ -1843,6 +1843,15 @@
     "@svgr/plugin-jsx" "^4.3.3"
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
+
+"@tanem/svg-injector@^8.2.1":
+  version "8.2.2"
+  resolved "https://registry.npm.taobao.org/@tanem/svg-injector/download/@tanem/svg-injector-8.2.2.tgz#70ab9c6942374b85c1151ba9b21b6b07ad0b2e15"
+  integrity sha1-cKucaUI3S4XBFRupshtrB60LLhU=
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    content-type "^1.0.4"
+    tslib "^2.0.3"
 
 "@types/babel__core@^7.1.0":
   version "7.1.12"
@@ -3826,7 +3835,7 @@ content-disposition@0.5.3:
   dependencies:
     safe-buffer "5.1.2"
 
-content-type@~1.0.4:
+content-type@^1.0.4, content-type@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
   integrity sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
@@ -10198,6 +10207,15 @@ react-springy-parallax@^1.3.0:
   integrity sha512-kQeEao3zOnTr4nWYP9ipPC3RyJjVGp0hI1m69G3ZLJpHmJDHBtCzlvrNn/7KfwQgmtIG8P39Qds4p8G5sgO3IA==
   dependencies:
     animated "^0.2.2"
+
+react-svg@^11.2.2:
+  version "11.2.2"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-11.2.2.tgz#a8fa0e1c535a13dbae1aae92795d9f3e9b11ec4b"
+  integrity sha512-Q9lAuUgaI8c55OluftgrAyE4GAmIvmqVHJXt1fIzXFHcuIauKqVjhUH/BiizOqjPmY+R27kiTkv9g7AxY7O+wA==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "@tanem/svg-injector" "^8.2.1"
+    prop-types "^15.7.2"
 
 react-switch@^5.0.1:
   version "5.0.1"

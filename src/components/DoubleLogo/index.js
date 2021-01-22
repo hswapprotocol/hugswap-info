@@ -30,3 +30,14 @@ export default function DoubleTokenLogo({ a0, a1, size = 24, margin = false }) {
     </TokenWrapper>
   )
 }
+// const Icon = (props) => <Image src={`https://swap.hbfile.net/images/Hicon/${props.name}.png`} {...props} />
+
+// export default function DoubleTokenLogo({ pairName = '-', size = 24, margin = false }) {
+//   const [nameA, nameB] = pairName.split('-')
+//   return (
+//     <TokenWrapper sizeraw={size} margin={margin}>
+//       <Icon name={nameA} size={size.toString() + 'px'} sizeraw={size} />
+//       <Icon name={nameB} size={size.toString() + 'px'} sizeraw={size} />
+//     </TokenWrapper>
+//   )
+// }

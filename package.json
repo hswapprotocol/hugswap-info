@@ -1,7 +1,7 @@
 {
-  "name": "@uniswap/info",
+  "name": "@hswapprotocol/hugswap-info",
   "private": true,
-  "homepage": "https://info.uniswap.org",
+  "homepage": "https://info.hugswap.com",
   "devDependencies": {
     "@popperjs/core": "^2.4.2",
     "@reach/portal": "^0.10.3",
@@ -88,5 +88,8 @@
       "last 1 safari version"
     ]
   },
-  "license": "GPL-3.0-or-later"
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "react-svg": "^11.2.2"
+  }
 }

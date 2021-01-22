@@ -10,8 +10,8 @@ import { TYPE } from '../../Theme'
 
 const Header = styled.div`
   width: 100%;
-  position: sticky;
-  top: 0;
+  // position: sticky;
+  // top: 0;
 `
 
 const Medium = styled.span`
@@ -47,7 +47,7 @@ export default function GlobalStats() {
               }}
               style={{ position: 'relative' }}
             >
-              ETH Price: <Medium>{formattedEthPrice}</Medium>
+              HT Price: <Medium>{formattedEthPrice}</Medium>
               {showPriceCard && <UniPrice />}
             </TYPE.main>
           )}
