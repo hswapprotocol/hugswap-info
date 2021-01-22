@@ -2,7 +2,6 @@ import React from 'react'
 import { useMedia } from 'react-use'
 import styled from 'styled-components'
 import { RowBetween } from '../Row'
-import { AutoColumn } from '../Column'
 import Search from '../Search'
 
 const SecondHeaderWrapper = styled(RowBetween)`
@@ -16,6 +15,9 @@ const SecondHeaderWrapper = styled(RowBetween)`
   box-shadow: ${({ theme }) => theme.shadow};
 
 `
+const HeaderSearch = styled.div`
+
+`
 
 function SecondHeader({children}) {
     // breakpoints
@@ -23,10 +25,17 @@ function SecondHeader({children}) {
 
 
 	return (
-    <SecondHeaderWrapper gap="0">
-      {children}
-      <Search small={true} />
-    </SecondHeaderWrapper>
+    <>
+      <SecondHeaderWrapper gap="0">
+        {children}
+        {!below800 && (<Search small={true} />)}
+      </SecondHeaderWrapper>
+      {below800 && (
+        <HeaderSearch>
+          <Search />
+        </HeaderSearch>
+      )}
+    </>
 	)
 }
 

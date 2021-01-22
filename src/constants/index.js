@@ -12,7 +12,7 @@ export const timeframeOptions = {
 
 // token list urls to fetch tokens from - use for warnings on tokens and pairs
 export const SUPPORTED_LIST_URLS__NO_ENS = [
-  'https://app.hugswap.com/tokenlist.json?v=2',
+  'http://localhost:3000/tokenlist.json?v=2',
 ]
 
 // hide from overview list

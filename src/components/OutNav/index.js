@@ -1,7 +1,6 @@
 import React from 'react'
 import { useMedia } from 'react-use'
 import styled from 'styled-components'
-import { RowBetween } from '../Row'
 import Link from '../Link'
 
 const OutNavWrapper = styled.div`
