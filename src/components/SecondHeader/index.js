@@ -8,7 +8,7 @@ const SecondHeaderWrapper = styled(RowBetween)`
   position: sticky;
   top: 0;
   z-index: 9998;
-  padding: 0 2rem;
+  padding: ${({ below800 }) => below800 ? '1rem' : '0'} 2rem;
   box-sizing: border-box;
   transfrom: translateX(-36px);
   background: ${({ theme }) => theme.bg1};
@@ -19,14 +19,14 @@ const HeaderSearch = styled.div`
   padding: 0.5rem 1.25rem 1.5rem;
 `
 
-function SecondHeader({children}) {
-    // breakpoints
+function SecondHeader({ children }) {
+  // breakpoints
   const below800 = useMedia('(max-width: 800px)')
 
 
-	return (
+  return (
     <>
-      <SecondHeaderWrapper gap="0">
+      <SecondHeaderWrapper below800={below800} gap="0">
         {children}
         {!below800 && (<Search small={true} />)}
       </SecondHeaderWrapper>
@@ -36,7 +36,7 @@ function SecondHeader({children}) {
         </HeaderSearch>
       )}
     </>
-	)
+  )
 }
 
 export default SecondHeader
