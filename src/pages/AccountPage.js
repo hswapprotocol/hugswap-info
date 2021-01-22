@@ -90,6 +90,15 @@ const Warning = styled.div`
   width: calc(100% - 2rem);
 `
 
+
+const AddressLink = styled(Link)`
+  font-size: 0.875rem;
+  color: ${({ theme }) => theme.text4}
+  :hover {
+    color: ${({ theme }) => theme.text7}
+  }
+`
+
 function AccountPage({ account }) {
   // get data for this account
   const transactions = useUserTransactions(account)
@@ -168,10 +177,10 @@ function AccountPage({ account }) {
         <RowBetween>
           <TYPE.body>
             <BasicLink to="/accounts">{'Accounts '}</BasicLink>→{' '}
-            <Link lineHeight={'145.23%'} href={'https://scan.hecochain.com/address/' + account} target="_blank">
+            <AddressLink lineHeight={'145.23%'} href={'https://scan.hecochain.com/address/' + account} target="_blank">
               {' '}
               {account?.slice(0, 42)}{' '}
-            </Link>
+            </AddressLink>
           </TYPE.body>
         </RowBetween>
       </SecondHeader>
@@ -221,10 +230,10 @@ function AccountPage({ account }) {
                   <AutoColumn gap="0px">
                     {positions?.map((p, i) => {
                       if (p.pair.token1.symbol === 'WHT') {
-                        p.pair.token1.symbol = 'HT'
+                        p.pair.token1.symbol = ''
                       }
                       if (p.pair.token0.symbol === 'WHT') {
-                        p.pair.token0.symbol = 'HT'
+                        p.pair.token0.symbol = ''
                       }
                       return (
                         p.pair.id !== activePosition?.pair.id && (
