@@ -34,7 +34,7 @@ export default function GlobalStats() {
 
   return (
     <Header>
-      <RowBetween style={{ padding: below816 ? '0.5rem' : '.5rem' }}>
+      <RowBetween>
         <RowFixed>
           {!below400 && (
             <TYPE.main
@@ -45,6 +45,7 @@ export default function GlobalStats() {
               onMouseLeave={() => {
                 setShowPriceCard(false)
               }}
+              color="text4"
               style={{ position: 'relative' }}
             >
               HT Price: <Medium>{formattedEthPrice}</Medium>
@@ -53,17 +54,20 @@ export default function GlobalStats() {
           )}
 
           {!below1180 && (
-            <TYPE.main mr={'1rem'}>
+            <TYPE.main mr={'1rem'}
+              color="text4">
               Transactions (24H): <Medium>{localNumber(oneDayTxns)}</Medium>
             </TYPE.main>
           )}
           {!below1024 && (
-            <TYPE.main mr={'1rem'}>
+            <TYPE.main mr={'1rem'}
+              color="text4">
               Pairs: <Medium>{localNumber(pairCount)}</Medium>
             </TYPE.main>
           )}
           {!below1295 && (
-            <TYPE.main mr={'1rem'}>
+            <TYPE.main mr={'1rem'}
+              color="text4">
               Fees (24H): <Medium>{oneDayFees}</Medium>&nbsp;
             </TYPE.main>
           )}

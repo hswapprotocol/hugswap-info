@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { isAddress } from '../../utils/index.js'
+import { ADDRESS_ZERO } from '../../constants/index.js'
 import PlaceHolder from '../../assets/placeholder.png'
 import HecoLogo from '../../assets/ht.png'
 
@@ -46,16 +47,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     )
   }
 
-  // hard coded fixes for trust wallet api issues
-  if (address?.toLowerCase() === '0x5e74c9036fb86bd7ecdcb084a0673efc32ea31cb') {
-    address = '0x42456d7084eacf4083f1140d3229471bba2949a8'
-  }
-
-  if (address?.toLowerCase() === '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f') {
-    address = '0xc011a72400e58ecd99ee497cf89e3775d4bd732f'
-  }
-
-  if (address?.toLowerCase() === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') {
+  if (address?.toLowerCase() === ADDRESS_ZERO) {
     return (
       <StyledHecoLogo size={size} {...rest}>
         <img
@@ -70,7 +62,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     )
   }
 
-  const path = `https://raw.githubusercontent.com/mdexSwap/token-icons/main/heco/${isAddress(
+  const path = `https://raw.githubusercontent.com/hswapprotocol/token-icons/master/heco/${isAddress(
     address
   )}.png`
 
