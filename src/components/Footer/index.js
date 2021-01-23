@@ -1,6 +1,6 @@
 import React from 'react'
 import { Flex } from 'rebass'
-
+import { useTranslation } from 'react-i18next'
 import Link from '../Link'
 
 const links = [
@@ -13,14 +13,15 @@ const FooterLink = ({ children, ...rest }) => (
   </Link>
 )
 
-const Footer = () => (
-  <Flex as="footer" p={24}>
+const Footer = () => {
+  const { t } = useTranslation()
+  return (<Flex as="footer" p={24}>
     {links.map((link, index) => (
       <FooterLink key={index} href={link.url}>
-        {link.text}
+        {t(link.text)}
       </FooterLink>
     ))}
-  </Flex>
-)
+  </Flex>)
+}
 
 export default Footer

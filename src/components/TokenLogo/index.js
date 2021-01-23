@@ -63,7 +63,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
   }
 
   const path = `https://raw.githubusercontent.com/hswapprotocol/token-icons/master/heco/${isAddress(
-    address
+    address?.toLowerCase()
   )}.png`
 
   return (

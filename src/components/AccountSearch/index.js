@@ -12,7 +12,7 @@ import { Hover, StyledIcon } from '..'
 import Panel from '../Panel'
 import { Divider } from '..'
 import { Flex } from 'rebass'
-
+import { useTranslation } from 'react-i18next'
 import { X } from 'react-feather'
 
 const Wrapper = styled.div`
@@ -76,7 +76,7 @@ const DashGrid = styled.div`
 function AccountSearch({ history, small }) {
   const [accountValue, setAccountValue] = useState()
   const [savedAccounts, addAccount, removeAccount] = useSavedAccounts()
-
+  const { t } = useTranslation()
   function handleAccountSearch() {
     if (isAddress(accountValue)) {
       history.push('/account/' + accountValue)
@@ -99,7 +99,7 @@ function AccountSearch({ history, small }) {
                 }}
               />
             </Wrapper>
-            <ButtonLight onClick={handleAccountSearch}>Load Account Details</ButtonLight>
+            <ButtonLight onClick={handleAccountSearch}>{t('Load Account Details')}</ButtonLight>
           </AutoRow>
         </>
       )}
@@ -108,7 +108,7 @@ function AccountSearch({ history, small }) {
         {!small && (
           <Panel>
             <DashGrid center={true} style={{ height: 'fit-content', padding: '0 0 1rem 0' }}>
-              <TYPE.main area="account">Saved Accounts</TYPE.main>
+              <TYPE.main area="account">{t('Saved Accounts')}</TYPE.main>
             </DashGrid>
             <Divider />
             {savedAccounts?.length > 0 ? (
@@ -136,14 +136,14 @@ function AccountSearch({ history, small }) {
                 )
               })
             ) : (
-                <TYPE.light style={{ marginTop: '1rem' }}>No saved accounts</TYPE.light>
+                <TYPE.light style={{ marginTop: '1rem' }}>{t('No saved accounts')}</TYPE.light>
               )}
           </Panel>
         )}
 
         {small && (
           <>
-            <TYPE.main>{'Accounts'}</TYPE.main>
+            <TYPE.main>{t('Accounts')}</TYPE.main>
             {savedAccounts?.length > 0 ? (
               savedAccounts.map((account) => {
                 return (
@@ -164,7 +164,7 @@ function AccountSearch({ history, small }) {
                 )
               })
             ) : (
-                <TYPE.light>No pinned wallets</TYPE.light>
+                <TYPE.light>{t('No pinned wallets')}</TYPE.light>
               )}
           </>
         )}

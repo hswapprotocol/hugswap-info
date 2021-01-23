@@ -12,7 +12,7 @@ import AccountPage from './pages/AccountPage'
 import AllTokensPage from './pages/AllTokensPage'
 import AllPairsPage from './pages/AllPairsPage'
 import PinnedData from './components/PinnedData'
-
+import i18next from 'i18next'
 import SideNav from './components/SideNav'
 import AccountLookup from './pages/AccountLookup'
 import { OVERVIEW_TOKEN_BLACKLIST, PAIR_BLACKLIST } from './constants'
@@ -96,7 +96,6 @@ const BLOCK_DIFFERENCE_THRESHOLD = 30
 
 function App() {
   const [savedOpen, setSavedOpen] = useState(false)
-
   const globalData = useGlobalData()
   const globalChartData = useGlobalChartData()
   const [latestBlock, headBlock] = useLatestBlocks()
@@ -110,101 +109,101 @@ function App() {
         {showWarning && (
           <WarningWrapper>
             <WarningBanner>
-              {`Warning: The data on this site has only synced to Ethereum block ${latestBlock} (out of ${headBlock}). Please check back soon.`}
+              {i18next.t('WarningBanner', { latestBlock, headBlock })}
             </WarningBanner>
           </WarningWrapper>
         )}
         {globalData &&
-        Object.keys(globalData).length > 0 &&
-        globalChartData &&
-        Object.keys(globalChartData).length > 0 ? (
-          <BrowserRouter>
-            <Switch>
-              <Route
-                exacts
-                strict
-                path="/token/:tokenAddress"
-                render={({ match }) => {
-                  if (OVERVIEW_TOKEN_BLACKLIST.includes(match.params.tokenAddress.toLowerCase())) {
-                    return <Redirect to="/home" />
-                  }
-                  if (isAddress(match.params.tokenAddress.toLowerCase())) {
-                    return (
-                      <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
-                        <TokenPage address={match.params.tokenAddress.toLowerCase()} />
-                      </LayoutWrapper>
-                    )
-                  } else {
-                    return <Redirect to="/home" />
-                  }
-                }}
-              />
-              <Route
-                exacts
-                strict
-                path="/pair/:pairAddress"
-                render={({ match }) => {
-                  if (PAIR_BLACKLIST.includes(match.params.pairAddress.toLowerCase())) {
-                    return <Redirect to="/home" />
-                  }
-                  if (isAddress(match.params.pairAddress.toLowerCase())) {
-                    return (
-                      <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
-                        <PairPage pairAddress={match.params.pairAddress.toLowerCase()} />
-                      </LayoutWrapper>
-                    )
-                  } else {
-                    return <Redirect to="/home" />
-                  }
-                }}
-              />
-              <Route
-                exacts
-                strict
-                path="/account/:accountAddress"
-                render={({ match }) => {
-                  if (isAddress(match.params.accountAddress.toLowerCase())) {
-                    return (
-                      <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
-                        <AccountPage account={match.params.accountAddress.toLowerCase()} />
-                      </LayoutWrapper>
-                    )
-                  } else {
-                    return <Redirect to="/home" />
-                  }
-                }}
-              />
+          Object.keys(globalData).length > 0 &&
+          globalChartData &&
+          Object.keys(globalChartData).length > 0 ? (
+            <BrowserRouter>
+              <Switch>
+                <Route
+                  exacts
+                  strict
+                  path="/token/:tokenAddress"
+                  render={({ match }) => {
+                    if (OVERVIEW_TOKEN_BLACKLIST.includes(match.params.tokenAddress.toLowerCase())) {
+                      return <Redirect to="/home" />
+                    }
+                    if (isAddress(match.params.tokenAddress.toLowerCase())) {
+                      return (
+                        <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
+                          <TokenPage address={match.params.tokenAddress.toLowerCase()} />
+                        </LayoutWrapper>
+                      )
+                    } else {
+                      return <Redirect to="/home" />
+                    }
+                  }}
+                />
+                <Route
+                  exacts
+                  strict
+                  path="/pair/:pairAddress"
+                  render={({ match }) => {
+                    if (PAIR_BLACKLIST.includes(match.params.pairAddress.toLowerCase())) {
+                      return <Redirect to="/home" />
+                    }
+                    if (isAddress(match.params.pairAddress.toLowerCase())) {
+                      return (
+                        <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
+                          <PairPage pairAddress={match.params.pairAddress.toLowerCase()} />
+                        </LayoutWrapper>
+                      )
+                    } else {
+                      return <Redirect to="/home" />
+                    }
+                  }}
+                />
+                <Route
+                  exacts
+                  strict
+                  path="/account/:accountAddress"
+                  render={({ match }) => {
+                    if (isAddress(match.params.accountAddress.toLowerCase())) {
+                      return (
+                        <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
+                          <AccountPage account={match.params.accountAddress.toLowerCase()} />
+                        </LayoutWrapper>
+                      )
+                    } else {
+                      return <Redirect to="/home" />
+                    }
+                  }}
+                />
 
-              <Route path="/home">
-                <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
-                  <GlobalPage />
-                </LayoutWrapper>
-              </Route>
+                <Route path="/home">
+                  <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
+                    <GlobalPage />
+                  </LayoutWrapper>
+                </Route>
 
-              <Route path="/tokens">
-                <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
-                  <AllTokensPage />
-                </LayoutWrapper>
-              </Route>
+                <Route path="/tokens">
+                  <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
+                    <AllTokensPage />
+                  </LayoutWrapper>
+                </Route>
 
-              <Route path="/pairs">
-                <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
-                  <AllPairsPage />
-                </LayoutWrapper>
-              </Route>
+                <Route path="/pairs">
+                  <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
+                    <AllPairsPage />
+                  </LayoutWrapper>
+                </Route>
 
-              <Route path="/accounts">
-                <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
-                  <AccountLookup />
-                </LayoutWrapper>
-              </Route>
+                <Route path="/accounts">
+                  <LayoutWrapper savedOpen={savedOpen} setSavedOpen={setSavedOpen}>
+                    <AccountLookup />
+                  </LayoutWrapper>
+                </Route>
 
-              <Redirect to="/home" />
-            </Switch>
-          </BrowserRouter>
-        ) : (
-          <LocalLoader fill="true" />
-        )}
+                <Redirect to="/home" />
+              </Switch>
+            </BrowserRouter>
+          ) : (
+            <LocalLoader fill="true" />
+          )}
       </AppWrapper>
     </ApolloProvider>
   )

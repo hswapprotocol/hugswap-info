@@ -13,7 +13,7 @@ import { useTimeframe } from '../../contexts/Application'
 import LocalLoader from '../LocalLoader'
 import { useColor } from '../../hooks'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
-
+import { useTranslation } from 'react-i18next'
 const ChartWrapper = styled.div`
   max-height: 420px;
 
@@ -36,7 +36,7 @@ const CHART_VIEW = {
 
 const PairReturnsChart = ({ account, position }) => {
   let data = useUserPositionChart(position, account)
-
+  const { t } = useTranslation()
   const [timeWindow, setTimeWindow] = useTimeframe()
 
   const below600 = useMedia('(max-width: 600px)')
@@ -62,37 +62,37 @@ const PairReturnsChart = ({ account, position }) => {
           <DropdownSelect options={timeframeOptions} active={timeWindow} setActive={setTimeWindow} />
         </RowBetween>
       ) : (
-        <OptionsRow>
-          <AutoRow gap="6px" style={{ flexWrap: 'nowrap' }}>
-            <OptionButton active={chartView === CHART_VIEW.VALUE} onClick={() => setChartView(CHART_VIEW.VALUE)}>
-              Liquidity
-            </OptionButton>
-            <OptionButton active={chartView === CHART_VIEW.FEES} onClick={() => setChartView(CHART_VIEW.FEES)}>
-              Fees
-            </OptionButton>
-          </AutoRow>
-          <AutoRow justify="flex-end" gap="6px">
-            <OptionButton
-              active={timeWindow === timeframeOptions.WEEK}
-              onClick={() => setTimeWindow(timeframeOptions.WEEK)}
-            >
-              1W
-            </OptionButton>
-            <OptionButton
-              active={timeWindow === timeframeOptions.MONTH}
-              onClick={() => setTimeWindow(timeframeOptions.MONTH)}
-            >
-              1M
-            </OptionButton>
-            <OptionButton
-              active={timeWindow === timeframeOptions.ALL_TIME}
-              onClick={() => setTimeWindow(timeframeOptions.ALL_TIME)}
-            >
-              All
-            </OptionButton>
-          </AutoRow>
-        </OptionsRow>
-      )}
+          <OptionsRow>
+            <AutoRow gap="6px" style={{ flexWrap: 'nowrap' }}>
+              <OptionButton active={chartView === CHART_VIEW.VALUE} onClick={() => setChartView(CHART_VIEW.VALUE)}>
+                {t('Liquidity')}
+              </OptionButton>
+              <OptionButton active={chartView === CHART_VIEW.FEES} onClick={() => setChartView(CHART_VIEW.FEES)}>
+                {t('Fees')}
+              </OptionButton>
+            </AutoRow>
+            <AutoRow justify="flex-end" gap="6px">
+              <OptionButton
+                active={timeWindow === timeframeOptions.WEEK}
+                onClick={() => setTimeWindow(timeframeOptions.WEEK)}
+              >
+                {t('1W')}
+              </OptionButton>
+              <OptionButton
+                active={timeWindow === timeframeOptions.MONTH}
+                onClick={() => setTimeWindow(timeframeOptions.MONTH)}
+              >
+                {t('1M')}
+              </OptionButton>
+              <OptionButton
+                active={timeWindow === timeframeOptions.ALL_TIME}
+                onClick={() => setTimeWindow(timeframeOptions.ALL_TIME)}
+              >
+                {t('All')}
+              </OptionButton>
+            </AutoRow>
+          </OptionsRow>
+        )}
       <ResponsiveContainer aspect={aspect}>
         {data ? (
           <LineChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }} barCategoryGap={1} data={data}>
@@ -144,12 +144,12 @@ const PairReturnsChart = ({ account, position }) => {
               dataKey={chartView === CHART_VIEW.VALUE ? 'usdValue' : 'fees'}
               stroke={color}
               yAxisId={0}
-              name={chartView === CHART_VIEW.VALUE ? 'Liquidity' : 'Fees Earned (Cumulative)'}
+              name={chartView === CHART_VIEW.VALUE ? t('Liquidity') : t('Fees Earned (Cumulative)')}
             />
           </LineChart>
         ) : (
-          <LocalLoader />
-        )}
+            <LocalLoader />
+          )}
       </ResponsiveContainer>
     </ChartWrapper>
   )

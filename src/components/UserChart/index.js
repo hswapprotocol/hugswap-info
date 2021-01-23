@@ -12,7 +12,7 @@ import { useUserLiquidityChart } from '../../contexts/User'
 import LocalLoader from '../LocalLoader'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 import { TYPE } from '../../Theme'
-
+import { useTranslation } from 'react-i18next'
 const ChartWrapper = styled.div`
   height: 100%;
   max-height: 390px;
@@ -27,7 +27,7 @@ const UserChart = ({ account }) => {
 
   const [timeWindow, setTimeWindow] = useState(timeframeOptions.ALL_TIME)
   let utcStartTime = getTimeframe(timeWindow)
-
+  const { t } = useTranslation()
   const below600 = useMedia('(max-width: 600px)')
   const above1600 = useMedia('(min-width: 1600px)')
 
@@ -46,32 +46,32 @@ const UserChart = ({ account }) => {
           <DropdownSelect options={timeframeOptions} active={timeWindow} setActive={setTimeWindow} color={'#ff007a'} />
         </RowBetween>
       ) : (
-        <RowBetween mb={40}>
-          <AutoRow gap="10px">
-            <TYPE.main>Liquidity Value</TYPE.main>
-          </AutoRow>
-          <AutoRow justify="flex-end" gap="4px">
-            <OptionButton
-              active={timeWindow === timeframeOptions.MONTH}
-              onClick={() => setTimeWindow(timeframeOptions.MONTH)}
-            >
-              1M
-            </OptionButton>
-            <OptionButton
-              active={timeWindow === timeframeOptions.WEEK}
-              onClick={() => setTimeWindow(timeframeOptions.WEEK)}
-            >
-              1W
-            </OptionButton>
-            <OptionButton
-              active={timeWindow === timeframeOptions.ALL_TIME}
-              onClick={() => setTimeWindow(timeframeOptions.ALL_TIME)}
-            >
-              All
-            </OptionButton>
-          </AutoRow>
-        </RowBetween>
-      )}
+          <RowBetween mb={40}>
+            <AutoRow gap="10px">
+              <TYPE.main>{t('Liquidity Value')}</TYPE.main>
+            </AutoRow>
+            <AutoRow justify="flex-end" gap="4px">
+              <OptionButton
+                active={timeWindow === timeframeOptions.MONTH}
+                onClick={() => setTimeWindow(timeframeOptions.MONTH)}
+              >
+                {t('1M')}
+              </OptionButton>
+              <OptionButton
+                active={timeWindow === timeframeOptions.WEEK}
+                onClick={() => setTimeWindow(timeframeOptions.WEEK)}
+              >
+                {t('1W')}
+              </OptionButton>
+              <OptionButton
+                active={timeWindow === timeframeOptions.ALL_TIME}
+                onClick={() => setTimeWindow(timeframeOptions.ALL_TIME)}
+              >
+                {t('All')}
+              </OptionButton>
+            </AutoRow>
+          </RowBetween>
+        )}
       {chartData ? (
         <ResponsiveContainer aspect={aspect} style={{ height: 'inherit' }}>
           <AreaChart margin={{ top: 0, right: 10, bottom: 6, left: 0 }} barCategoryGap={1} data={chartData}>
@@ -134,8 +134,8 @@ const UserChart = ({ account }) => {
           </AreaChart>
         </ResponsiveContainer>
       ) : (
-        <LocalLoader />
-      )}
+          <LocalLoader />
+        )}
     </ChartWrapper>
   )
 }
