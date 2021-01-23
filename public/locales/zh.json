@@ -1,0 +1,10 @@
+{
+  "Overview": "概述",
+  "Tokens": "代币",
+  "Pairs": "交易对",
+  "Accounts": "账户",
+  "Swap": "Swap",
+  "Liquidity": "Liquidity",
+  "Info": "Info",
+  "Updated ago": "更新于 {{seconds}} 前"
+}

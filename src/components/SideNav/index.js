@@ -11,6 +11,8 @@ import Link from '../Link'
 import { useSessionStart } from '../../contexts/Application'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 import Toggle from '../Toggle'
+import Language from '../Toggle/language'
+import { useTranslation } from 'react-i18next'
 
 import { ReactSVG } from 'react-svg'
 import iconOverview from '../../assets/icon_overview.svg'
@@ -142,7 +144,7 @@ function SideNav({ history }) {
   const below1180 = useMedia('(max-width: 1180px)')
 
   const seconds = useSessionStart()
-
+  const { t } = useTranslation()
   const [isDark, toggleDarkMode] = useDarkModeManager()
 
   return (
@@ -150,13 +152,13 @@ function SideNav({ history }) {
       {!below1080 ? (
         <DesktopWrapper>
           <AutoColumn gap="2rem" style={{ marginTop: '1rem' }}>
-            <Title/>
+            <Title />
             {!below1080 && (
               <AutoColumn>
                 <NavLink to="/home">
                   <Option activeText={history.location.pathname === '/home' ?? undefined}>
                     <ReactSVG wrapper="span" src={iconOverview} style={{ marginRight: '.5rem' }} />
-                    Overview
+                    {t('Overview')}
                   </Option>
                 </NavLink>
                 <NavLink to="/tokens">
@@ -168,7 +170,7 @@ function SideNav({ history }) {
                     }
                   >
                     <ReactSVG wrapper="span" src={iconTokens} style={{ marginRight: '.5rem' }} />
-                    Tokens
+                    {t('Tokens')}
                   </Option>
                 </NavLink>
                 <NavLink to="/pairs">
@@ -180,7 +182,7 @@ function SideNav({ history }) {
                     }
                   >
                     <ReactSVG wrapper="span" src={iconPairs} style={{ marginRight: '.5rem' }} />
-                    Pairs
+                    {t('Pairs')}
                   </Option>
                 </NavLink>
 
@@ -193,7 +195,7 @@ function SideNav({ history }) {
                     }
                   >
                     <ReactSVG wrapper="span" src={iconAccounts} style={{ marginRight: '.5rem' }} />
-                    Accounts
+                    {t('Accounts')}
                   </Option>
                 </NavLink>
               </AutoColumn>
@@ -205,6 +207,7 @@ function SideNav({ history }) {
                 Hugswap.com
               </Link>
             </HeaderText>
+            <Language />
             <Toggle isActive={isDark} toggle={toggleDarkMode} />
           </AutoColumn>
           {!below1180 && (
@@ -212,17 +215,17 @@ function SideNav({ history }) {
               <PollingDot />
               <a href="/">
                 <TYPE.small>
-                  Updated {!!seconds ? seconds + 's' : '-'} ago <br />
+                  {t('Updated ago', { seconds: (!!seconds ? seconds + 's' : '-') })} <br />
                 </TYPE.small>
               </a>
             </Polling>
           )}
         </DesktopWrapper>
       ) : (
-        <MobileWrapper>
-          <Title />
-        </MobileWrapper>
-      )}
+          <MobileWrapper>
+            <Title />
+          </MobileWrapper>
+        )}
     </Wrapper>
   )
 }

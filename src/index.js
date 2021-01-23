@@ -10,6 +10,7 @@ import PairDataContextProvider, { Updater as PairDataContextUpdater } from './co
 import ApplicationContextProvider from './contexts/Application'
 import UserContextProvider from './contexts/User'
 import App from './App'
+import './i18n'
 
 // initialize GA
 const GOOGLE_ANALYTICS_ID = process.env.REACT_APP_GOOGLE_ANALYTICS_ID
@@ -19,8 +20,8 @@ if (typeof GOOGLE_ANALYTICS_ID === 'string') {
     customBrowserType: !isMobile
       ? 'desktop'
       : 'web3' in window || 'ethereum' in window
-      ? 'mobileWeb3'
-      : 'mobileRegular',
+        ? 'mobileWeb3'
+        : 'mobileRegular',
   })
 } else {
   ReactGA.initialize('test', { testMode: true, debug: true })

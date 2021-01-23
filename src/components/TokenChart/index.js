@@ -240,7 +240,6 @@ const TokenChart = ({ address, color, base }) => {
               domain={['dataMin', 'dataMax']}
             />
             <YAxis
-              hide={true}
               type="number"
               orientation="right"
               tickFormatter={(tick) => '$' + toK(tick)}
