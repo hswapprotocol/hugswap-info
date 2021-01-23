@@ -5,7 +5,7 @@ import LocalLoader from '../LocalLoader'
 import utc from 'dayjs/plugin/utc'
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
-
+import { useTranslation } from 'react-i18next'
 import { CustomLink } from '../Link'
 import { Divider } from '../../components'
 import { withRouter } from 'react-router-dom'
@@ -122,7 +122,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
   const below600 = useMedia('(max-width: 600px)')
   const below740 = useMedia('(max-width: 740px)')
   const below1080 = useMedia('(max-width: 1080px)')
-
+  const { t } = useTranslation()
   // pagination
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
@@ -219,7 +219,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
         disbaleLinks={disbaleLinks}
       >
         <Flex alignItems="center" justifyContent="flexStart">
-          <HeaderText area="name">Name</HeaderText>
+          <HeaderText area="name">{t('Name')}</HeaderText>
         </Flex>
         <Flex alignItems="center" justifyContent="flexEnd">
           <ClickableText
@@ -229,7 +229,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               setSortDirection(sortedColumn !== SORT_FIELD.LIQ ? true : !sortDirection)
             }}
           ><HeaderText>
-              Liquidity {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
+              {t('Liquidity')} {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
             </HeaderText>
           </ClickableText>
         </Flex>
@@ -242,8 +242,8 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
             }}
           >
             <HeaderText>
-              Volume (24hrs)
-            {sortedColumn === SORT_FIELD.VOL ? (!sortDirection ? '↑' : '↓') : ''}
+              {t('Volume (24hrs)')}
+              {sortedColumn === SORT_FIELD.VOL ? (!sortDirection ? '↑' : '↓') : ''}
             </HeaderText>
           </ClickableText>
         </Flex>
@@ -257,7 +257,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               }}
             >
               <HeaderText>
-                Volume (7d) {sortedColumn === SORT_FIELD.VOL_7DAYS ? (!sortDirection ? '↑' : '↓') : ''}
+                {t('Volume (7d)')} {sortedColumn === SORT_FIELD.VOL_7DAYS ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
           </Flex>
@@ -272,7 +272,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               }}
             >
               <HeaderText>
-                Fees (24hr) {sortedColumn === SORT_FIELD.FEES ? (!sortDirection ? '↑' : '↓') : ''}
+                {t('Fees (24H)')} {sortedColumn === SORT_FIELD.FEES ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
           </Flex>
@@ -287,10 +287,10 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               }}
             >
               <HeaderText>
-                1y Fees / Liquidity {sortedColumn === SORT_FIELD.APY ? (!sortDirection ? '↑' : '↓') : ''}
+                {t('1y Fees / Liquidity')} {sortedColumn === SORT_FIELD.APY ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
-            <QuestionHelper text={'Based on 24hr volume annualized'} />
+            <QuestionHelper text={t('Based on 24hr volume annualized')} />
           </Flex>
         )}
       </DashGridHead>
@@ -303,7 +303,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
         >
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{'Page ' + page + ' of ' + maxPage}</TYPE.body>
+        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
         <div
           onClick={(e) => {
             setPage(page === maxPage ? page : page + 1)

@@ -15,7 +15,7 @@ import { RowFixed } from '../Row'
 import { ButtonLight } from '../ButtonStyled'
 import { TYPE } from '../../Theme'
 import FormattedName from '../FormattedName'
-
+import { useTranslation } from 'react-i18next'
 dayjs.extend(utc)
 
 const PageButtons = styled.div`
@@ -109,7 +109,7 @@ const SORT_FIELD = {
 function MiningPositionList({ miningPositions }) {
   // const below500 = useMedia('(max-width: 500px)')
   const below740 = useMedia('(max-width: 740px)')
-
+  const { t } = useTranslation()
   // pagination
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
@@ -160,11 +160,11 @@ function MiningPositionList({ miningPositions }) {
             </CustomLink>
             <RowFixed gap="8px" justify="flex-start">
               <Link external href={getHugswapAppLink(firstPairAddress)} style={{ marginRight: '.5rem' }}>
-                <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>Stake More</ButtonLight>
+                <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>{t('Stake More')}</ButtonLight>
               </Link>
               {pairPercentage > 0 && (
                 <Link external href={getHugswapAppLink(firstPairAddress)}>
-                  <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>Withdraw</ButtonLight>
+                  <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>{t('Withdraw')}</ButtonLight>
                 </Link>
               )}
             </RowFixed>
@@ -230,7 +230,7 @@ function MiningPositionList({ miningPositions }) {
           </Flex>
         )}
         <Flex alignItems="flex-start" justifyContent="flex-start">
-          <TYPE.main area="number">Name</TYPE.main>{' '}
+          <TYPE.main area="number">{t('Name')}</TYPE.main>{' '}
         </Flex>
         <Flex alignItems="center" justifyContent="flexEnd">
           <ClickableText
@@ -240,7 +240,7 @@ function MiningPositionList({ miningPositions }) {
               setSortDirection(sortedColumn !== SORT_FIELD.VALUE ? true : !sortDirection)
             }}
           >
-            {below740 ? 'Value' : 'Liquidity'} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
+            {below740 ? t('Value') : t('Liquidity')} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
       </DashGrid>
@@ -250,7 +250,7 @@ function MiningPositionList({ miningPositions }) {
         <div onClick={() => setPage(page === 1 ? page : page - 1)}>
           <Arrow faded={page === 1}>←</Arrow>
         </div>
-        <TYPE.body>{'Page ' + page + ' of ' + maxPage}</TYPE.body>
+        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
         <div onClick={() => setPage(page === maxPage ? page : page + 1)}>
           <Arrow faded={page === maxPage}>→</Arrow>
         </div>

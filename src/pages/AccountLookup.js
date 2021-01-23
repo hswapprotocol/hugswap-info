@@ -12,7 +12,7 @@ import AccountSearch from '../components/AccountSearch'
 import { useTopLps } from '../contexts/GlobalData'
 import LocalLoader from '../components/LocalLoader'
 import { useMedia } from 'react-use'
-
+import { useTranslation } from 'react-i18next'
 const AccountWrapper = styled.div`
   @media screen and (max-width: 600px) {
     width: 100%;
@@ -26,7 +26,7 @@ function AccountLookup() {
   }, [])
 
   const topLps = useTopLps()
-
+  const { t } = useTranslation()
   const below600 = useMedia('(max-width: 600px)')
 
   return (
@@ -39,7 +39,7 @@ function AccountLookup() {
           <AccountSearch />
         </AccountWrapper>
         <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '1rem' }}>
-          Top Liquidity Positions
+          {t('Top Liquidity Positions')}
         </TYPE.main>
         <Panel>{topLps && topLps.length > 0 ? <LPList lps={topLps} maxItems={200} /> : <LocalLoader />}</Panel>
       </FullWrapper>

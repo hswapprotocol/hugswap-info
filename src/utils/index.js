@@ -10,6 +10,8 @@ import _Decimal from 'decimal.js-light'
 import toFormat from 'toformat'
 import { timeframeOptions } from '../constants'
 import Numeral from 'numeral'
+import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 
 // format libraries
 const Decimal = toFormat(_Decimal)
@@ -308,13 +310,13 @@ export const formatTime = (unix) => {
   const inDays = now.diff(timestamp, 'day')
 
   if (inHours >= 24) {
-    return `${inDays} ${inDays === 1 ? 'day' : 'days'} ago`
+    return i18next.t('n days ago', { n: inDays, day: (inDays === 1 ? 'day' : 'days') })
   } else if (inMinutes >= 60) {
-    return `${inHours} ${inHours === 1 ? 'hour' : 'hours'} ago`
+    return i18next.t('n hour ago', { n: inHours, hour: (inHours === 1 ? 'hour' : 'hours') })
   } else if (inSeconds >= 60) {
-    return `${inMinutes} ${inMinutes === 1 ? 'minute' : 'minutes'} ago`
+    return i18next.t('n minute ago', { n: inMinutes, minute: (inMinutes === 1 ? 'minute' : 'minutes') })
   } else {
-    return `${inSeconds} ${inSeconds === 1 ? 'second' : 'seconds'} ago`
+    return i18next.t('n second ago', { n: inSeconds, second: (inSeconds === 1 ? 'second' : 'seconds') })
   }
 }
 

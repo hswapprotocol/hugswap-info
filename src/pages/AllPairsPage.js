@@ -10,10 +10,10 @@ import PairList from '../components/PairList'
 import { PageWrapper, FullWrapper } from '../components'
 import { RowBetween } from '../components/Row'
 import { useMedia } from 'react-use'
-
+import { useTranslation } from 'react-i18next'
 function AllPairsPage() {
   const allPairs = useAllPairData()
-
+  const { t } = useTranslation()
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -27,7 +27,7 @@ function AllPairsPage() {
       </SecondHeader>
       <FullWrapper>
         <RowBetween marginTop={40}>
-          <TYPE.largeHeader>Top Pairs</TYPE.largeHeader>
+          <TYPE.largeHeader>{t('Top Pairs')}</TYPE.largeHeader>
         </RowBetween>
         <Panel style={{ padding: below800 && '1rem 0 0 0 ' }}>
           <PairList pairs={allPairs} disbaleLinks={true} maxItems={50} />

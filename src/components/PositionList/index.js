@@ -17,7 +17,7 @@ import { ButtonLight } from '../ButtonStyled'
 import { TYPE } from '../../Theme'
 import FormattedName from '../FormattedName'
 import { HeaderText, wrapDashGridHead } from '../TokenList'
-
+import { useTranslation } from 'react-i18next'
 dayjs.extend(utc)
 
 const PageButtons = styled.div`
@@ -112,7 +112,7 @@ const SORT_FIELD = {
 function PositionList({ positions }) {
   const below500 = useMedia('(max-width: 500px)')
   const below740 = useMedia('(max-width: 740px)')
-
+  const { t } = useTranslation()
   // pagination
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
@@ -166,11 +166,11 @@ function PositionList({ positions }) {
                 href={getPoolLink(position.pair.token0.id, position.pair.token1.id)}
                 style={{ marginRight: '.5rem' }}
               >
-                <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>Add</ButtonLight>
+                <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>{t('Add')}</ButtonLight>
               </Link>
               {poolOwnership > 0 && (
                 <Link external href={getPoolLink(position.pair.token0.id, position.pair.token1.id, true)}>
-                  <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>Remove</ButtonLight>
+                  <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>{t('Remove')}</ButtonLight>
                 </Link>
               )}
             </RowFixed>
@@ -293,7 +293,7 @@ function PositionList({ positions }) {
           </Flex>
         )}
         <Flex alignItems="flex-start" justifyContent="flex-start">
-          <HeaderText area="number">Name</HeaderText>
+          <HeaderText area="number">{t('Name')}</HeaderText>
         </Flex>
         <Flex alignItems="center" justifyContent="flexEnd">
           <ClickableText
@@ -304,7 +304,7 @@ function PositionList({ positions }) {
             }}
           >
             <HeaderText>
-              {below740 ? 'Value' : 'Liquidity'} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
+              {below740 ? t('Value') : t('Liquidity')} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
             </HeaderText>
           </ClickableText>
         </Flex>
@@ -317,7 +317,7 @@ function PositionList({ positions }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.UNISWAP_RETURN ? true : !sortDirection)
               }}
             ><HeaderText>
-                {below740 ? 'Fees' : 'Total Fees Earned'}{' '}
+                {below740 ? t('Fees') : t('Total Fees Earned')}{' '}
                 {sortedColumn === SORT_FIELD.UNISWAP_RETURN ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
@@ -329,7 +329,7 @@ function PositionList({ positions }) {
         <div onClick={() => setPage(page === 1 ? page : page - 1)}>
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{'Page ' + page + ' of ' + maxPage}</TYPE.body>
+        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
         <div onClick={() => setPage(page === maxPage ? page : page + 1)}>
           <Arrow faded={page === maxPage ? true : false}>→</Arrow>
         </div>

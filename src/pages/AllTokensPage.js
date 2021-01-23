@@ -10,7 +10,7 @@ import SecondHeader from '../components/SecondHeader'
 import OutNav from '../components/OutNav'
 import { RowBetween } from '../components/Row'
 import { useMedia } from 'react-use'
-
+import { useTranslation } from 'react-i18next'
 const SmallWrapper = styled(FullWrapper)`
   gap: 11px;
 `
@@ -18,7 +18,7 @@ const SmallWrapper = styled(FullWrapper)`
 
 function AllTokensPage() {
   const allTokens = useAllTokenData()
-
+  const { t } = useTranslation()
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -31,8 +31,8 @@ function AllTokensPage() {
         <OutNav />
       </SecondHeader>
       <SmallWrapper>
-        <RowBetween style={{padding: below600 ? '1rem 0 0 0' : '2.51rem 0 0 0' }}>
-          <TYPE.largeHeader fontSize="18">Top Tokens</TYPE.largeHeader>
+        <RowBetween style={{ padding: below600 ? '1rem 0 0 0' : '2.51rem 0 0 0' }}>
+          <TYPE.largeHeader fontSize="18">{t('Top Tokens')}</TYPE.largeHeader>
         </RowBetween>
         <Panel style={{ marginTop: '6px', padding: below600 && '1rem 0 0 0 ' }}>
           <TopTokenList tokens={allTokens} itemMax={50} />

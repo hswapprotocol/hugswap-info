@@ -7,7 +7,8 @@ import { formatTime, formattedNum, urls } from '../../utils'
 import { useMedia } from 'react-use'
 import { useCurrentCurrency } from '../../contexts/Application'
 import { RowFixed, RowBetween } from '../Row'
-
+import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 import LocalLoader from '../LocalLoader'
 import { Box, Flex, Text } from 'rebass'
 import Link from '../Link'
@@ -154,11 +155,11 @@ function getTransactionType(event, symbol0, symbol1) {
   const formattedS1 = symbol1?.length > 8 ? symbol1.slice(0, 7) + '...' : symbol1
   switch (event) {
     case TXN_TYPE.ADD:
-      return 'Add ' + formattedS0 + ' and ' + formattedS1
+      return i18next.t('Add A and B', { A: formattedS0, B: formattedS1 })
     case TXN_TYPE.REMOVE:
-      return 'Remove ' + formattedS0 + ' and ' + formattedS1
+      return i18next.t('Remove A and B', { A: formattedS0, B: formattedS1 })
     case TXN_TYPE.SWAP:
-      return 'Swap ' + formattedS0 + ' for ' + formattedS1
+      return i18next.t('Swap A for B', { A: formattedS0, B: formattedS1 })
     default:
       return ''
   }
@@ -169,7 +170,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
   // page state
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
-
+  const { t } = useTranslation()
   // sorting
   const [sortDirection, setSortDirection] = useState(true)
   const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.TIMESTAMP)
@@ -332,32 +333,32 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 }}
                 active={txFilter === TXN_TYPE.ALL}
               >
-                All
-            </SortText>
+                {t('All')}
+              </SortText>
               <SortText
                 onClick={() => {
                   setTxFilter(TXN_TYPE.SWAP)
                 }}
                 active={txFilter === TXN_TYPE.SWAP}
               >
-                Swaps
-            </SortText>
+                {t('Swaps')}
+              </SortText>
               <SortText
                 onClick={() => {
                   setTxFilter(TXN_TYPE.ADD)
                 }}
                 active={txFilter === TXN_TYPE.ADD}
               >
-                Adds
-            </SortText>
+                {t('Adds')}
+              </SortText>
               <SortText
                 onClick={() => {
                   setTxFilter(TXN_TYPE.REMOVE)
                 }}
                 active={txFilter === TXN_TYPE.REMOVE}
               >
-                Removes
-            </SortText>
+                {t('Removes')}
+              </SortText>
             </RowFixed>
           )}
 
@@ -370,7 +371,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
               setSortDirection(sortedColumn !== SORT_FIELD.VALUE ? true : !sortDirection)
             }}
           >
-            <HeaderText>Total Value {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}</HeaderText>
+            <HeaderText>{t('Total Value')} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}</HeaderText>
           </ClickableText>
         </Flex>
         {!below780 && (
@@ -383,7 +384,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.AMOUNT0 ? true : !sortDirection)
               }}
             ><HeaderText>
-                {symbol0Override ? symbol0Override + ' Amount' : 'Token Amount'}{' '}
+                {symbol0Override ? symbol0Override + ' ' + t('Amount') : t('Token Amount')}{' '}
                 {sortedColumn === SORT_FIELD.AMOUNT0 ? (sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
@@ -401,7 +402,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 }}
               >
                 <HeaderText>
-                  {symbol1Override ? symbol1Override + ' Amount' : 'Token Amount'}{' '}
+                  {symbol1Override ? symbol1Override + ' ' + t('Amount') : t('Token Amount')}{' '}
                   {sortedColumn === SORT_FIELD.AMOUNT1 ? (sortDirection ? '↑' : '↓') : ''}
                 </HeaderText>
               </ClickableText>
@@ -409,7 +410,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
           )}
           {!below1080 && (
             <Flex alignItems="center">
-              <HeaderText area="account">Account</HeaderText>
+              <HeaderText area="account">{t('Account')}</HeaderText>
             </Flex>
           )}
           <Flex alignItems="center">
@@ -421,7 +422,8 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.TIMESTAMP ? true : !sortDirection)
               }}
             ><HeaderText>
-                Time {sortedColumn === SORT_FIELD.TIMESTAMP ? (!sortDirection ? '↑' : '↓') : ''}
+                {t('Time')}
+                {sortedColumn === SORT_FIELD.TIMESTAMP ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
           </Flex>
@@ -450,7 +452,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
         >
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{'Page ' + page + ' of ' + maxPage}</TYPE.body>
+        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
         <div
           onClick={(e) => {
             setPage(page === maxPage ? page : page + 1)

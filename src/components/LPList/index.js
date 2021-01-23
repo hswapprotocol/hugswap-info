@@ -13,7 +13,7 @@ import { formattedNum } from '../../utils'
 import { TYPE } from '../../Theme'
 import DoubleTokenLogo from '../DoubleLogo'
 import { RowFixed } from '../Row'
-
+import { useTranslation } from 'react-i18next'
 import { HeaderText, wrapDashGridHead } from '../TokenList'
 
 dayjs.extend(utc)
@@ -85,7 +85,7 @@ const DataText = styled(Flex)`
 function LPList({ lps, disbaleLinks, maxItems = 10 }) {
   const below600 = useMedia('(max-width: 600px)')
   const below800 = useMedia('(max-width: 800px)')
-
+  const { t } = useTranslation()
   // pagination
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
@@ -158,7 +158,7 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
           </Flex>
         )}
         <Flex alignItems="center" justifyContent="flex-start">
-          <HeaderText area="name">Account</HeaderText>
+          <HeaderText area="name">{t('Account')}</HeaderText>
         </Flex>
         {/* {!below1080 && (
           <Flex alignItems="center" justifyContent="flexEnd">
@@ -166,10 +166,10 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
           </Flex>
         )} */}
         <Flex alignItems="center" justifyContent="flexEnd">
-          <HeaderText area="pair">Pair</HeaderText>
+          <HeaderText area="pair">{t('Pair')}</HeaderText>
         </Flex>
         <Flex alignItems="center" justifyContent="flexEnd">
-          <HeaderText area="value">Value</HeaderText>
+          <HeaderText area="value">{t('Value')}</HeaderText>
         </Flex>
       </DashGridHead>
       <Divider />
@@ -178,7 +178,7 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
         <div onClick={() => setPage(page === 1 ? page : page - 1)}>
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{'Page ' + page + ' of ' + maxPage}</TYPE.body>
+        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
         <div onClick={() => setPage(page === maxPage ? page : page + 1)}>
           <Arrow faded={page === maxPage ? true : false}>→</Arrow>
         </div>

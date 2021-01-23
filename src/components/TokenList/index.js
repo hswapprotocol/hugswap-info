@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
-
+import { useTranslation } from 'react-i18next'
 import { Box, Flex, Text } from 'rebass'
 import TokenLogo from '../TokenLogo'
 import { CustomLink } from '../Link'
@@ -28,7 +28,7 @@ const PageButtons = styled.div`
 
 const Arrow = styled.div`
   color: ${({ theme }) => theme.primary1};
-  opacity: ${(props) => (props.faded ? 0.3 : 1)};
+  opacity: ${props => (props.faded ? 0.3 : 1)};
   padding: 0 20px;
   user-select: none;
   :hover {
@@ -50,7 +50,8 @@ const DashGrid = styled.div`
   > * {
     justify-content: flex-end;
 
-    &:first-child, &:nth-child(2) {
+    &:first-child,
+    &:nth-child(2) {
       justify-content: flex-start;
       text-align: left;
     }
@@ -66,7 +67,8 @@ const DashGrid = styled.div`
       justify-content: flex-end;
       width: 100%;
 
-      &:first-child, &:nth-child(2) {
+      &:first-child,
+      &:nth-child(2) {
         justify-content: flex-start;
       }
     }
@@ -79,7 +81,7 @@ const DashGrid = styled.div`
     grid-template-areas: 'num name symbol liq vol price change';
   }
 `
-export const wrapDashGridHead = (DG) => styled(DG)`
+export const wrapDashGridHead = DG => styled(DG)`
   background-color: ${({ theme }) => theme.bg3};
   border-radius: 2px;
   padding-top: 0;
@@ -114,7 +116,6 @@ const ClickableText = styled(Text)`
   }
 `
 
-
 const NameLink = styled(CustomLink)`
   color: ${({ theme }) => theme.text2};
   :visited {
@@ -142,7 +143,7 @@ const SORT_FIELD = {
   SYMBOL: 'symbol',
   NAME: 'name',
   PRICE: 'priceUSD',
-  CHANGE: 'priceChangeUSD',
+  CHANGE: 'priceChangeUSD'
 }
 
 // @TODO rework into virtualized list
@@ -150,7 +151,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
   // page state
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
-
+  const { t } = useTranslation()
   // sorting
   const [sortDirection, setSortDirection] = useState(true)
   const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.LIQ)
@@ -168,10 +169,10 @@ function TopTokenList({ tokens, itemMax = 10 }) {
     return (
       tokens &&
       Object.keys(tokens)
-        .filter((key) => {
+        .filter(key => {
           return !OVERVIEW_TOKEN_BLACKLIST.includes(key)
         })
-        .map((key) => tokens[key])
+        .map(key => tokens[key])
     )
   }, [tokens])
 
@@ -246,24 +247,24 @@ function TopTokenList({ tokens, itemMax = 10 }) {
             color="text"
             area="name"
             fontWeight="500"
-            onClick={(e) => {
+            onClick={e => {
               setSortedColumn(SORT_FIELD.NAME)
               setSortDirection(sortedColumn !== SORT_FIELD.NAMe ? true : !sortDirection)
             }}
           >
-            {below680 ? 'Symbol' : 'Name'} {sortedColumn === SORT_FIELD.NAME ? (!sortDirection ? '↑' : '↓') : ''}
+            {below680 ? t('Symbol') : t('Name')} {sortedColumn === SORT_FIELD.NAME ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
         {!below680 && (
           <Flex alignItems="center">
             <ClickableText
               area="symbol"
-              onClick={(e) => {
+              onClick={e => {
                 setSortedColumn(SORT_FIELD.SYMBOL)
                 setSortDirection(sortedColumn !== SORT_FIELD.SYMBOL ? true : !sortDirection)
               }}
             >
-              Symbol {sortedColumn === SORT_FIELD.SYMBOL ? (!sortDirection ? '↑' : '↓') : ''}
+              {t('Symbol')} {sortedColumn === SORT_FIELD.SYMBOL ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
         )}
@@ -271,23 +272,23 @@ function TopTokenList({ tokens, itemMax = 10 }) {
         <Flex alignItems="center">
           <ClickableText
             area="liq"
-            onClick={(e) => {
+            onClick={e => {
               setSortedColumn(SORT_FIELD.LIQ)
               setSortDirection(sortedColumn !== SORT_FIELD.LIQ ? true : !sortDirection)
             }}
           >
-            Liquidity {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
+            {t('Liquidity')} {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
         <Flex alignItems="center">
           <ClickableText
             area="vol"
-            onClick={(e) => {
+            onClick={e => {
               setSortedColumn(SORT_FIELD.VOL)
               setSortDirection(sortedColumn !== SORT_FIELD.VOL ? true : !sortDirection)
             }}
           >
-            Volume (24hrs)
+            {t('Volume (24hrs)')}
             {sortedColumn === SORT_FIELD.VOL ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
@@ -295,12 +296,12 @@ function TopTokenList({ tokens, itemMax = 10 }) {
           <Flex alignItems="center">
             <ClickableText
               area="price"
-              onClick={(e) => {
+              onClick={e => {
                 setSortedColumn(SORT_FIELD.PRICE)
                 setSortDirection(sortedColumn !== SORT_FIELD.PRICE ? true : !sortDirection)
               }}
             >
-              Price {sortedColumn === SORT_FIELD.PRICE ? (!sortDirection ? '↑' : '↓') : ''}
+              {t('Price')} {sortedColumn === SORT_FIELD.PRICE ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
         )}
@@ -308,12 +309,12 @@ function TopTokenList({ tokens, itemMax = 10 }) {
           <Flex alignItems="center">
             <ClickableText
               area="change"
-              onClick={(e) => {
+              onClick={e => {
                 setSortedColumn(SORT_FIELD.CHANGE)
                 setSortDirection(sortedColumn !== SORT_FIELD.CHANGE ? true : !sortDirection)
               }}
             >
-              Price Change (24hrs)
+              {t('Price Change (24hrs)')}
               {sortedColumn === SORT_FIELD.CHANGE ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
@@ -335,7 +336,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
         <div onClick={() => setPage(page === 1 ? page : page - 1)}>
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{'Page ' + page + ' of ' + maxPage}</TYPE.body>
+        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
         <div onClick={() => setPage(page === maxPage ? page : page + 1)}>
           <Arrow faded={page === maxPage ? true : false}>→</Arrow>
         </div>
