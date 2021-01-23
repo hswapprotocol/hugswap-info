@@ -235,7 +235,7 @@ const TokenChart = ({ address, color, base }) => {
               minTickGap={120}
               tickFormatter={(tick) => toNiceDate(tick)}
               dataKey="date"
-              tick={{ fill: 'none' }}
+              tick={{ fill: theme.text4 }}
               type={'number'}
               domain={['dataMin', 'dataMax']}
             />
@@ -249,7 +249,7 @@ const TokenChart = ({ address, color, base }) => {
               interval="preserveEnd"
               minTickGap={80}
               yAxisId={0}
-              tick={{ fill: 'none' }}
+              tick={{ fill: theme.text4 }}
             />
             <Tooltip
               cursor={true}
@@ -290,7 +290,6 @@ const TokenChart = ({ address, color, base }) => {
                 </linearGradient>
               </defs>
               <XAxis
-                hide={true}
                 tickLine={false}
                 axisLine={false}
                 interval="preserveEnd"
@@ -298,12 +297,11 @@ const TokenChart = ({ address, color, base }) => {
                 minTickGap={120}
                 tickFormatter={(tick) => toNiceDate(tick)}
                 dataKey="date"
-                tick={{ fill: 'none' }}
+                tick={{ fill: theme.text4 }}
                 type={'number'}
                 domain={domain}
               />
               <YAxis
-                hide={true}
                 type="number"
                 orientation="right"
                 tickFormatter={(tick) => '$' + toK(tick)}
@@ -312,7 +310,7 @@ const TokenChart = ({ address, color, base }) => {
                 interval="preserveEnd"
                 minTickGap={80}
                 yAxisId={0}
-                tick={{ fill: 'none' }}
+                tick={{ fill: theme.text4 }}
               />
               <Tooltip
                 cursor={true}
@@ -353,7 +351,6 @@ const TokenChart = ({ address, color, base }) => {
         <ResponsiveContainer aspect={aspect}>
           <BarChart margin={{ top: 0, right: 10, bottom: 6, left: 10 }} barCategoryGap={1} data={chartData}>
             <XAxis
-              hide={true}
               tickLine={false}
               axisLine={false}
               interval="preserveEnd"
@@ -361,12 +358,11 @@ const TokenChart = ({ address, color, base }) => {
               tickMargin={14}
               tickFormatter={(tick) => toNiceDate(tick)}
               dataKey="date"
-              tick={{ fill: 'none' }}
+              tick={{ fill: theme.text4 }}
               type={'number'}
               domain={['dataMin', 'dataMax']}
             />
             <YAxis
-              hide={true}
               type="number"
               axisLine={false}
               tickMargin={16}
@@ -376,7 +372,7 @@ const TokenChart = ({ address, color, base }) => {
               interval="preserveEnd"
               minTickGap={80}
               yAxisId={0}
-              tick={{ fill: 'none' }}
+              tick={{ fill: theme.text4 }}
             />
             <Tooltip
               cursor={{ fill: '#BA40F3', opacity: 0.1 }}
