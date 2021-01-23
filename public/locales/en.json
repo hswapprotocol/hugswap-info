@@ -6,5 +6,13 @@
   "Swap": "Swap",
   "Liquidity": "Liquidity",
   "Info": "Info",
-  "Updated ago": "Updated {{seconds}} ago"
+  "Updated ago": "Updated {{seconds}} ago",
+  "Protocol Analytics": "Protocol Analytics",
+  "Husswap Protocol Analytics": "Husswap Protocol Analytics",
+  "Volume (24hrs)": "Volume (24hrs)",
+  "Total Liquidity": "Total Liquidity",
+  "Top Tokens": "Top Tokens",
+  "See All": "See All",
+  "Top Pairs": "Top Pairs",
+  "Transactions": "Transactions",
 }

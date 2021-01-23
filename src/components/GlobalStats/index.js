@@ -4,7 +4,7 @@ import { RowFixed, RowBetween } from '../Row'
 import { useMedia } from 'react-use'
 import { useGlobalData, useEthPrice } from '../../contexts/GlobalData'
 import { formattedNum, localNumber } from '../../utils'
-
+import { useTranslation } from 'react-i18next'
 import UniPrice from '../UniPrice'
 import { TYPE } from '../../Theme'
 
@@ -24,13 +24,13 @@ export default function GlobalStats() {
   const below1024 = useMedia('(max-width: 1024px)')
   const below400 = useMedia('(max-width: 400px)')
   const below816 = useMedia('(max-width: 816px)')
-
+  const { t } = useTranslation()
   const [showPriceCard, setShowPriceCard] = useState(false)
 
   const { oneDayVolumeUSD, oneDayTxns, pairCount } = useGlobalData()
   const [ethPrice] = useEthPrice()
   const formattedEthPrice = ethPrice ? formattedNum(ethPrice, true) : '-'
-  const oneDayFees = oneDayVolumeUSD ? formattedNum(oneDayVolumeUSD * 0.003, true) : ''
+  const oneDayFees = oneDayVolumeUSD ? formattedNum(oneDayVolumeUSD * 0.003, true) : '-'
 
   return (
     <Header>
@@ -48,7 +48,7 @@ export default function GlobalStats() {
               color="text4"
               style={{ position: 'relative' }}
             >
-              HT Price: <Medium>{formattedEthPrice}</Medium>
+              {t('HT Price')}: <Medium>{formattedEthPrice}</Medium>
               {showPriceCard && <UniPrice />}
             </TYPE.main>
           )}
@@ -56,19 +56,19 @@ export default function GlobalStats() {
           {!below1180 && (
             <TYPE.main mr={'1rem'}
               color="text4">
-              Transactions (24H): <Medium>{localNumber(oneDayTxns)}</Medium>
+              {t('Transactions (24H)')}: <Medium>{localNumber(oneDayTxns)}</Medium>
             </TYPE.main>
           )}
           {!below1024 && (
             <TYPE.main mr={'1rem'}
               color="text4">
-              Pairs: <Medium>{localNumber(pairCount)}</Medium>
+              {t('Pairs')}: <Medium>{localNumber(pairCount)}</Medium>
             </TYPE.main>
           )}
           {!below1295 && (
             <TYPE.main mr={'1rem'}
               color="text4">
-              Fees (24H): <Medium>{oneDayFees}</Medium>&nbsp;
+              {t('Fees (24H)')}: <Medium>{oneDayFees}</Medium>&nbsp;
             </TYPE.main>
           )}
         </RowFixed>
