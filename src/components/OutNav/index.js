@@ -2,6 +2,7 @@ import React from 'react'
 import { useMedia } from 'react-use'
 import styled from 'styled-components'
 import Link from '../Link'
+import { useTranslation } from 'react-i18next'
 
 const OutNavWrapper = styled.div`
   
@@ -18,30 +19,30 @@ const OutNavText = styled.span`
   }
 `
 
-function OutNav({children}) {
-    // breakpoints
+function OutNav({ children }) {
+  // breakpoints
   const below800 = useMedia('(max-width: 800px)')
+  const { t } = useTranslation()
 
-
-	return (
+  return (
     <>
-    {!below800 && (
-      <OutNavWrapper>
-        <OutNavText>
-          <Link href="https://app.hugswap.com" target="_blank">
-            Swap
-          </Link>
-        </OutNavText>
-        <OutNavText>
-          <Link href="https://app.hugswap.com/#/pool" target="_blank">
-            Liquidity
-          </Link>
-        </OutNavText>
-        <OutNavText> Info </OutNavText>
-      </OutNavWrapper>
-    )}
+      {!below800 && (
+        <OutNavWrapper>
+          <OutNavText>
+            <Link href="https://app.hugswap.com" target="_blank">
+              {t('Swap')}
+            </Link>
+          </OutNavText>
+          <OutNavText>
+            <Link href="https://app.hugswap.com/#/pool" target="_blank">
+              {t('Liquidity')}
+            </Link>
+          </OutNavText>
+          <OutNavText> {t('Info')}</OutNavText>
+        </OutNavWrapper>
+      )}
     </>
-	)
+  )
 }
 
 export default OutNav
