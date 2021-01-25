@@ -10,25 +10,25 @@ const FormattedPercent = ({percent, useBrackets = false}) => {
     return <Text fontWeight={500}>0%</Text>
   }
 
-  if (percent < 0.0001 && percent > 0) {
+  if (percent < 0.01 && percent > 0) {
     return (
       <Text fontWeight={500} color={theme.text8}>
-        {'< 0.0001%'}
+        {'< 0.01%'}
       </Text>
     )
   }
 
-  if (percent < 0 && percent > -0.0001) {
+  if (percent < 0 && percent > -0.01) {
     return (
       <Text fontWeight={500} color={theme.text9}>
-        {'< 0.0001%'}
+        {'< 0.01%'}
       </Text>
     )
   }
 
   let fixedPercent = percent.toFixed(2)
   if (fixedPercent === '0.00') {
-    return '0%'
+    return (<Text fontWeight={500} color={theme.text10}>{`${fixedPercent}%`}</Text>)
   }
   if (fixedPercent > 0) {
     if (fixedPercent > 100) {

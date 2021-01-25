@@ -69,7 +69,7 @@ const TradingViewChart = ({
 
   const [darkMode] = useDarkModeManager()
   const titleColor = theme.text2
-  const textColor = theme.text4
+  const textColor = theme.text3
   const previousTheme = usePrevious(darkMode)
 
   // reset the chart if them switches
@@ -168,7 +168,9 @@ const TradingViewChart = ({
       // format numbers
       let percentChange = baseChange?.toFixed(2)
       let formattedPercentChange = percentChange ? (percentChange > 0 ? '+' : '-') + percentChange + '%' : ''
-      let color = percentChange >= 0 ? theme.text8 : theme.text9
+      let color = percentChange === 0 ? theme.text10 : (percentChange >= 0 ? theme.text8 : theme.text9)
+
+
 
       // get the title of the chart
       function setLastBarText() {
