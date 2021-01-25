@@ -4,10 +4,12 @@ import { Text } from 'rebass'
 
 const FormattedPercent = ({percent, useBrackets = false}) => {
   const theme = useContext(ThemeContext)
-
+  if (typeof percent === undefined) {
+    return (<Text fontWeight={500} color={theme.text10}>--</Text>)
+  }
   percent = parseFloat(percent)
-  if (!percent || percent === 0) {
-    return <Text fontWeight={500}>0%</Text>
+  if (percent === 0) {
+    return <Text fontWeight={500} color={theme.text10}>0%</Text>
   }
 
   if (percent < 0.01 && percent > 0) {
@@ -27,9 +29,6 @@ const FormattedPercent = ({percent, useBrackets = false}) => {
   }
 
   let fixedPercent = percent.toFixed(2)
-  if (fixedPercent === '0.00') {
-    return (<Text fontWeight={500} color={theme.text10}>{`${fixedPercent}%`}</Text>)
-  }
   if (fixedPercent > 0) {
     if (fixedPercent > 100) {
       return (<Text fontWeight={500} color={theme.text8}>{`+${percent?.toFixed(0).toLocaleString()}%`}</Text>)

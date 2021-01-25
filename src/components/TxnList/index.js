@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import LocalLoader from '../LocalLoader'
 import { Box, Flex, Text } from 'rebass'
-import Link from '../Link'
+import {NameLink, OutLink} from '../Link'
 import { Divider, EmptyCard } from '..'
 import DropdownSelect from '../DropdownSelect'
 import FormattedName from '../FormattedName'
@@ -287,9 +287,9 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
     return (
       <DashGrid style={{ height: '48px' }}>
         <DataText area="txn" fontWeight="500">
-          <Link color={color} external href={urls.showTransaction(item.hash)}>
+          <NameLink color={color} to={urls.showTransaction(item.hash)}>
             {getTransactionType(item.type, item.token1Symbol, item.token0Symbol)}
-          </Link>
+          </NameLink>
         </DataText>
         <DataText area="value">
           {currency === 'ETH' ? 'Ξ ' + formattedNum(item.valueETH) : formattedNum(item.amountUSD, true)}
@@ -308,9 +308,9 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
         )}
         {!below1080 && (
           <DataText area="account">
-            <Link color={color} external href={'https://scan.hecochain.com/address/' + item.account}>
+            <OutLink color={color} external={true} href={'https://scan.hecochain.com/address/' + item.account}>
               {item.account && item.account.slice(0, 6) + '...' + item.account.slice(38, 42)}
-            </Link>
+            </OutLink>
           </DataText>
         )}
         <DataText area="time">{formatTime(item.timestamp)}</DataText>

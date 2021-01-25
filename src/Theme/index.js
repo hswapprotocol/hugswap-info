@@ -113,10 +113,10 @@ const theme = (darkMode, color) => ({
   // other
   red1: '#FF6871',
   red2: '#F82D3A',
-  green1: '#27AE60',
+  green1: '#01AFA5',
   yellow1: '#FFE270',
   yellow2: '#F3841E',
-  blue1: '#2172E5',
+  blue1: '#3C67FF',
   shadow: darkMode ? '0px 4px 16px 4px rgba(0, 0, 0, 0.1)' : '0px 4px 16px rgba(0, 65, 51, 0.05)',
 
 

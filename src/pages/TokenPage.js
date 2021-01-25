@@ -16,7 +16,7 @@ import TxnList from '../components/TxnList'
 import TokenChart from '../components/TokenChart'
 import { BasicLink } from '../components/Link'
 import Search from '../components/Search'
-import { formattedNum, formattedPercent, getPoolLink, getSwapLink, localNumber } from '../utils'
+import { formattedNum, getPoolLink, getSwapLink, localNumber } from '../utils'
 import { useTokenData, useTokenTransactions, useTokenPairs } from '../contexts/TokenData'
 import { TYPE, ThemedBackground } from '../Theme'
 import { transparentize } from 'polished'
@@ -30,6 +30,7 @@ import { usePathDismissed, useSavedTokens } from '../contexts/LocalStorage'
 import { Hover, PageWrapper, ContentWrapper, StyledIcon } from '../components'
 import { PlusCircle, Bookmark } from 'react-feather'
 import FormattedName from '../components/FormattedName'
+import FormattedPercent from '../components/FormattedPercent'
 import { useListedTokens } from '../contexts/Application'
 import { useTranslation } from 'react-i18next'
 
@@ -150,7 +151,6 @@ function TokenPage({ address, history }) {
 
   // price
   const price = priceUSD ? formattedNum(priceUSD, true) : ''
-  const priceChange = priceChangeUSD ? formattedPercent(priceChangeUSD) : ''
 
   // volume
   const volume =
@@ -166,14 +166,9 @@ function TokenPage({ address, history }) {
     setUsingUtVolume(oneDayVolumeUSD === 0 ? true : false)
   }, [oneDayVolumeUSD])
 
-  const volumeChange = formattedPercent(!usingUtVolume ? volumeChangeUSD : volumeChangeUT)
-
   // liquidity
   const liquidity = totalLiquidityUSD ? formattedNum(totalLiquidityUSD, true) : totalLiquidityUSD === 0 ? '$0' : '-'
-  const liquidityChange = formattedPercent(liquidityChangeUSD)
 
-  // transactions
-  const txnChangeFormatted = formattedPercent(txnChange)
 
   const below1080 = useMedia('(max-width: 1080px)')
   const below800 = useMedia('(max-width: 800px)')
@@ -245,7 +240,7 @@ function TokenPage({ address, history }) {
                       <TYPE.main fontSize={'1.5rem'} fontWeight={500} style={{ marginRight: '1rem' }}>
                         {price}
                       </TYPE.main>
-                      {priceChange}
+                      <FormattedPercent percent={priceChangeUSD} />
                     </>
                   )}
                 </RowFixed>
@@ -291,7 +286,7 @@ function TokenPage({ address, history }) {
                         <TYPE.main fontSize={'1.5rem'} lineHeight={1} fontWeight={500}>
                           {price}
                         </TYPE.main>
-                        <TYPE.main>{priceChange}</TYPE.main>
+                        <FormattedPercent percent={priceChangeUSD} />
                       </RowBetween>
                     </AutoColumn>
                   </Panel>
@@ -306,7 +301,7 @@ function TokenPage({ address, history }) {
                       <TYPE.main fontSize={'1.5rem'} lineHeight={1} fontWeight={500}>
                         {liquidity}
                       </TYPE.main>
-                      <TYPE.main>{liquidityChange}</TYPE.main>
+                      <FormattedPercent percent={liquidityChangeUSD} />
                     </RowBetween>
                   </AutoColumn>
                 </Panel>
@@ -320,7 +315,7 @@ function TokenPage({ address, history }) {
                       <TYPE.main fontSize={'1.5rem'} lineHeight={1} fontWeight={500}>
                         {volume}
                       </TYPE.main>
-                      <TYPE.main>{volumeChange}</TYPE.main>
+                      <FormattedPercent percent={volumeChangeUSD} />
                     </RowBetween>
                   </AutoColumn>
                 </Panel>
@@ -335,7 +330,7 @@ function TokenPage({ address, history }) {
                       <TYPE.main fontSize={'1.5rem'} lineHeight={1} fontWeight={500}>
                         {oneDayTxns ? localNumber(oneDayTxns) : oneDayTxns === 0 ? 0 : '-'}
                       </TYPE.main>
-                      <TYPE.main>{txnChangeFormatted}</TYPE.main>
+                      <FormattedPercent percent={txnChange} />
                     </RowBetween>
                   </AutoColumn>
                 </Panel>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useMedia } from 'react-use'
 import dayjs from 'dayjs'
 import LocalLoader from '../LocalLoader'
 import utc from 'dayjs/plugin/utc'
 import { Box, Flex, Text } from 'rebass'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import Link, { CustomLink } from '../Link'
 import { Divider } from '../../components'
 import DoubleTokenLogo from '../DoubleLogo'
@@ -113,6 +113,7 @@ function PositionList({ positions }) {
   const below500 = useMedia('(max-width: 500px)')
   const below740 = useMedia('(max-width: 740px)')
   const { t } = useTranslation()
+  const theme = useContext(ThemeContext)
   // pagination
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
@@ -208,7 +209,7 @@ function PositionList({ positions }) {
         {!below500 && (
           <DataText area="return">
             <AutoColumn gap="12px" justify="flex-end">
-              <TYPE.main color={'green'}>
+              <TYPE.main color={theme.text8}>
                 <RowFixed>{formattedNum(position?.fees.sum, true, true)}</RowFixed>
               </TYPE.main>
               <AutoColumn gap="4px" justify="flex-end">

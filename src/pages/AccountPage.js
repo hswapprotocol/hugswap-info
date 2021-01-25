@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react'
-import styled from 'styled-components'
+import React, { useState, useMemo, useEffect, useCallback, useContext } from 'react'
+import styled, {ThemeContext} from 'styled-components'
 import { useUserTransactions, useUserPositions, useMiningPositions } from '../contexts/User'
 import TxnList from '../components/TxnList'
 import Panel from '../components/Panel'
@@ -105,6 +105,7 @@ function AccountPage({ account }) {
   const transactions = useUserTransactions(account)
   const positions = useUserPositions(account)
   const miningPositions = useMiningPositions(account)
+  const theme = useContext(ThemeContext)
   const { t } = useTranslation()
   // get data for user stats
   const transactionCount = transactions?.swaps?.length + transactions?.burns?.length + transactions?.mints?.length
@@ -297,7 +298,7 @@ function AccountPage({ account }) {
                     <div />
                   </RowBetween>
                   <RowFixed align="flex-end">
-                    <TYPE.header fontSize={'24px'} lineHeight={1} color={aggregateFees && 'green'}>
+                    <TYPE.header fontSize={'24px'} lineHeight={1} color={aggregateFees && theme.text8}>
                       {aggregateFees ? formattedNum(aggregateFees, true, true) : '-'}
                     </TYPE.header>
                   </RowFixed>

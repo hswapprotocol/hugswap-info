@@ -62,7 +62,19 @@ const PanelWrapper = styled.div`
     }
   }
 `
-
+const BookMarkButton = styled(StyledIcon)`
+  font-size: 0.875rem;
+  color: ${({ theme }) => theme.text3}
+  > div {
+    color: ${({ theme }) => theme.text3}
+  }
+  :hover {
+    color: ${({ theme }) => theme.text7}
+  }
+  :hover > div {
+    color: ${({ theme }) => theme.text7}
+  }
+`
 const TokenDetailsLayout = styled.div`
   display: inline-grid;
   width: 100%;
@@ -267,9 +279,9 @@ function PairPage({ pairAddress, history }) {
                 >
                   {!!!savedPairs[pairAddress] && !below1080 ? (
                     <Hover onClick={() => addPair(pairAddress, token0.id, token1.id, token0.symbol, token1.symbol)}>
-                      <StyledIcon>
+                      <BookMarkButton>
                         <PlusCircle style={{ marginRight: '0.5rem' }} />
-                      </StyledIcon>
+                      </BookMarkButton>
                     </Hover>
                   ) : !below1080 ? (
                     <StyledIcon>

@@ -62,3 +62,12 @@ export const NameLink = styled(CustomLink)`
     color: ${({ theme }) => (lighten(0.1, theme.text11))};
   }
 `
+export const OutLink = styled(WrappedLink)`
+  color: ${({ theme }) => theme.text11};
+  :visited {
+    color: ${({ theme }) => theme.text11};
+  }
+  &:hover {
+    color: ${({ theme }) => (lighten(0.1, theme.text11))};
+  }
+`
