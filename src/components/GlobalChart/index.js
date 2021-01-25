@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react'
+import React, { useState, useMemo, useEffect, useRef, useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 import { ResponsiveContainer } from 'recharts'
 import { timeframeOptions } from '../../constants'
 import { useGlobalChartData, useGlobalData } from '../../contexts/GlobalData'
@@ -21,6 +22,7 @@ const VOLUME_WINDOW = {
   DAYS: 'DAYS',
 }
 const GlobalChart = ({ display }) => {
+  const theme = useContext(ThemeContext)
   // chart options
   const [chartView, setChartView] = useState(display === 'volume' ? CHART_VIEW.VOLUME : CHART_VIEW.LIQUIDITY)
 
@@ -30,7 +32,7 @@ const GlobalChart = ({ display }) => {
   const { t } = useTranslation()
   // global historical data
   const [dailyData, weeklyData] = useGlobalChartData()
-  const {
+  let {
     totalLiquidityUSD,
     oneDayVolumeUSD,
     volumeChangeUSD,
@@ -62,6 +64,12 @@ const GlobalChart = ({ display }) => {
   }, [dailyData, utcStartTime, volumeWindow, weeklyData])
   const below800 = useMedia('(max-width: 800px)')
 
+  if (chartDataFiltered?.length && !(VOLUME_WINDOW.WEEKLY ? oneWeekVolume : oneDayVolumeUSD)) {
+    let lastData = chartDataFiltered[chartDataFiltered.length - 1]
+    oneWeekVolume = lastData['weeklyVolumeUSD'] || lastData['dailyVolumeUSD']
+    oneDayVolumeUSD = oneWeekVolume
+  }
+
   // update the width on a window resize
   const ref = useRef()
   const isClient = typeof window === 'object'
@@ -80,7 +88,7 @@ const GlobalChart = ({ display }) => {
   return chartDataFiltered ? (
     <>
       {below800 && (
-        <DropdownSelect options={CHART_VIEW} active={chartView} setActive={setChartView} color={'#ff007a'} />
+        <DropdownSelect options={CHART_VIEW} active={chartView} setActive={setChartView} color={theme.text7} />
       )}
 
       {chartDataFiltered && chartView === CHART_VIEW.LIQUIDITY && (
