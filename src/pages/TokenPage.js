@@ -49,6 +49,19 @@ const AddressLink = styled(Link)`
     color: ${({ theme }) => theme.text7}
   }
 `
+const BookMarkButton = styled(StyledIcon)`
+  font-size: 0.875rem;
+  color: ${({ theme }) => theme.text3}
+  > div {
+    color: ${({ theme }) => theme.text3}
+  }
+  :hover {
+    color: ${({ theme }) => theme.text7}
+  }
+  :hover > div {
+    color: ${({ theme }) => theme.text7}
+  }
+`
 
 const PanelWrapper = styled.div`
   grid-template-columns: repeat(3, 1fr);
@@ -241,9 +254,9 @@ function TokenPage({ address, history }) {
                 <RowFixed ml={below500 ? '0' : '2.5rem'} mt={below500 ? '1rem' : '0'}>
                   {!!!savedTokens[address] && !below800 ? (
                     <Hover onClick={() => addToken(address, symbol)}>
-                      <StyledIcon>
+                      <BookMarkButton>
                         <PlusCircle style={{ marginRight: '0.5rem' }} />
-                      </StyledIcon>
+                      </BookMarkButton>
                     </Hover>
                   ) : !below1080 ? (
                     <StyledIcon>
