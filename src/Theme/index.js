@@ -17,7 +17,7 @@ const theme = (darkMode, color) => ({
   customColor: color,
   textColor: darkMode ? color : 'black',
 
-  panelColor: darkMode ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, 0)',
+  panelColor: darkMode ? 'rgba(34, 38, 38, 0.7)' : '#FFFFFF',
   backgroundColor: darkMode ? '#6840DD' : '#F7F8FA',
 
   hugswapPurple: '#6840DD',
@@ -117,7 +117,7 @@ const theme = (darkMode, color) => ({
   yellow1: '#FFE270',
   yellow2: '#F3841E',
   blue1: '#2172E5',
-  shadow: darkMode ? '0px 4px 16px 4px rgba(0, 0, 0, 0.2)' : '0px 4px 16px rgba(131, 142, 163, 0.1)',
+  shadow: darkMode ? '0px 4px 16px 4px rgba(0, 0, 0, 0.1)' : '0px 4px 16px rgba(0, 65, 51, 0.05)',
 
 
   background: darkMode ? 'black' : `radial-gradient(49.1% 87.28% at 50.9% 50%, #eafaff 0%, rgba(255, 255, 255, 0) 100%)`,
