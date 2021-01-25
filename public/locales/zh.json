@@ -8,7 +8,7 @@
   "Info": "数据",
   "Updated ago": "{{seconds}} 秒前已更新",
   "Protocol Analytics": "最新数据",
-  "Hugswap Protocol Analytics": "Hugswap 最新数据统计",
+  "Hugswap Protocol Analytics": "Hugswap 数据分析",
   "Volume (24hrs)": "成交量（24时）",
   "Total Liquidity": "总流动性",
   "Top Tokens": "热门代币",
@@ -88,7 +88,7 @@
   "No historical data yet": "暂无历史数据",
   "Pinned tokens will appear here": "关注的代币将显示在此处",
   "Pinned Tokens": "关注代币",
-  "Pinned pairs will appear here": "已关注的交易对显示在此处",
+  "Pinned pairs will appear here": "关注的交易对将显示在此处",
   "Pinned Pairs": "关注的交易对",
   "Search...": "搜索代币与交易对信息",
   "Search Hugswap...": "搜索Hugswap...",
@@ -108,5 +108,6 @@
   "Warning2": "与Hecoscan功能相似，本站自动跟踪所有HRC20代币数据分析（但与代币自身立场无关）。用户在使用任何HRC20代币前，务必谨慎操作。",
   "Warning3": "任何人都可以在Heco上创建和命名任何HRC20代币，与Hecoscan功能相似，本站自动跟踪所有HRC20代币数据分析（但与代币自身立场无关）。用户在使用任何HRC20代币前，务必谨慎操作。",
   "WarningBanner": "警告：本站数据仅已同步到Heco区块{{latestBlock}}（在{{headBlock}} 中）。请稍后再检查。",
-  "I understand": "已了解"
+  "I understand": "已了解",
+  "No recent transactions found": "暂无交易记录"
 }

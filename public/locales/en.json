@@ -108,5 +108,6 @@
   "Warning2": "Similar to Hecoscan, this site automatically tracks analytics for all HRC20 tokens independent of token integrity. Please do your own research before interacting with any HRC20 token.",
   "Warning3": "Anyone can create and name any HRC20 token on Heco, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token. Similar to Etherscan, this site automatically tracks analytics for all HRC20 tokens independent of token integrity. Please do your own research before interacting with any HRC20 token.",
   "WarningBanner": "Warning: The data on this site has only synced to Heco block {{latestBlock}} (out of {{headBlock}}). Please check back soon.",
-  "I understand": "I understand"
+  "I understand": "I understand",
+  "No recent transactions found": "No recent transactions found."
 }
