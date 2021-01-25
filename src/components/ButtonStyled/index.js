@@ -60,7 +60,7 @@ const ContentWrapper = styled.div`
 `
 
 export const ButtonLight = styled(Base)`
-  background-color: ${({ color, theme }) => (color ? transparentize(0.9, color) : theme.bgTagS)};
+  background-color: ${({ color, theme }) => (color ? transparentize(0.9, color) : theme.bg3)};
   color: ${({ color, theme }) => (color ? darken(0.1, color) : theme.text7)};
 
   min-width: fit-content;
