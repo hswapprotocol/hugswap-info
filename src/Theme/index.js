@@ -30,50 +30,50 @@ const theme = (darkMode, color) => ({
   // text，1-5dark下颜色越来越深
   text1: darkMode ? '#FFFFFF' : '#000000',
   // 一级色 大标题、正文
-  text2: darkMode ? '#E6E2F1' : '#191D2B',
+  text2: darkMode ? '#E6EBEB' : '#131E1D',
   // 二级 小标题、正文
-  text3: darkMode ? '#B0A9C2' : '#4E4E67',
+  text3: darkMode ? '#B2BCBB' : '#7F8382',
   // 三级色 辅助类提示信息
-  text4: darkMode ? '#6B6C84' : '#8E8FAB',
+  text4: darkMode ? '#656A6A' : '#9EA8A7',
   // 四级色 输入框内弱提示
-  text5: darkMode ? '#4C5466' : '#AAB3C7',
+  text5: darkMode ? '#494B4B' : '#DADFDF',
 
   // 标准品牌色
-  text6: darkMode ? '#6840DD' : '#6840DD',
+  text6: darkMode ? '#01AFA5' : '#01AFA5',
 
   // 强调文字色
-  text7: darkMode ? '#9977FD' : '#9977FD',
+  text7: darkMode ? '#01AFA5' : '#01AFA5',
 
   // 涨色
-  text8: darkMode ? '#13C08C' : '#13C08C',
+  text8: darkMode ? '#01AFA5' : '#01AFA5',
 
   // 跌色
-  text9: darkMode ? '#FF3E3E' : '#FF3E3E',
+  text9: darkMode ? '#ED5B5B' : '#ED5B5B',
 
   // 持平色
-  text10: darkMode ? '#909B9C' : '#909B9C',
+  text10: darkMode ? '#8E9896' : '#8E9896',
 
   // 链接色
   text11: darkMode ? '#3C67FF' : '#3C67FF',
 
   // 提示文字
-  text12: darkMode ? '#FE8100' : '#FE8100',
+  text12: darkMode ? '#E18E52' : '#E18E52',
 
   // backgrounds / greys
-  // 前景色#FFFFFFFF
-  bg1: darkMode ? '#1E1E30' : '#FFFFFF',
+  // 前景色
+  bg1: darkMode ? '#1E2121' : '#FFFFFF',
   // 背景色
-  bg2: darkMode ? '#111015' : '#F1F3F6',
+  bg2: darkMode ? '#121414' : '#FFFFFF',
   // 辅助bg色
-  bg3: darkMode ? '#242438' : '#F6F6FB',
+  bg3: darkMode ? '#272C2C' : '#F3FCFB',
   // 小标签bg
-  bg4: darkMode ? '#222C51' : '#ECEFFD',
+  bg4: darkMode ? '#2C3D3C' : '#E8F9F8',
   // 小标签bg
-  bgTagS: darkMode ? '#2B2251' : '#F0ECFD',
+  bgTagS: darkMode ? '#2C3D3C' : '#E8F9F8',
   // Hover色
-  bg5: darkMode ? '#37304B' : '#EAE7F5',
+  bg5: darkMode ? '#485150' : '#F2FAF9',
   // 分割线 & 边框色
-  bg6: darkMode ? '#2C2B50' : '#D9D7F1',
+  bg6: darkMode ? '#323636' : '#E4ECEB',
 
   //specialty colors
   modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
@@ -83,23 +83,24 @@ const theme = (darkMode, color) => ({
   divider: darkMode ? 'rgba(43, 43, 43, 0.435)' : 'rgba(43, 43, 43, 0.035)',
 
   //primary colors
-  primary1: darkMode ? '#6840DD' : '#6840DD',
+  primary1: darkMode ? '#01AFA5' : '#01AFA5',
   primary2: darkMode ? '#3680E7' : '#FF8CC3',
   primary3: darkMode ? '#4D8FEA' : '#FF99C9',
   primary4: darkMode ? '#376bad70' : '#F6DDE8',
-  primary5: darkMode ? '#9977FD' : '#9977FD',
+  primary5: darkMode ? '#01AFA5' : '#01AFA5',
   // 兑换按钮不可用
-  disable1: darkMode ? '#37354C' : '#DFDEED',
+  disable1: darkMode ? '#363C3C' : '#F0F7F6',
   // 兑换按钮按下
-  pressed1: darkMode ? '#5431B9' : '#5431B9',
+  pressed1: darkMode ? '#039E95' : '#039E95',
 
   // color text
-  primaryText1: darkMode ? '#6840DD' : '#6840DD',
+  primaryText1: darkMode ? '#01AFA5' : '#01AFA5',
 
   // secondary colors
-  secondary1: darkMode ? '#6840DD' : '#6840DD',
+  secondary1: darkMode ? '#01AFA5' : '#01AFA5',
   secondary2: darkMode ? '#17000b26' : '#F6DDE8',
-  secondary3: darkMode ? '#9977FD' : '#9977FD',
+  secondary3: darkMode ? '#01AFA5' : '#01AFA5',
+
 
   shadow1: darkMode ? '#000' : '#2F80ED',
 
@@ -113,7 +114,7 @@ const theme = (darkMode, color) => ({
   shadow: darkMode ? '0px 4px 16px 4px rgba(0, 0, 0, 0.2)' : '0px 4px 16px rgba(131, 142, 163, 0.1)',
 
 
-  background: darkMode ? 'black' : `radial-gradient(50% 50% at 50% 50%, #ff007a30 0%, #fff 0%)`,
+  background: darkMode ? 'black' : `radial-gradient(49.1% 87.28% at 50.9% 50%, #eafaff 0%, rgba(255, 255, 255, 0) 100%)`,
 })
 
 const TextWrapper = styled(Text)`
