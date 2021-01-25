@@ -5,15 +5,16 @@ import utc from 'dayjs/plugin/utc'
 import { useTranslation } from 'react-i18next'
 import { Box, Flex, Text } from 'rebass'
 import TokenLogo from '../TokenLogo'
-import { CustomLink } from '../Link'
+import { NameLink } from '../Link'
 import Row from '../Row'
 import { Divider } from '..'
 
-import { formattedNum, formattedPercent } from '../../utils'
+import { formattedNum } from '../../utils'
 import { useMedia } from 'react-use'
 import { withRouter } from 'react-router-dom'
 import { OVERVIEW_TOKEN_BLACKLIST } from '../../constants'
 import FormattedName from '../FormattedName'
+import FormattedPercent from '../FormattedPercent'
 import { TYPE } from '../../Theme'
 
 dayjs.extend(utc)
@@ -113,13 +114,6 @@ const ClickableText = styled(Text)`
 
   @media screen and (max-width: 640px) {
     font-size: 0.85rem;
-  }
-`
-
-const NameLink = styled(CustomLink)`
-  color: ${({ theme }) => theme.text2};
-  :visited {
-    color: ${({ theme }) => theme.text2};
   }
 `
 
@@ -231,7 +225,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
             {formattedNum(item.priceUSD, true)}
           </DataText>
         )}
-        {!below1080 && <DataText area="change">{formattedPercent(item.priceChangeUSD)}</DataText>}
+        {!below1080 && <DataText area="change"><FormattedPercent percent={item.priceChangeUSD}/></DataText>}
       </DashGrid>
     )
   }

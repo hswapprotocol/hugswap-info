@@ -6,7 +6,7 @@ import utc from 'dayjs/plugin/utc'
 import { Box, Flex } from 'rebass'
 import styled from 'styled-components'
 
-import { CustomLink } from '../Link'
+import { NameLink } from '../Link'
 import { Divider } from '..'
 import { withRouter } from 'react-router-dom'
 import { formattedNum } from '../../utils'
@@ -115,9 +115,9 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
           </DataText>
         )}
         <DataText area="name" fontWeight="500" justifyContent="flex-start">
-          <CustomLink style={{ marginLeft: below600 ? 0 : '1rem', whiteSpace: 'nowrap' }} to={'/account/' + lp.user.id}>
+          <NameLink style={{ marginLeft: below600 ? 0 : '1rem', whiteSpace: 'nowrap' }} to={'/account/' + lp.user.id}>
             {below800 ? lp.user.id.slice(0, 4) + '...' + lp.user.id.slice(38, 42) : lp.user.id}
-          </CustomLink>
+          </NameLink>
         </DataText>
 
         {/* {!below1080 && (
@@ -127,12 +127,12 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
         )} */}
 
         <DataText>
-          <CustomLink area="pair" to={'/pair/' + lp.pairAddress}>
+          <NameLink area="pair" to={'/pair/' + lp.pairAddress}>
             <RowFixed>
               {!below600 && <DoubleTokenLogo pairName={lp.token0} a1={lp.token1} size={16} margin={true} />}
               {lp.pairName}
             </RowFixed>
-          </CustomLink>
+          </NameLink>
         </DataText>
         <DataText area="value">{formattedNum(lp.usd, true)}</DataText>
       </DashGrid>

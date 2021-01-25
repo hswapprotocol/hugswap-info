@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useMedia } from 'react-use'
 import dayjs from 'dayjs'
 import LocalLoader from '../LocalLoader'
+import FormattedPercent from '../FormattedPercent'
 import utc from 'dayjs/plugin/utc'
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import { CustomLink } from '../Link'
+import { NameLink } from '../Link'
 import { Divider } from '../../components'
 import { withRouter } from 'react-router-dom'
-import { formattedNum, formattedPercent } from '../../utils'
+import { formattedNum } from '../../utils'
 import DoubleTokenLogo from '../DoubleLogo'
 import FormattedName from '../FormattedName'
 import QuestionHelper from '../QuestionHelper'
@@ -59,19 +60,28 @@ const DashGrid = styled.div`
 
   @media screen and (min-width: 740px) {
     padding: 0 1.125rem;
-    grid-template-columns: 1.5fr 1fr 1fr};
+    grid-template-columns: 1.5fr 1fr 1.5fr;
     grid-template-areas: ' name liq vol pool ';
   }
 
   @media screen and (min-width: 1080px) {
     padding: 0 1.125rem;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: ' name liq vol volWeek fees apy';
+    grid-template-columns: 0.25fr 1.5fr 1fr 1fr 1fr 1fr 1.5fr;
+    grid-template-areas: 'num name liq vol volWeek fees apy';
+    > * {
+      justify-content: flex-end;
+      width: 100%;
+
+      &:first-child,
+      &:nth-child(2) {
+        justify-content: flex-start;
+      }
+    }
   }
 
   @media screen and (min-width: 1200px) {
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: ' name liq vol volWeek fees apy';
+    grid-template-columns: 0.25fr 1.5fr 1fr 1fr 1fr 1fr 1.5fr;
+    grid-template-areas: 'num name liq vol volWeek fees apy';
   }
 `
 
@@ -153,32 +163,32 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
     if (pairData && pairData.token0 && pairData.token1) {
       const liquidity = formattedNum(pairData.reserveUSD, true)
       const volume = formattedNum(pairData.oneDayVolumeUSD, true)
-      const apy = formattedPercent((pairData.oneDayVolumeUSD * 0.003 * 365 * 100) / pairData.reserveUSD)
+      const apy = (pairData.oneDayVolumeUSD * 0.003 * 365 * 100) / pairData.reserveUSD
 
       return (
         <DashGrid style={{ height: '48px' }} disbaleLinks={disbaleLinks} focus={true}>
+          {!below1080 && <DataText area="num">{index}</DataText>}
           <DataText area="name" fontWeight="500">
-            {!below600 && <div style={{ marginRight: '20px', width: '10px' }}>{index}</div>}
             <DoubleTokenLogo
               size={below600 ? 16 : 20}
               a0={pairData.token0.id}
               a1={pairData.token1.id}
               margin={!below740}
             />
-            <CustomLink style={{ marginLeft: '10px', whiteSpace: 'nowrap' }} to={'/pair/' + pairAddress} color={color}>
+            <NameLink style={{ marginLeft: '10px', whiteSpace: 'nowrap' }} to={'/pair/' + pairAddress} color={color}>
               <FormattedName
                 text={pairData.token0.symbol + '-' + pairData.token1.symbol}
                 maxCharacters={below600 ? 8 : 16}
                 adjustSize={true}
                 link={true}
               />
-            </CustomLink>
+            </NameLink>
           </DataText>
           <DataText area="liq">{liquidity}</DataText>
           <DataText area="vol">{volume}</DataText>
           {!below1080 && <DataText area="volWeek">{formattedNum(pairData.oneWeekVolumeUSD, true)}</DataText>}
           {!below1080 && <DataText area="fees">{formattedNum(pairData.oneDayVolumeUSD * 0.003, true)}</DataText>}
-          {!below1080 && <DataText area="apy">{apy}</DataText>}
+          {!below1080 && <DataText area="apy"><FormattedPercent percent={apy}/></DataText>}
         </DashGrid>
       )
     } else {
@@ -217,7 +227,12 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
       <DashGridHead
         center={true}
         disbaleLinks={disbaleLinks}
-      >
+      > 
+        {!below1080 && (
+          <Flex alignItems="center" justifyContent="flexStart">
+          <HeaderText area="num">#</HeaderText>
+        </Flex>
+        )}
         <Flex alignItems="center" justifyContent="flexStart">
           <HeaderText area="name">{t('Name')}</HeaderText>
         </Flex>

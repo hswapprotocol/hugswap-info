@@ -374,19 +374,19 @@ function TokenPage({ address, history }) {
               >
                 <TokenDetailsLayout>
                   <Column>
-                    <TYPE.main>{t('Symbol')}</TYPE.main>
+                    <TitleText>{t('Symbol')}</TitleText>
                     <Text style={{ marginTop: '.5rem' }} fontSize={24} fontWeight="500">
                       <FormattedName text={symbol} maxCharacters={12} />
                     </Text>
                   </Column>
                   <Column>
-                    <TYPE.main>{t('Name')}</TYPE.main>
+                    <TitleText>{t('Name')}</TitleText>
                     <TYPE.main style={{ marginTop: '.5rem' }} fontSize={24} fontWeight="500">
                       <FormattedName text={name} maxCharacters={16} />
                     </TYPE.main>
                   </Column>
                   <Column>
-                    <TYPE.main>{t('Address')}</TYPE.main>
+                    <TitleText>{t('Address')}</TitleText>
                     <AutoRow align="flex-end">
                       <TYPE.main style={{ marginTop: '.5rem' }} fontSize={24} fontWeight="500">
                         {address.slice(0, 8) + '...' + address.slice(36, 42)}

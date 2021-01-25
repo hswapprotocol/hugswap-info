@@ -53,3 +53,12 @@ export const BasicLink = styled(RouterLink)`
     underline: none;
   }
 `
+export const NameLink = styled(CustomLink)`
+  color: ${({ theme }) => theme.text11};
+  :visited {
+    color: ${({ theme }) => theme.text11};
+  }
+  &:hover {
+    color: ${({ theme }) => (lighten(0.1, theme.text11))};
+  }
+`

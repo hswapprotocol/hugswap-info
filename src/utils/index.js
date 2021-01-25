@@ -389,6 +389,7 @@ export function rawPercent(percentRaw) {
 }
 
 export function formattedPercent(percent, useBrackets = false) {
+  
   percent = parseFloat(percent)
   if (!percent || percent === 0) {
     return <Text fontWeight={500}>0%</Text>

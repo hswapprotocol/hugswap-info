@@ -21,7 +21,7 @@ import { useAllTokenData } from '../contexts/TokenData'
 import { formattedNum, formattedPercent } from '../utils'
 import { TYPE, ThemedBackground } from '../Theme'
 // import { transparentize } from 'polished'
-import { CustomLink } from '../components/Link'
+import { NameLink } from '../components/Link'
 import { useTranslation } from 'react-i18next'
 import { PageWrapper, ContentWrapper } from '../components'
 
@@ -130,7 +130,7 @@ function GlobalPage() {
           <ListOptions gap="10px" style={{ marginTop: '2.5rem', marginBottom: '0.6875rem' }}>
             <RowBetween>
               <TYPE.main fontSize={'1.125rem'}>{t('Top Tokens')}</TYPE.main>
-              <CustomLink to={'/tokens'}>{t('See All')}</CustomLink>
+              <NameLink to={'/tokens'}>{t('See All')}</NameLink>
             </RowBetween>
           </ListOptions>
           <Panel>
@@ -139,7 +139,7 @@ function GlobalPage() {
           <ListOptions gap="10px" style={{ marginTop: '2.5rem', marginBottom: '0.6875rem' }}>
             <RowBetween>
               <TYPE.main fontSize={'1rem'}>{t('Top Pairs')}</TYPE.main>
-              <CustomLink to={'/pairs'}>{t('See All')}</CustomLink>
+              <NameLink to={'/pairs'}>{t('See All')}</NameLink>
             </RowBetween>
           </ListOptions>
           <Panel>

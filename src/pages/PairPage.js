@@ -15,7 +15,7 @@ import TxnList from '../components/TxnList'
 import Loader from '../components/LocalLoader'
 import { BasicLink } from '../components/Link'
 import Search from '../components/Search'
-import { formattedNum, formattedPercent, getPoolLink, getSwapLink } from '../utils'
+import { formattedNum, getPoolLink, getSwapLink } from '../utils'
 import { useColor } from '../hooks'
 import { usePairData, usePairTransactions } from '../contexts/PairData'
 import { TYPE, ThemedBackground } from '../Theme'
@@ -31,10 +31,14 @@ import { usePathDismissed, useSavedPairs } from '../contexts/LocalStorage'
 import { useTranslation } from 'react-i18next'
 import { Bookmark, PlusCircle } from 'react-feather'
 import FormattedName from '../components/FormattedName'
+import FormattedPercent from '../components/FormattedPercent'
 import { useListedTokens } from '../contexts/Application'
 
 const DashboardWrapper = styled.div`
   width: 100%;
+`
+const TitleText = styled(TYPE.main)`
+  color: ${({ theme }) => theme.text4}
 `
 
 const PanelWrapper = styled.div`
@@ -136,7 +140,6 @@ function PairPage({ pairAddress, history }) {
     : reserveUSD
       ? formattedNum(reserveUSD, true)
       : '-'
-  const liquidityChange = formattedPercent(liquidityChangeUSD)
 
   // mark if using untracked liquidity
   const [usingTracked, setUsingTracked] = useState(true)
@@ -158,7 +161,7 @@ function PairPage({ pairAddress, history }) {
     setUsingUtVolume(oneDayVolumeUSD === 0 ? true : false)
   }, [oneDayVolumeUSD])
 
-  const volumeChange = formattedPercent(!usingUtVolume ? volumeChangeUSD : volumeChangeUntracked)
+  const volumeChange = (!usingUtVolume ? volumeChangeUSD : volumeChangeUntracked)
 
   // get fees	  // get fees
   const fees =
@@ -325,42 +328,42 @@ function PairPage({ pairAddress, history }) {
                 <Panel style={{ height: '100%' }}>
                   <AutoColumn gap="20px">
                     <RowBetween>
-                      <TYPE.main>{t('Total Liquidity')} {!usingTracked ? `(${t('Untracked')})` : ''}</TYPE.main>
+                      <TitleText>{t('Total Liquidity')} {!usingTracked ? `(${t('Untracked')})` : ''}</TitleText>
                       <div />
                     </RowBetween>
                     <RowBetween align="flex-end">
                       <TYPE.main fontSize={'1.5rem'} lineHeight={1} fontWeight={500}>
                         {liquidity}
                       </TYPE.main>
-                      <TYPE.main>{liquidityChange}</TYPE.main>
+                      <TYPE.main><FormattedPercent percent={liquidityChangeUSD} /></TYPE.main>
                     </RowBetween>
                   </AutoColumn>
                 </Panel>
                 <Panel style={{ height: '100%' }}>
                   <AutoColumn gap="20px">
                     <RowBetween>
-                      <TYPE.main>{t('Volume (24hrs)')} {usingUtVolume && `(${t('Untracked')})`}</TYPE.main>
+                      <TitleText>{t('Volume (24hrs)')} {usingUtVolume && `(${t('Untracked')})`}</TitleText>
                       <div />
                     </RowBetween>
                     <RowBetween align="flex-end">
                       <TYPE.main fontSize={'1.5rem'} lineHeight={1} fontWeight={500}>
                         {volume}
                       </TYPE.main>
-                      <TYPE.main>{volumeChange}</TYPE.main>
+                      <TYPE.main><FormattedPercent percent={volumeChange} /></TYPE.main>
                     </RowBetween>
                   </AutoColumn>
                 </Panel>
                 <Panel style={{ height: '100%' }}>
                   <AutoColumn gap="20px">
                     <RowBetween>
-                      <TYPE.main>{t('Fees (24H)')}</TYPE.main>
+                      <TitleText>{t('Fees (24H)')}</TitleText>
                       <div />
                     </RowBetween>
                     <RowBetween align="flex-end">
                       <TYPE.main fontSize={'1.5rem'} lineHeight={1} fontWeight={500}>
                         {fees}
                       </TYPE.main>
-                      <TYPE.main>{volumeChange}</TYPE.main>
+                      <TYPE.main><FormattedPercent percent={volumeChange} /></TYPE.main>
                     </RowBetween>
                   </AutoColumn>
                 </Panel>
@@ -368,7 +371,7 @@ function PairPage({ pairAddress, history }) {
                 <Panel style={{ height: '100%' }}>
                   <AutoColumn gap="20px">
                     <RowBetween>
-                      <TYPE.main>{t('Pooled Tokens')}</TYPE.main>
+                      <TitleText>{t('Pooled Tokens')}</TitleText>
                       <div />
                     </RowBetween>
                     <Hover onClick={() => history.push(`/token/${token0?.id}`)} fade={true}>
@@ -430,7 +433,7 @@ function PairPage({ pairAddress, history }) {
               >
                 <TokenDetailsLayout>
                   <Column>
-                    <TYPE.main>{t('Pair Name')}</TYPE.main>
+                    <TitleText>{t('Pair Name')}</TitleText>
                     <TYPE.main style={{ marginTop: '.5rem' }}>
                       <RowFixed>
                         <FormattedName text={token0?.symbol ?? ''} maxCharacters={8} />
@@ -440,7 +443,7 @@ function PairPage({ pairAddress, history }) {
                     </TYPE.main>
                   </Column>
                   <Column>
-                    <TYPE.main>{t('Pair Address')}</TYPE.main>
+                    <TitleText>{t('Pair Address')}</TitleText>
                     <AutoRow align="flex-end">
                       <TYPE.main style={{ marginTop: '.5rem' }}>
                         {pairAddress.slice(0, 6) + '...' + pairAddress.slice(38, 42)}
@@ -449,12 +452,12 @@ function PairPage({ pairAddress, history }) {
                     </AutoRow>
                   </Column>
                   <Column>
-                    <TYPE.main>
+                    <TitleText>
                       <RowFixed>
                         <FormattedName text={token0?.symbol ?? ''} maxCharacters={8} />{' '}
                         <span style={{ marginLeft: '4px' }}>{t('Address')}</span>
                       </RowFixed>
-                    </TYPE.main>
+                    </TitleText>
                     <AutoRow align="flex-end">
                       <TYPE.main style={{ marginTop: '.5rem' }}>
                         {token0 && token0.id.slice(0, 6) + '...' + token0.id.slice(38, 42)}
@@ -463,12 +466,12 @@ function PairPage({ pairAddress, history }) {
                     </AutoRow>
                   </Column>
                   <Column>
-                    <TYPE.main>
+                    <TitleText>
                       <RowFixed>
                         <FormattedName text={token1?.symbol ?? ''} maxCharacters={8} />{' '}
                         <span style={{ marginLeft: '4px' }}>{t('Address')}</span>
                       </RowFixed>
-                    </TYPE.main>
+                    </TitleText>
                     <AutoRow align="flex-end">
                       <TYPE.main style={{ marginTop: '.5rem' }} fontSize={16}>
                         {token1 && token1.id.slice(0, 6) + '...' + token1.id.slice(38, 42)}
