@@ -77,7 +77,7 @@ const UserChart = ({ account }) => {
           <AreaChart margin={{ top: 0, right: 10, bottom: 6, left: 0 }} barCategoryGap={1} data={chartData}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={'#BA40F3'} stopOpacity={0.17} />
+                <stop offset="5%" stopColor={'#2FB3BC'} stopOpacity={0.17} />
                 <stop offset="95%" stopColor={'#171426'} stopOpacity={0} />
               </linearGradient>
             </defs>
@@ -114,7 +114,7 @@ const UserChart = ({ account }) => {
               contentStyle={{
                 padding: '10px 14px',
                 borderRadius: 10,
-                borderColor: '#BA40F3',
+                borderColor: '#2FB3BC',
                 color: 'black',
               }}
               wrapperStyle={{ top: -70, left: -10 }}
@@ -128,7 +128,7 @@ const UserChart = ({ account }) => {
               type="monotone"
               name={'Liquidity'}
               yAxisId={0}
-              stroke="#BA40F3"
+              stroke="#2FB3BC"
               fill="url(#colorUv)"
             />
           </AreaChart>

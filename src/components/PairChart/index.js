@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useState, useRef, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { Area, XAxis, YAxis, ResponsiveContainer, Tooltip, AreaChart, BarChart, Bar } from 'recharts'
 import { RowBetween, AutoRow } from '../Row'
 import { useTranslation } from 'react-i18next'
@@ -41,6 +41,7 @@ const CHART_VIEW = {
 const PairChart = ({ address, color, base0, base1 }) => {
   const [chartFilter, setChartFilter] = useState(CHART_VIEW.LIQUIDITY)
   const { t } = useTranslation()
+  const theme = useContext(ThemeContext)
   const [timeWindow, setTimeWindow] = useState(timeframeOptions.MONTH)
 
   const [darkMode] = useDarkModeManager()
@@ -187,8 +188,8 @@ const PairChart = ({ address, color, base0, base1 }) => {
           <AreaChart margin={{ top: 0, right: 10, bottom: 6, left: 0 }} barCategoryGap={1} data={chartData}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={color} stopOpacity={0.35} />
-                <stop offset="95%" stopColor={color} stopOpacity={0} />
+                <stop offset="5%" stopColor={theme.chartReChartGFrom} stopOpacity={0.19} />
+                <stop offset="95%" stopColor={theme.chartReChartGTo} stopOpacity={0} />
               </linearGradient>
             </defs>
             <XAxis
@@ -235,7 +236,7 @@ const PairChart = ({ address, color, base0, base1 }) => {
               name={' (USD)'}
               dataKey={'reserveUSD'}
               yAxisId={0}
-              stroke={darken(0.12, color)}
+              stroke={theme.chartStroke}
               fill="url(#colorUv)"
             />
           </AreaChart>
@@ -320,10 +321,10 @@ const PairChart = ({ address, color, base0, base1 }) => {
               type="monotone"
               name={'Volume'}
               dataKey={'dailyVolumeUSD'}
-              fill={color}
+              fill={theme.chartStroke}
               opacity={'0.4'}
               yAxisId={0}
-              stroke={color}
+              stroke={theme.chartStroke}
             />
           </BarChart>
         </ResponsiveContainer>

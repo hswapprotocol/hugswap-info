@@ -101,6 +101,12 @@ const theme = (darkMode, color) => ({
   secondary2: darkMode ? '#17000b26' : '#F6DDE8',
   secondary3: darkMode ? '#01AFA5' : '#01AFA5',
 
+  // charts
+  chartStroke: '#1DB7AE',
+  chartReChartGFrom: '#2FB3BC',
+  chartReChartGTo: '#F4FFFE',
+  chartTVGFrom: 'rgba(45, 197, 188, 0.19)',
+  chartTVGTo: 'rgba(254, 255, 254, 0)',
 
   shadow1: darkMode ? '#000' : '#2F80ED',
 

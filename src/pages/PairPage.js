@@ -203,7 +203,6 @@ function PairPage({ pairAddress, history }) {
 
   return (
     <PageWrapper>
-      <ThemedBackground backgroundColor={transparentize(0.6, backgroundColor)} />
       <SecondHeader>
         <OutNav />
       </SecondHeader>
@@ -278,10 +277,10 @@ function PairPage({ pairAddress, history }) {
                       )}
 
                   <Link external href={getPoolLink(token0?.id, token1?.id)}>
-                    <ButtonLight color={backgroundColor}>+ {t('Add Liquidity')}</ButtonLight>
+                    <ButtonLight >+ {t('Add Liquidity')}</ButtonLight>
                   </Link>
                   <Link external href={getSwapLink(token0?.id, token1?.id)}>
-                    <ButtonDark ml={!below1080 && '.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
+                    <ButtonDark ml={!below1080 && '.5rem'} mr={below1080 && '.5rem'} >
                       {t('Trade')}
                     </ButtonDark>
                   </Link>
@@ -404,7 +403,6 @@ function PairPage({ pairAddress, history }) {
                 >
                   <PairChart
                     address={pairAddress}
-                    color={backgroundColor}
                     base0={reserve1 / reserve0}
                     base1={reserve0 / reserve1}
                   />
@@ -478,8 +476,8 @@ function PairPage({ pairAddress, history }) {
                       <CopyHelper toCopy={token1?.id} />
                     </AutoRow>
                   </Column>
-                  <ButtonLight color={backgroundColor}>
-                    <Link color={backgroundColor} external href={'https://scan.hecochain.com/address/' + pairAddress}>
+                  <ButtonLight >
+                    <Link  external href={'https://scan.hecochain.com/address/' + pairAddress}>
                       {t('View on Hecoscan')} ↗
                     </Link>
                   </ButtonLight>

@@ -29,16 +29,16 @@ const PriceOption = styled(OptionButton)`
 `
 
 const CHART_VIEW = {
-  VOLUME: i18next.t('Volume'),
-  LIQUIDITY: i18next.t('Liquidity'),
-  PRICE: i18next.t('Price'),
+  VOLUME: 'Volume',
+  LIQUIDITY: 'Liquidity',
+  PRICE: 'Price',
   LINE_PRICE: i18next.t('Price (Line)'),
 }
 
 const DATA_FREQUENCY = {
-  DAY: i18next.t('DAY'),
-  HOUR: i18next.t('HOUR'),
-  LINE: i18next.t('LINE'),
+  DAY: 'DAY',
+  HOUR: 'HOUR',
+  LINE: 'LINE',
 }
 
 const TokenChart = ({ address, color, base }) => {
@@ -222,8 +222,8 @@ const TokenChart = ({ address, color, base }) => {
           <AreaChart margin={{ top: 0, right: 10, bottom: 6, left: 0 }} barCategoryGap={1} data={chartData}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={'#BA40F3'} stopOpacity={0.17} />
-                <stop offset="95%" stopColor={'#171426'} stopOpacity={0} />
+                <stop offset="5%" stopColor={theme.chartReChartGFrom} stopOpacity={0.19} />
+                <stop offset="95%" stopColor={theme.chartReChartGTo} stopOpacity={0} />
               </linearGradient>
             </defs>
 
@@ -272,7 +272,7 @@ const TokenChart = ({ address, color, base }) => {
               type="monotone"
               name={'Liquidity'}
               yAxisId={0}
-              stroke="#BA40F3"
+              stroke={theme.chartStroke}
               fill="url(#colorUv)"
             />
           </AreaChart>
@@ -284,8 +284,8 @@ const TokenChart = ({ address, color, base }) => {
             <AreaChart margin={{ top: 0, right: 10, bottom: 6, left: 0 }} barCategoryGap={1} data={chartData}>
               <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={'#BA40F3'} stopOpacity={0.17} />
-                  <stop offset="95%" stopColor={'#171426'} stopOpacity={0} />
+                  <stop offset="5%" stopColor={theme.chartReChartGFrom} stopOpacity={0.19} />
+                  <stop offset="95%" stopColor={theme.chartReChartGTo} stopOpacity={0} />
                 </linearGradient>
               </defs>
               <XAxis
@@ -333,7 +333,7 @@ const TokenChart = ({ address, color, base }) => {
                 type="monotone"
                 name={'Price'}
                 yAxisId={0}
-                stroke="#BA40F3"
+                stroke={theme.chartStroke}
                 fill="url(#colorUv)"
               />
             </AreaChart>
@@ -374,14 +374,14 @@ const TokenChart = ({ address, color, base }) => {
               tick={{ fill: theme.text4 }}
             />
             <Tooltip
-              cursor={{ fill: '#BA40F3', opacity: 0.1 }}
+              cursor={{ fill: theme.chartStroke, opacity: 0.1 }}
               formatter={(val) => formattedNum(val, true)}
               labelFormatter={(label) => toNiceDateYear(label)}
               labelStyle={{ paddingTop: 4 }}
               contentStyle={{
                 padding: '10px 14px',
                 borderRadius: 10,
-                borderColor: '#BA40F3',
+                borderColor: theme.chartStroke,
                 color: 'black',
               }}
               wrapperStyle={{ top: -70, left: -10 }}
@@ -390,10 +390,10 @@ const TokenChart = ({ address, color, base }) => {
               type="monotone"
               name={'Volume'}
               dataKey={'dailyVolumeUSD'}
-              fill={'#BA40F3'}
+              fill={theme.chartStroke}
               opacity={'0.4'}
               yAxisId={0}
-              stroke={'#BA40F3'}
+              stroke={theme.chartStroke}
             />
           </BarChart>
         </ResponsiveContainer>

@@ -113,9 +113,9 @@ const GlobalChart = ({ display }) => {
       {display === 'volume' && (
         <RowFixed
           style={{
-            bottom: '70px',
+            top: '20px',
             position: 'absolute',
-            left: '20px',
+            right: '66px',
             zIndex: 10,
           }}
         >
