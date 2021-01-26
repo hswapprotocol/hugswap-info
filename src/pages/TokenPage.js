@@ -65,7 +65,7 @@ const BookMarkButton = styled(StyledIcon)`
 
 const PanelWrapper = styled.div`
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: max-content;
+  // grid-template-rows: max-content;
   gap: 6px;
   display: inline-grid;
   width: 100%;
