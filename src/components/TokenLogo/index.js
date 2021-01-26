@@ -38,6 +38,8 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     setError(false)
   }, [address])
 
+  address = isAddress(address)
+
   if (error || BAD_IMAGES[address]) {
     return (
       <Inline>
@@ -61,9 +63,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     )
   }
 
-  const path = `https://raw.githubusercontent.com/hswapprotocol/token-icons/master/heco/${isAddress(
-    address
-  )?.toLowerCase()}.png`
+  const path = `https://raw.githubusercontent.com/hswapprotocol/token-icons/master/heco/${address?.toLowerCase()}.png`
   return (
     <Inline>
       <Image

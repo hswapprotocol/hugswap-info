@@ -129,7 +129,7 @@ function LPList({ lps, disbaleLinks, maxItems = 10 }) {
         <DataText>
           <NameLink area="pair" to={'/pair/' + lp.pairAddress}>
             <RowFixed>
-              {!below600 && <DoubleTokenLogo pairName={lp.token0} a1={lp.token1} size={16} margin={true} />}
+              {!below600 && <DoubleTokenLogo a0={lp.token0} a1={lp.token1} size={16} margin={true} />}
               {lp.pairName}
             </RowFixed>
           </NameLink>

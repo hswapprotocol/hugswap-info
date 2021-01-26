@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import LocalLoader from '../LocalLoader'
 import { Box, Flex, Text } from 'rebass'
-import {NameLink, OutLink} from '../Link'
+import {OutLink} from '../Link'
 import { Divider, EmptyCard } from '..'
 import DropdownSelect from '../DropdownSelect'
 import FormattedName from '../FormattedName'
@@ -287,9 +287,9 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
     return (
       <DashGrid style={{ height: '48px' }}>
         <DataText area="txn" fontWeight="500">
-          <NameLink color={color} to={urls.showTransaction(item.hash)}>
+          <OutLink color={color} external={true} href={urls.showTransaction(item.hash)}>
             {getTransactionType(item.type, item.token1Symbol, item.token0Symbol)}
-          </NameLink>
+          </OutLink>
         </DataText>
         <DataText area="value">
           {currency === 'ETH' ? 'Ξ ' + formattedNum(item.valueETH) : formattedNum(item.amountUSD, true)}
