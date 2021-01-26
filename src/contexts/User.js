@@ -502,7 +502,6 @@ export function useMiningPositions(account) {
         if (!result?.data?.user?.miningPosition) {
           return
         }
-        console.log('result.data?.user?.miningPosition', result.data?.user?.miningPosition)
         let tmpMiningPositionData = result.data.user.miningPosition
         for (const miningPosition of tmpMiningPositionData) {
           const pairAddress = miningPosition.miningPool.pair.id
