@@ -25,7 +25,7 @@ export default function GlobalStats() {
   const below400 = useMedia('(max-width: 400px)')
   const below816 = useMedia('(max-width: 816px)')
   const { t } = useTranslation()
-  const [showPriceCard, setShowPriceCard] = useState(false)
+  // const [showPriceCard, setShowPriceCard] = useState(false)
 
   const { oneDayVolumeUSD, oneDayTxns, pairCount } = useGlobalData()
   const [ethPrice] = useEthPrice()
@@ -39,17 +39,19 @@ export default function GlobalStats() {
           {!below400 && (
             <TYPE.main
               mr={'1rem'}
+            /*
               onMouseEnter={() => {
                 setShowPriceCard(true)
               }}
               onMouseLeave={() => {
                 setShowPriceCard(false)
               }}
+            */
               color="text4"
               style={{ position: 'relative' }}
             >
               {t('HT Price')}: <Medium>{formattedEthPrice}</Medium>
-              {showPriceCard && <UniPrice />}
+              {/* showPriceCard && <UniPrice />*/}
             </TYPE.main>
           )}
 

@@ -263,41 +263,38 @@ async function getGlobalData(ethPrice, oldEthPrice) {
       fetchPolicy: 'cache-first',
     })
     const twoWeekData = twoWeekResult.data.hugswapFactories[0]
-
-    if (data && oneDayData && twoDayData && twoWeekData) {
+    if (data && oneDayData && twoDayData) {
       let [oneDayVolumeUSD, volumeChangeUSD] = get2DayPercentChange(
         data.totalVolumeUSD,
         oneDayData.totalVolumeUSD ? oneDayData.totalVolumeUSD : 0,
         twoDayData.totalVolumeUSD ? twoDayData.totalVolumeUSD : 0
       )
-
-      const [oneWeekVolume, weeklyVolumeChange] = get2DayPercentChange(
-        data.totalVolumeUSD,
-        oneWeekData.totalVolumeUSD,
-        twoWeekData.totalVolumeUSD
-      )
-
       const [oneDayTxns, txnChange] = get2DayPercentChange(
         data.txCount,
         oneDayData.txCount ? oneDayData.txCount : 0,
         twoDayData.txCount ? twoDayData.txCount : 0
       )
-
       // format the total liquidity in USD
       data.totalLiquidityUSD = data.totalLiquidityETH * ethPrice
       const liquidityChangeUSD = getPercentChange(
         data.totalLiquidityETH * ethPrice,
         oneDayData.totalLiquidityETH * oldEthPrice
       )
-
       // add relevant fields with the calculated amounts
       data.oneDayVolumeUSD = oneDayVolumeUSD
-      data.oneWeekVolume = oneWeekVolume
-      data.weeklyVolumeChange = weeklyVolumeChange
       data.volumeChangeUSD = volumeChangeUSD
       data.liquidityChangeUSD = liquidityChangeUSD
       data.oneDayTxns = oneDayTxns
       data.txnChange = txnChange
+    }
+    if (oneWeekData && twoWeekData) {
+      const [oneWeekVolume, weeklyVolumeChange] = get2DayPercentChange(
+        data.totalVolumeUSD,
+        oneWeekData.totalVolumeUSD,
+        twoWeekData.totalVolumeUSD
+      )
+      data.oneWeekVolume = oneWeekVolume
+      data.weeklyVolumeChange = weeklyVolumeChange
     }
   } catch (e) {
     console.log(e)

@@ -64,12 +64,6 @@ const GlobalChart = ({ display }) => {
   }, [dailyData, utcStartTime, volumeWindow, weeklyData])
   const below800 = useMedia('(max-width: 800px)')
 
-  if (chartDataFiltered?.length && !(VOLUME_WINDOW.WEEKLY ? oneWeekVolume : oneDayVolumeUSD)) {
-    let lastData = chartDataFiltered[chartDataFiltered.length - 1]
-    oneWeekVolume = lastData['weeklyVolumeUSD'] || lastData['dailyVolumeUSD']
-    oneDayVolumeUSD = oneWeekVolume
-  }
-
   // update the width on a window resize
   const ref = useRef()
   const isClient = typeof window === 'object'
