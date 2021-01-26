@@ -12,14 +12,14 @@ export default function DoubleTokenLogo({ a0, a1, size = 24, margin = false }) {
 
   const HigherLogo = styled(TokenLogo)`
     z-index: 2;
-    background-color: white;
+    background-color: ${({ theme }) => theme.bg3};
     border-radius: 50%;
   `
 
   const CoveredLogo = styled(TokenLogo)`
     position: absolute;
     left: ${({ sizeraw }) => (sizeraw / 2).toString() + 'px'};
-    background-color: white;
+    background-color: ${({ theme }) => theme.bg3};
     border-radius: 50%;
   `
 
@@ -30,14 +30,3 @@ export default function DoubleTokenLogo({ a0, a1, size = 24, margin = false }) {
     </TokenWrapper>
   )
 }
-// const Icon = (props) => <Image src={`https://swap.hbfile.net/images/Hicon/${props.name}.png`} {...props} />
-
-// export default function DoubleTokenLogo({ pairName = '-', size = 24, margin = false }) {
-//   const [nameA, nameB] = pairName.split('-')
-//   return (
-//     <TokenWrapper sizeraw={size} margin={margin}>
-//       <Icon name={nameA} size={size.toString() + 'px'} sizeraw={size} />
-//       <Icon name={nameB} size={size.toString() + 'px'} sizeraw={size} />
-//     </TokenWrapper>
-//   )
-// }
