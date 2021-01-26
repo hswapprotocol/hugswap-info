@@ -20,7 +20,6 @@ import { formattedNum, getPoolLink, getSwapLink, localNumber } from '../utils'
 import { useTokenData, useTokenTransactions, useTokenPairs } from '../contexts/TokenData'
 import { TYPE, ThemedBackground } from '../Theme'
 import { transparentize } from 'polished'
-import { useColor } from '../hooks'
 import CopyHelper from '../components/Copy'
 import { useMedia } from 'react-use'
 import { useDataForList } from '../contexts/PairData'
@@ -138,8 +137,6 @@ function TokenPage({ address, history }) {
   }, [])
   const { t } = useTranslation()
   const theme = useContext(ThemeContext)
-  // detect color from token
-  const backgroundColor = useColor(id, symbol)
 
   const allPairs = useTokenPairs(address)
 

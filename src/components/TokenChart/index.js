@@ -319,7 +319,7 @@ const TokenChart = ({ address, color, base }) => {
                 contentStyle={{
                   padding: '10px 14px',
                   borderRadius: 10,
-                  borderColor: color,
+                  borderColor: theme.chartStroke,
                   color: 'black',
                 }}
                 wrapperStyle={{ top: -70, left: -10 }}
