@@ -135,15 +135,15 @@ function MiningPositionList({ miningPositions }) {
   }, [miningPositions])
 
   const ListItem = ({ miningPosition, index }) => {
-    const pairPercentage = miningPosition.balance / miningPosition.pairData.totalSupply
-    const valueUSD = miningPosition.pairData.reserveUSD
-    const valueFirstPair = miningPosition.pairData.reserve0
-    const valueSecondPair = miningPosition.pairData.reserve1
+    const pairPercentage = miningPosition.pairData ? miningPosition.balance / miningPosition.pairData.totalSupply : 0
+    const valueUSD = miningPosition.pairData?.reserveUSD
+    const valueFirstPair = miningPosition.pairData?.reserve0
+    const valueSecondPair = miningPosition.pairData?.reserve1
     const firstPairName = miningPosition.miningPool.pair.token0
     const secondPairName = miningPosition.miningPool.pair.token1
     const pairAddress = miningPosition.miningPool.pair.id
-    const firstPairAddress = miningPosition.pairData.token0.id
-    const secondPairAddress = miningPosition.pairData.token1.id
+    const firstPairAddress = miningPosition.pairData?.token0.id
+    const secondPairAddress = miningPosition.pairData?.token1.id
 
     return (
       <DashGrid style={{ opacity: pairPercentage > 0 ? 1 : 0.6 }} focus={true}>
@@ -202,7 +202,6 @@ function MiningPositionList({ miningPositions }) {
   const miningPositionsSorted =
     miningPositions &&
     miningPositions
-
       .sort((p0, p1) => {
         if (sortedColumn === SORT_FIELD.VALUE) {
           const bal0 = (p0.balance / p0.pairData?.totalSupply) * p0.pairData?.reserveUSD

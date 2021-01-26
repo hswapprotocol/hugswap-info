@@ -40,7 +40,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
 
   address = isAddress(address)
 
-  if (error || BAD_IMAGES[address]) {
+  if (!address || error || BAD_IMAGES[address]) {
     return (
       <Inline>
         <Image {...rest} alt={''} src={PlaceHolder} size={size} />

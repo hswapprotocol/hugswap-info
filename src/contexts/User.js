@@ -502,10 +502,16 @@ export function useMiningPositions(account) {
         if (!result?.data?.user?.miningPosition) {
           return
         }
-        miningPositionData = result.data.user.miningPosition
-        for (const miningPosition of miningPositionData) {
+        console.log('result.data?.user?.miningPosition', result.data?.user?.miningPosition)
+        let tmpMiningPositionData = result.data.user.miningPosition
+        for (const miningPosition of tmpMiningPositionData) {
           const pairAddress = miningPosition.miningPool.pair.id
           miningPosition.pairData = allPairData[pairAddress]
+
+          // 不显示非本站的Pair
+          if (miningPosition.pairData) {
+            miningPositionData.push(miningPosition)
+          }
         }
         updateMiningPositions(account, miningPositionData)
       } catch (e) {

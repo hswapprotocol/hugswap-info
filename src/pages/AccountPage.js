@@ -35,7 +35,9 @@ const AccountWrapper = styled.div`
 `
 
 const Header = styled.div``
-
+const TitleText = styled(TYPE.main)`
+  color: ${({ theme }) => theme.text4}
+`
 const DashboardWrapper = styled.div`
   width: 100%;
 `
@@ -279,7 +281,7 @@ function AccountPage({ account }) {
               <AutoRow gap="20px">
                 <AutoColumn gap="10px">
                   <RowBetween>
-                    <TYPE.body>{t('Liquidity (Including Fees)')}</TYPE.body>
+                    <TitleText>{t('Liquidity (Including Fees)')}</TitleText>
                     <div />
                   </RowBetween>
                   <RowFixed align="flex-end">
@@ -294,7 +296,7 @@ function AccountPage({ account }) {
                 </AutoColumn>
                 <AutoColumn gap="10px">
                   <RowBetween>
-                    <TYPE.body>{t('Fees Earned (Cumulative)')}</TYPE.body>
+                    <TitleText>{t('Fees Earned (Cumulative)')}</TitleText>
                     <div />
                   </RowBetween>
                   <RowFixed align="flex-end">
@@ -335,10 +337,10 @@ function AccountPage({ account }) {
               marginTop: '1.5rem',
             }}
           >
-            {miningPositions && <MiningPositionList miningPositions={miningPositions} />}
-            {!miningPositions && (
+            {miningPositions?.length !== 0 && <MiningPositionList miningPositions={miningPositions} />}
+            {!miningPositions?.length && (
               <AutoColumn gap="8px" justify="flex-start">
-                <TYPE.main>{t('No Staked Liquidity')}</TYPE.main>
+                <TitleText>{t('No Staked Liquidity')}</TitleText>
                 <AutoRow gap="8px" justify="flex-start">
                   <ButtonLight style={{ padding: '4px 6px', borderRadius: '4px' }}>{t('Learn More')}</ButtonLight>{' '}
                 </AutoRow>{' '}
@@ -366,17 +368,17 @@ function AccountPage({ account }) {
             <AutoRow gap="20px">
               <AutoColumn gap="8px">
                 <TYPE.header fontSize={24}>{totalSwappedUSD ? formattedNum(totalSwappedUSD, true) : '-'}</TYPE.header>
-                <TYPE.main>{t('Total Value Swapped')}</TYPE.main>
+                <TitleText>{t('Total Value Swapped')}</TitleText>
               </AutoColumn>
               <AutoColumn gap="8px">
                 <TYPE.header fontSize={24}>
                   {totalSwappedUSD ? formattedNum(totalSwappedUSD * 0.003, true) : '-'}
                 </TYPE.header>
-                <TYPE.main>{t('Total Fees Paid')}</TYPE.main>
+                <TitleText>{t('Total Fees Paid')}</TitleText>
               </AutoColumn>
               <AutoColumn gap="8px">
                 <TYPE.header fontSize={24}>{transactionCount ? transactionCount : '-'}</TYPE.header>
-                <TYPE.main>{t('Total Transactions')}</TYPE.main>
+                <TitleText>{t('Total Transactions')}</TitleText>
               </AutoColumn>
             </AutoRow>
           </Panel>
