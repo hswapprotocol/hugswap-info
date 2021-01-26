@@ -329,6 +329,8 @@ function AccountPage({ account }) {
           >
             <PositionList positions={positions} />
           </Panel>
+        {/*
+          还没有上线挖矿活动，暂时注释
           <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '3rem' }}>
             {t('Liquidity Mining Pools')}
           </TYPE.main>
@@ -347,6 +349,7 @@ function AccountPage({ account }) {
               </AutoColumn>
             )}
           </Panel>
+        */}
           <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '3rem' }}>
             {t('Transactions')}
           </TYPE.main>{' '}
