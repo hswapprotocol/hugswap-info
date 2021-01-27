@@ -27,7 +27,7 @@ function AllPairsPage() {
       </SecondHeader>
       <FullWrapper>
         <RowBetween marginTop={40}>
-          <TYPE.largeHeader>{t('Top Pairs')}</TYPE.largeHeader>
+          <TYPE.largeHeader fontSize="18">{t('Top Pairs')}</TYPE.largeHeader>
         </RowBetween>
         <Panel style={{ padding: below800 && '1rem 0 0 0 ' }}>
           <PairList pairs={allPairs} disbaleLinks={true} maxItems={50} />
