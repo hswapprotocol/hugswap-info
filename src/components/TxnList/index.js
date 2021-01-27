@@ -7,7 +7,6 @@ import { formatTime, formattedNum, urls } from '../../utils'
 import { useMedia } from 'react-use'
 import { useCurrentCurrency } from '../../contexts/Application'
 import { RowFixed, RowBetween } from '../Row'
-import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import LocalLoader from '../LocalLoader'
 import { Box, Flex, Text } from 'rebass'
@@ -170,7 +169,6 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
   // page state
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
-  const { t } = useTranslation()
   // sorting
   const [sortDirection, setSortDirection] = useState(true)
   const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.TIMESTAMP)
@@ -333,7 +331,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 }}
                 active={txFilter === TXN_TYPE.ALL}
               >
-                {t('All')}
+                {i18next.t('All')}
               </SortText>
               <SortText
                 onClick={() => {
@@ -341,7 +339,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 }}
                 active={txFilter === TXN_TYPE.SWAP}
               >
-                {t('Swaps')}
+                {i18next.t('Swaps')}
               </SortText>
               <SortText
                 onClick={() => {
@@ -349,7 +347,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 }}
                 active={txFilter === TXN_TYPE.ADD}
               >
-                {t('Adds')}
+                {i18next.t('Adds')}
               </SortText>
               <SortText
                 onClick={() => {
@@ -357,7 +355,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 }}
                 active={txFilter === TXN_TYPE.REMOVE}
               >
-                {t('Removes')}
+                {i18next.t('Removes')}
               </SortText>
             </RowFixed>
           )}
@@ -371,7 +369,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
               setSortDirection(sortedColumn !== SORT_FIELD.VALUE ? true : !sortDirection)
             }}
           >
-            <HeaderText>{t('Total Value')} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}</HeaderText>
+            <HeaderText>{i18next.t('Total Value')} {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}</HeaderText>
           </ClickableText>
         </Flex>
         {!below780 && (
@@ -384,7 +382,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.AMOUNT0 ? true : !sortDirection)
               }}
             ><HeaderText>
-                {symbol0Override ? symbol0Override + ' ' + t('Amount') : t('Token Amount')}{' '}
+                {symbol0Override ? symbol0Override + ' ' + i18next.t('Amount') : i18next.t('Token Amount')}{' '}
                 {sortedColumn === SORT_FIELD.AMOUNT0 ? (sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
@@ -402,7 +400,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 }}
               >
                 <HeaderText>
-                  {symbol1Override ? symbol1Override + ' ' + t('Amount') : t('Token Amount')}{' '}
+                  {symbol1Override ? symbol1Override + ' ' + i18next.t('Amount') : i18next.t('Token Amount')}{' '}
                   {sortedColumn === SORT_FIELD.AMOUNT1 ? (sortDirection ? '↑' : '↓') : ''}
                 </HeaderText>
               </ClickableText>
@@ -410,7 +408,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
           )}
           {!below1080 && (
             <Flex alignItems="center">
-              <HeaderText area="account">{t('Account')}</HeaderText>
+              <HeaderText area="account">{i18next.t('Account')}</HeaderText>
             </Flex>
           )}
           <Flex alignItems="center">
@@ -422,7 +420,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.TIMESTAMP ? true : !sortDirection)
               }}
             ><HeaderText>
-                {t('Time')}
+                {i18next.t('Time')}
                 {sortedColumn === SORT_FIELD.TIMESTAMP ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
@@ -433,7 +431,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
         {!filteredList ? (
           <LocalLoader />
         ) : filteredList.length === 0 ? (
-          <EmptyCard>{t('No recent transactions found')}</EmptyCard>
+          <EmptyCard>{i18next.t('No recent transactions found')}</EmptyCard>
         ) : (
               filteredList.map((item, index) => {
                 return (
@@ -452,7 +450,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
         >
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
+        <TYPE.body>{i18next.t('Page of', { page, maxPage })}</TYPE.body>
         <div
           onClick={(e) => {
             setPage(page === maxPage ? page : page + 1)

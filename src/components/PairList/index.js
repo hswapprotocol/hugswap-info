@@ -6,7 +6,7 @@ import FormattedPercent from '../FormattedPercent'
 import utc from 'dayjs/plugin/utc'
 import { Box, Flex, Text } from 'rebass'
 import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 import { NameLink } from '../Link'
 import { Divider } from '../../components'
 import { withRouter } from 'react-router-dom'
@@ -132,7 +132,6 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
   const below600 = useMedia('(max-width: 600px)')
   const below740 = useMedia('(max-width: 740px)')
   const below1080 = useMedia('(max-width: 1080px)')
-  const { t } = useTranslation()
   // pagination
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
@@ -234,7 +233,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
         </Flex>
         )}
         <Flex alignItems="center" justifyContent="flexStart">
-          <HeaderText area="name">{t('Name')}</HeaderText>
+          <HeaderText area="name">{i18next.t('Name')}</HeaderText>
         </Flex>
         <Flex alignItems="center" justifyContent="flexEnd">
           <ClickableText
@@ -244,7 +243,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               setSortDirection(sortedColumn !== SORT_FIELD.LIQ ? true : !sortDirection)
             }}
           ><HeaderText>
-              {t('Liquidity')} {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
+              {i18next.t('Liquidity')} {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
             </HeaderText>
           </ClickableText>
         </Flex>
@@ -257,7 +256,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
             }}
           >
             <HeaderText>
-              {t('Volume (24hrs)')}
+              {i18next.t('Volume (24hrs)')}
               {sortedColumn === SORT_FIELD.VOL ? (!sortDirection ? '↑' : '↓') : ''}
             </HeaderText>
           </ClickableText>
@@ -272,7 +271,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               }}
             >
               <HeaderText>
-                {t('Volume (7d)')} {sortedColumn === SORT_FIELD.VOL_7DAYS ? (!sortDirection ? '↑' : '↓') : ''}
+                {i18next.t('Volume (7d)')} {sortedColumn === SORT_FIELD.VOL_7DAYS ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
           </Flex>
@@ -287,7 +286,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               }}
             >
               <HeaderText>
-                {t('Fees (24H)')} {sortedColumn === SORT_FIELD.FEES ? (!sortDirection ? '↑' : '↓') : ''}
+                {i18next.t('Fees (24H)')} {sortedColumn === SORT_FIELD.FEES ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
           </Flex>
@@ -302,10 +301,10 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
               }}
             >
               <HeaderText>
-                {t('1y Fees / Liquidity')} {sortedColumn === SORT_FIELD.APY ? (!sortDirection ? '↑' : '↓') : ''}
+                {i18next.t('1y Fees / Liquidity')} {sortedColumn === SORT_FIELD.APY ? (!sortDirection ? '↑' : '↓') : ''}
               </HeaderText>
             </ClickableText>
-            <QuestionHelper text={t('Based on 24hr volume annualized')} />
+            <QuestionHelper text={i18next.t('Based on 24hr volume annualized')} />
           </Flex>
         )}
       </DashGridHead>
@@ -318,7 +317,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
         >
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
+        <TYPE.body>{i18next.t('Page of', { page, maxPage })}</TYPE.body>
         <div
           onClick={(e) => {
             setPage(page === maxPage ? page : page + 1)

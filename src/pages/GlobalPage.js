@@ -22,7 +22,7 @@ import { formattedNum, formattedPercent } from '../utils'
 import { TYPE, ThemedBackground } from '../Theme'
 // import { transparentize } from 'polished'
 import { NameLink } from '../components/Link'
-import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 import { PageWrapper, ContentWrapper } from '../components'
 
 const ListOptions = styled(AutoRow)`
@@ -51,7 +51,6 @@ function GlobalPage() {
   const allTokens = useAllTokenData()
   const transactions = useGlobalTransactions()
   const { totalLiquidityUSD, oneDayVolumeUSD, volumeChangeUSD, liquidityChangeUSD } = useGlobalData()
-  const { t } = useTranslation()
   // breakpoints
   const below800 = useMedia('(max-width: 800px)')
 
@@ -73,7 +72,7 @@ function GlobalPage() {
       <ContentWrapper>
         <div>
           <AutoColumn gap="24px" style={{ paddingBottom: below800 ? '0' : '30px' }}>
-            <TYPE.largeHeader>{below800 ? t('Protocol Analytics') : t('Hugswap Protocol Analytics')}</TYPE.largeHeader>
+            <TYPE.largeHeader>{below800 ? i18next.t('Protocol Analytics') : i18next.t('Hugswap Protocol Analytics')}</TYPE.largeHeader>
             <GlobalStats />
           </AutoColumn>
           {below800 && ( // mobile card
@@ -83,7 +82,7 @@ function GlobalPage() {
                   <AutoColumn gap="36px">
                     <AutoColumn gap="20px">
                       <RowBetween>
-                        <TYPE.main>{t('Volume (24hrs)')}</TYPE.main>
+                        <TYPE.main>{i18next.t('Volume (24hrs)')}</TYPE.main>
                         <div />
                       </RowBetween>
                       <RowBetween align="flex-end">
@@ -95,7 +94,7 @@ function GlobalPage() {
                     </AutoColumn>
                     <AutoColumn gap="20px">
                       <RowBetween>
-                        <TYPE.main>{t('Total Liquidity')}</TYPE.main>
+                        <TYPE.main>{i18next.t('Total Liquidity')}</TYPE.main>
                         <div />
                       </RowBetween>
                       <RowBetween align="flex-end">
@@ -129,8 +128,8 @@ function GlobalPage() {
           )}
           <ListOptions gap="10px" style={{ marginTop: '2.5rem', marginBottom: '0.6875rem' }}>
             <RowBetween>
-              <TYPE.main fontSize={'1.125rem'}>{t('Top Tokens')}</TYPE.main>
-              <NameLink to={'/tokens'}>{t('See All')}</NameLink>
+              <TYPE.main fontSize={'1.125rem'}>{i18next.t('Top Tokens')}</TYPE.main>
+              <NameLink to={'/tokens'}>{i18next.t('See All')}</NameLink>
             </RowBetween>
           </ListOptions>
           <Panel>
@@ -138,8 +137,8 @@ function GlobalPage() {
           </Panel>
           <ListOptions gap="10px" style={{ marginTop: '2.5rem', marginBottom: '0.6875rem' }}>
             <RowBetween>
-              <TYPE.main fontSize={'1.125rem'}>{t('Top Pairs')}</TYPE.main>
-              <NameLink to={'/pairs'}>{t('See All')}</NameLink>
+              <TYPE.main fontSize={'1.125rem'}>{i18next.t('Top Pairs')}</TYPE.main>
+              <NameLink to={'/pairs'}>{i18next.t('See All')}</NameLink>
             </RowBetween>
           </ListOptions>
           <Panel>
@@ -148,7 +147,7 @@ function GlobalPage() {
 
           <span>
             <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '2.5rem' }}>
-              {t('Transactions')}
+              {i18next.t('Transactions')}
             </TYPE.main>
           </span>
           <Panel style={{ margin: '1rem 0' }}>

@@ -12,7 +12,7 @@ import { useSessionStart } from '../../contexts/Application'
 import { useDarkModeManager } from '../../contexts/LocalStorage'
 import Toggle from '../Toggle'
 import Language from '../Toggle/language'
-import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 
 import { ReactSVG } from 'react-svg'
 import iconOverview from '../../assets/icon_overview.svg'
@@ -144,7 +144,6 @@ function SideNav({ history }) {
   const below1180 = useMedia('(max-width: 1180px)')
 
   const seconds = useSessionStart()
-  const { t } = useTranslation()
   const [isDark, toggleDarkMode] = useDarkModeManager()
 
   return (
@@ -158,7 +157,7 @@ function SideNav({ history }) {
                 <NavLink to="/home">
                   <Option activeText={history.location.pathname === '/home' ?? undefined}>
                     <ReactSVG wrapper="span" src={iconOverview} style={{ marginRight: '.5rem' }} />
-                    {t('Overview')}
+                    {i18next.t('Overview')}
                   </Option>
                 </NavLink>
                 <NavLink to="/tokens">
@@ -170,7 +169,7 @@ function SideNav({ history }) {
                     }
                   >
                     <ReactSVG wrapper="span" src={iconTokens} style={{ marginRight: '.5rem' }} />
-                    {t('Tokens')}
+                    {i18next.t('Tokens')}
                   </Option>
                 </NavLink>
                 <NavLink to="/pairs">
@@ -182,7 +181,7 @@ function SideNav({ history }) {
                     }
                   >
                     <ReactSVG wrapper="span" src={iconPairs} style={{ marginRight: '.5rem' }} />
-                    {t('Pairs')}
+                    {i18next.t('Pairs')}
                   </Option>
                 </NavLink>
 
@@ -195,7 +194,7 @@ function SideNav({ history }) {
                     }
                   >
                     <ReactSVG wrapper="span" src={iconAccounts} style={{ marginRight: '.5rem' }} />
-                    {t('Accounts')}
+                    {i18next.t('Accounts')}
                   </Option>
                 </NavLink>
               </AutoColumn>
@@ -215,7 +214,7 @@ function SideNav({ history }) {
               <PollingDot />
               <a href="/">
                 <TYPE.small>
-                  {t('Updated ago', { seconds: (!!seconds ? seconds + 's' : '-') })} <br />
+                  {i18next.t('Updated ago', { seconds: (!!seconds ? seconds + 's' : '-') })} <br />
                 </TYPE.small>
               </a>
             </Polling>

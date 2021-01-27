@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 import Row, { RowFixed } from '../Row'
 import TokenLogo from '../TokenLogo'
 import { Search as SearchIcon, X } from 'react-feather'
@@ -152,7 +152,6 @@ const Blue = styled.span`
 export const Search = ({ small = false }) => {
   let allTokens = useAllTokensInUniswap()
   const allTokenData = useAllTokenData()
-  const { t } = useTranslation()
   let allPairs = useAllPairsInUniswap()
   const allPairData = useAllPairData()
 
@@ -434,12 +433,12 @@ export const Search = ({ small = false }) => {
             small
               ? ''
               : below410
-                ? t('Search...')
+                ? i18next.t('Search...')
                 : below470
-                  ? t('Search Hugswap...')
+                  ? i18next.t('Search Hugswap...')
                   : below700
-                    ? t('Search pairs and tokens...')
-                    : t('Search Hugswap pairs and tokens...')
+                    ? i18next.t('Search pairs and tokens...')
+                    : i18next.t('Search Hugswap pairs and tokens...')
           }
           value={value}
           onChange={(e) => {
@@ -455,12 +454,12 @@ export const Search = ({ small = false }) => {
       </Wrapper>
       <Menu hide={!showMenu} ref={menuRef}>
         <Heading>
-          <Gray>{t('Pairs')}</Gray>
+          <Gray>{i18next.t('Pairs')}</Gray>
         </Heading>
         <div>
           {filteredPairList && Object.keys(filteredPairList).length === 0 && (
             <MenuItem>
-              <TYPE.body>{t('No results')}</TYPE.body>
+              <TYPE.body>{i18next.t('No results')}</TYPE.body>
             </MenuItem>
           )}
           {filteredPairList &&
@@ -472,7 +471,7 @@ export const Search = ({ small = false }) => {
                   <MenuItem>
                     <DoubleTokenLogo a0={pair?.token0?.id} a1={pair?.token1?.id} margin={true} />
                     <TYPE.body style={{ marginLeft: '10px' }}>
-                      {pair.token0.symbol + '-' + pair.token1.symbol} {t('Pair')}
+                      {pair.token0.symbol + '-' + pair.token1.symbol} {i18next.t('Pair')}
                     </TYPE.body>
                   </MenuItem>
                 </BasicLink>
@@ -486,17 +485,17 @@ export const Search = ({ small = false }) => {
                 setPairsShown(pairsShown + 5)
               }}
             >
-              {t('See more...')}
+              {i18next.t('See more...')}
             </Blue>
           </Heading>
         </div>
         <Heading>
-          <Gray>{t('Tokens')}</Gray>
+          <Gray>{i18next.t('Tokens')}</Gray>
         </Heading>
         <div>
           {Object.keys(filteredTokenList).length === 0 && (
             <MenuItem>
-              <TYPE.body>{t('No results')}</TYPE.body>
+              <TYPE.body>{i18next.t('No results')}</TYPE.body>
             </MenuItem>
           )}
           {filteredTokenList.slice(0, tokensShown).map((token) => {
@@ -523,7 +522,7 @@ export const Search = ({ small = false }) => {
                 setTokensShown(tokensShown + 5)
               }}
             >
-              {t('See more...')}
+              {i18next.t('See more...')}
             </Blue>
           </Heading>
         </div>
