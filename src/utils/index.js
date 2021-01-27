@@ -357,9 +357,8 @@ export const formattedNum = (number, usd = false, acceptNegatives = false) => {
     }
     return 0
   }
-
-  if (num < 0.0001 && num > 0) {
-    return usd ? '< $0.0001' : '< 0.0001'
+  if (num < 0.001 && num > 0) {
+    return usd ? '< $0.001' : '< 0.001'
   }
 
   if (num > 1000) {
