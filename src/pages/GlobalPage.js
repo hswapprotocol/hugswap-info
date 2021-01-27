@@ -138,7 +138,7 @@ function GlobalPage() {
           </Panel>
           <ListOptions gap="10px" style={{ marginTop: '2.5rem', marginBottom: '0.6875rem' }}>
             <RowBetween>
-              <TYPE.main fontSize={'1rem'}>{t('Top Pairs')}</TYPE.main>
+              <TYPE.main fontSize={'1.125rem'}>{t('Top Pairs')}</TYPE.main>
               <NameLink to={'/pairs'}>{t('See All')}</NameLink>
             </RowBetween>
           </ListOptions>
