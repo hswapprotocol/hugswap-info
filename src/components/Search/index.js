@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import styled from 'styled-components'
-import i18next from 'i18next'
+import { useTranslation } from 'react-i18next'
+
 import Row, { RowFixed } from '../Row'
 import TokenLogo from '../TokenLogo'
 import { Search as SearchIcon, X } from 'react-feather'
@@ -403,6 +404,7 @@ export const Search = ({ small = false }) => {
   // refs to detect clicks outside modal
   const wrapperRef = useRef()
   const menuRef = useRef()
+  const { t } = useTranslation()
 
   const handleClick = (e) => {
     if (
@@ -433,12 +435,12 @@ export const Search = ({ small = false }) => {
             small
               ? ''
               : below410
-                ? i18next.t('Search...')
+                ? t('Search...')
                 : below470
-                  ? i18next.t('Search Hugswap...')
+                  ? t('Search Hugswap...')
                   : below700
-                    ? i18next.t('Search pairs and tokens...')
-                    : i18next.t('Search Hugswap pairs and tokens...')
+                    ? t('Search pairs and tokens...')
+                    : t('Search Hugswap pairs and tokens...')
           }
           value={value}
           onChange={(e) => {
@@ -454,12 +456,12 @@ export const Search = ({ small = false }) => {
       </Wrapper>
       <Menu hide={!showMenu} ref={menuRef}>
         <Heading>
-          <Gray>{i18next.t('Pairs')}</Gray>
+          <Gray>{t('Pairs')}</Gray>
         </Heading>
         <div>
           {filteredPairList && Object.keys(filteredPairList).length === 0 && (
             <MenuItem>
-              <TYPE.body>{i18next.t('No results')}</TYPE.body>
+              <TYPE.body>{t('No results')}</TYPE.body>
             </MenuItem>
           )}
           {filteredPairList &&
@@ -471,7 +473,7 @@ export const Search = ({ small = false }) => {
                   <MenuItem>
                     <DoubleTokenLogo a0={pair?.token0?.id} a1={pair?.token1?.id} margin={true} />
                     <TYPE.body style={{ marginLeft: '10px' }}>
-                      {pair.token0.symbol + '-' + pair.token1.symbol} {i18next.t('Pair')}
+                      {pair.token0.symbol + '-' + pair.token1.symbol} {t('Pair')}
                     </TYPE.body>
                   </MenuItem>
                 </BasicLink>
@@ -485,17 +487,17 @@ export const Search = ({ small = false }) => {
                 setPairsShown(pairsShown + 5)
               }}
             >
-              {i18next.t('See more...')}
+              {t('See more...')}
             </Blue>
           </Heading>
         </div>
         <Heading>
-          <Gray>{i18next.t('Tokens')}</Gray>
+          <Gray>{t('Tokens')}</Gray>
         </Heading>
         <div>
           {Object.keys(filteredTokenList).length === 0 && (
             <MenuItem>
-              <TYPE.body>{i18next.t('No results')}</TYPE.body>
+              <TYPE.body>{t('No results')}</TYPE.body>
             </MenuItem>
           )}
           {filteredTokenList.slice(0, tokensShown).map((token) => {
@@ -522,7 +524,7 @@ export const Search = ({ small = false }) => {
                 setTokensShown(tokensShown + 5)
               }}
             >
-              {i18next.t('See more...')}
+              {t('See more...')}
             </Blue>
           </Heading>
         </div>

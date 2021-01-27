@@ -9,7 +9,7 @@ import TradingViewChart, { CHART_TYPES } from '../TradingviewChart'
 import { RowFixed } from '../Row'
 import { OptionButton } from '../ButtonStyled'
 import { getTimeframe } from '../../utils'
-import i18next from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 import { TYPE } from '../../Theme'
 
@@ -26,6 +26,7 @@ const GlobalChart = ({ display }) => {
   const theme = useContext(ThemeContext)
   // chart options
   const [chartView, setChartView] = useState(display === 'volume' ? CHART_VIEW.VOLUME : CHART_VIEW.LIQUIDITY)
+  const { t } = useTranslation()
 
   // time window and window size for chart
   const timeWindow = timeframeOptions.ALL_TIME
@@ -91,7 +92,7 @@ const GlobalChart = ({ display }) => {
             data={dailyData}
             base={totalLiquidityUSD}
             baseChange={liquidityChangeUSD}
-            title={i18next.t("Liquidity")}
+            title={t("Liquidity")}
             field="totalLiquidityUSD"
             width={width}
             type={CHART_TYPES.AREA}
@@ -104,7 +105,7 @@ const GlobalChart = ({ display }) => {
             data={chartDataFiltered}
             base={volumeWindow === VOLUME_WINDOW.WEEKLY ? oneWeekVolume : oneDayVolumeUSD}
             baseChange={volumeWindow === VOLUME_WINDOW.WEEKLY ? weeklyVolumeChange : volumeChangeUSD}
-            title={volumeWindow === VOLUME_WINDOW.WEEKLY ? i18next.t('Volume (7d)') : i18next.t('Volume')}
+            title={volumeWindow === VOLUME_WINDOW.WEEKLY ? t('Volume (7d)') : t('Volume')}
             field={volumeWindow === VOLUME_WINDOW.WEEKLY ? 'weeklyVolumeUSD' : 'dailyVolumeUSD'}
             width={width}
             type={CHART_TYPES.BAR}

@@ -11,7 +11,8 @@ import AccountSearch from '../AccountSearch'
 import { Bookmark, ChevronRight, X } from 'react-feather'
 import { ButtonFaded } from '../ButtonStyled'
 import FormattedName from '../FormattedName'
-import i18next from 'i18next'
+import { useTranslation } from 'react-i18next'
+
 
 const RightColumn = styled.div`
   position: fixed;
@@ -52,6 +53,8 @@ function PinnedData({ history, open, setSavedOpen }) {
   const [savedPairs, , removePair] = useSavedPairs()
   const [savedTokens, , removeToken] = useSavedTokens()
 
+  const { t } = useTranslation()
+
   return !open ? (
     <RightColumn open={open} onClick={() => setSavedOpen(true)}>
       <SavedButton open={open}>
@@ -67,7 +70,7 @@ function PinnedData({ history, open, setSavedOpen }) {
             <StyledIcon>
               <Bookmark size={16} />
             </StyledIcon>
-            <TYPE.main ml={'4px'}>{i18next.t('Saved')}</TYPE.main>
+            <TYPE.main ml={'4px'}>{t('Saved')}</TYPE.main>
           </RowFixed>
           <StyledIcon>
             <ChevronRight />
@@ -76,7 +79,7 @@ function PinnedData({ history, open, setSavedOpen }) {
         <AccountSearch small={true} />
         <AutoColumn gap="40px" style={{ marginTop: '2rem' }}>
           <AutoColumn gap={'12px'}>
-            <TYPE.main>{i18next.t('Pinned Pairs')}</TYPE.main>
+            <TYPE.main>{t('Pinned Pairs')}</TYPE.main>
             {Object.keys(savedPairs).filter((key) => {
               return !!savedPairs[key]
             }).length > 0 ? (
@@ -108,11 +111,11 @@ function PinnedData({ history, open, setSavedOpen }) {
                     )
                   })
               ) : (
-                <TYPE.light>{i18next.t('Pinned pairs will appear here')}</TYPE.light>
+                <TYPE.light>{t('Pinned pairs will appear here')}</TYPE.light>
               )}
           </AutoColumn>
           <ScrollableDiv gap={'12px'}>
-            <TYPE.main>{i18next.t('Pinned Tokens')}</TYPE.main>
+            <TYPE.main>{t('Pinned Tokens')}</TYPE.main>
             {Object.keys(savedTokens).filter((key) => {
               return !!savedTokens[key]
             }).length > 0 ? (
@@ -141,7 +144,7 @@ function PinnedData({ history, open, setSavedOpen }) {
                     )
                   })
               ) : (
-                <TYPE.light>{i18next.t('Pinned tokens will appear here')}</TYPE.light>
+                <TYPE.light>{t('Pinned tokens will appear here')}</TYPE.light>
               )}
           </ScrollableDiv>
         </AutoColumn>

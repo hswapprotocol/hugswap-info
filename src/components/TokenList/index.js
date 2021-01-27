@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
-import i18next from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { Box, Flex, Text } from 'rebass'
 import TokenLogo from '../TokenLogo'
 import { NameLink } from '../Link'
@@ -100,7 +100,7 @@ export const HeaderText = styled(Text)`
 const DashGridHeader = wrapDashGridHead(DashGrid)
 
 const ListWrapper = styled.div`
-  // padding: 1.875rem 1.25rem;padding
+  // padding: 1.875rem 1.25rem;paddingpadding
 `
 
 const ClickableText = styled(Text)`
@@ -152,6 +152,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
   const below1080 = useMedia('(max-width: 1080px)')
   const below680 = useMedia('(max-width: 680px)')
   const below600 = useMedia('(max-width: 600px)')
+  const { t } = useTranslation()
 
   useEffect(() => {
     setMaxPage(1) // edit this to do modular
@@ -245,7 +246,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
               setSortDirection(sortedColumn !== SORT_FIELD.NAMe ? true : !sortDirection)
             }}
           >
-            {below680 ? i18next.t('Symbol') : i18next.t('Name')} {sortedColumn === SORT_FIELD.NAME ? (!sortDirection ? '↑' : '↓') : ''}
+            {below680 ? t('Symbol') : t('Name')} {sortedColumn === SORT_FIELD.NAME ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
         {!below680 && (
@@ -257,7 +258,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.SYMBOL ? true : !sortDirection)
               }}
             >
-              {i18next.t('Symbol')} {sortedColumn === SORT_FIELD.SYMBOL ? (!sortDirection ? '↑' : '↓') : ''}
+              {t('Symbol')} {sortedColumn === SORT_FIELD.SYMBOL ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
         )}
@@ -270,7 +271,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
               setSortDirection(sortedColumn !== SORT_FIELD.LIQ ? true : !sortDirection)
             }}
           >
-            {i18next.t('Liquidity')} {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
+            {t('Liquidity')} {sortedColumn === SORT_FIELD.LIQ ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
         <Flex alignItems="center">
@@ -281,7 +282,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
               setSortDirection(sortedColumn !== SORT_FIELD.VOL ? true : !sortDirection)
             }}
           >
-            {i18next.t('Volume (24hrs)')}
+            {t('Volume (24hrs)')}
             {sortedColumn === SORT_FIELD.VOL ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
@@ -294,7 +295,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.PRICE ? true : !sortDirection)
               }}
             >
-              {i18next.t('Price')} {sortedColumn === SORT_FIELD.PRICE ? (!sortDirection ? '↑' : '↓') : ''}
+              {t('Price')} {sortedColumn === SORT_FIELD.PRICE ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
         )}
@@ -307,7 +308,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.CHANGE ? true : !sortDirection)
               }}
             >
-              {i18next.t('Price Change (24hrs)')}
+              {t('Price Change (24hrs)')}
               {sortedColumn === SORT_FIELD.CHANGE ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
@@ -329,7 +330,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
         <div onClick={() => setPage(page === 1 ? page : page - 1)}>
           <Arrow faded={page === 1 ? true : false}>←</Arrow>
         </div>
-        <TYPE.body>{i18next.t('Page of', { page, maxPage })}</TYPE.body>
+        <TYPE.body>{t('Page of', { page, maxPage })}</TYPE.body>
         <div onClick={() => setPage(page === maxPage ? page : page + 1)}>
           <Arrow faded={page === maxPage ? true : false}>→</Arrow>
         </div>
