@@ -24,29 +24,29 @@ const StyledToggle = styled.div`
 `
 
 export default function Toggle() {
-  return (
-    <StyledToggle>
-      <span>
-        <IconWrapper
-          isActive={i18n.language == 'en'}
-          onClick={() => {
-            i18n.changeLanguage('en')
-          }}
-        >
-          English
+    return (
+        <StyledToggle>
+            <span>
+                <IconWrapper
+                    isActive={i18n.language == 'en'}
+                    onClick={() => {
+                        i18n.changeLanguage('en')
+                    }}
+                >
+                    English
         </IconWrapper>
-      </span>
-      <span style={{ padding: '0 .5rem' }}>{' / '}</span>
-      <span>
-        <IconWrapper
-          isActive={i18n.language == 'zh-CN'}
-          onClick={() => {
-            i18n.changeLanguage('zh-CN')
-          }}
-        >
-          中文
+            </span>
+            <span style={{ padding: '0 .5rem' }}>{' / '}</span>
+            <span>
+                <IconWrapper
+                    isActive={i18n.language == 'zh'}
+                    onClick={() => {
+                        i18n.changeLanguage('zh')
+                    }}
+                >
+                    中文
         </IconWrapper>
-      </span>
-    </StyledToggle>
-  )
+            </span>
+        </StyledToggle>
+    )
 }

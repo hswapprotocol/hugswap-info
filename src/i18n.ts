@@ -8,13 +8,13 @@ i18next
     .use(initReactI18next)
     .init({
         backend: {
-            loadPath: `./locales/{{lng}}.json`
+            loadPath: `/locales/{{lng}}.json`
         },
         react: {
             useSuspense: false
         },
         fallbackLng: 'en',
-        preload: ['en'],
+        preload: ['en', 'zh'],
         keySeparator: false,
         interpolation: { escapeValue: false }
     })
