@@ -67,10 +67,11 @@ const PairChart = ({ address, color, base0, base1 }) => {
   // get data for pair, and rates
   const pairData = usePairData(address)
   let chartData = usePairChartData(address)
+
   const hourlyData = useHourlyRateData(address, timeWindow)
   const hourlyRate0 = hourlyData && hourlyData[0]
   const hourlyRate1 = hourlyData && hourlyData[1]
-
+  console.log({ address, chartData, pairData, hourlyRate0 })
   // formatted symbols for overflow
   const formattedSymbol0 =
     pairData?.token0?.symbol.length > 6 ? pairData?.token0?.symbol.slice(0, 5) + '...' : pairData?.token0?.symbol

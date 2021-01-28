@@ -652,7 +652,7 @@ export function useTopLps() {
         ?.sort((a, b) => parseFloat(allPairs[a].reserveUSD > allPairs[b].reserveUSD ? -1 : 1))
         ?.slice(0, 99)
         .map((pair) => pair)
-
+      console.log({ topPairs });
       let topLpLists = await Promise.all(
         topPairs.map(async (pair) => {
           // for each one, fetch top LPs
@@ -667,7 +667,7 @@ export function useTopLps() {
             if (results) {
               return results.liquidityPositions
             }
-          } catch (e) {}
+          } catch (e) { }
         })
       )
 

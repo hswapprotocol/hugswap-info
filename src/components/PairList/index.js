@@ -141,7 +141,6 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
   // sorting
   const [sortDirection, setSortDirection] = useState(true)
   const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.LIQ)
-
   useEffect(() => {
     setMaxPage(1) // edit this to do modular
     setPage(1)
@@ -188,7 +187,7 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
           <DataText area="vol">{volume}</DataText>
           {!below1080 && <DataText area="volWeek">{formattedNum(pairData.oneWeekVolumeUSD, true)}</DataText>}
           {!below1080 && <DataText area="fees">{formattedNum(pairData.oneDayVolumeUSD * 0.003, true)}</DataText>}
-          {!below1080 && <DataText area="apy"><FormattedPercent percent={apy}/></DataText>}
+          {!below1080 && <DataText area="apy"><FormattedPercent percent={apy} /></DataText>}
         </DashGrid>
       )
     } else {
@@ -227,11 +226,11 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
       <DashGridHead
         center={true}
         disbaleLinks={disbaleLinks}
-      > 
+      >
         {!below1080 && (
           <Flex alignItems="center" justifyContent="flexStart">
-          <HeaderText area="num">#</HeaderText>
-        </Flex>
+            <HeaderText area="num">#</HeaderText>
+          </Flex>
         )}
         <Flex alignItems="center" justifyContent="flexStart">
           <HeaderText area="name">{t('Name')}</HeaderText>
