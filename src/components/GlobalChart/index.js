@@ -10,6 +10,7 @@ import { RowFixed } from '../Row'
 import { OptionButton } from '../ButtonStyled'
 import { getTimeframe } from '../../utils'
 import { useTranslation } from 'react-i18next'
+
 import { TYPE } from '../../Theme'
 
 const CHART_VIEW = {
@@ -25,11 +26,11 @@ const GlobalChart = ({ display }) => {
   const theme = useContext(ThemeContext)
   // chart options
   const [chartView, setChartView] = useState(display === 'volume' ? CHART_VIEW.VOLUME : CHART_VIEW.LIQUIDITY)
+  const { t } = useTranslation()
 
   // time window and window size for chart
   const timeWindow = timeframeOptions.ALL_TIME
   const [volumeWindow, setVolumeWindow] = useState(VOLUME_WINDOW.DAYS)
-  const { t } = useTranslation()
   // global historical data
   const [dailyData, weeklyData] = useGlobalChartData()
   let {

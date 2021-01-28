@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
+
 import Row, { RowFixed } from '../Row'
 import TokenLogo from '../TokenLogo'
 import { Search as SearchIcon, X } from 'react-feather'
@@ -152,7 +153,6 @@ const Blue = styled.span`
 export const Search = ({ small = false }) => {
   let allTokens = useAllTokensInUniswap()
   const allTokenData = useAllTokenData()
-  const { t } = useTranslation()
   let allPairs = useAllPairsInUniswap()
   const allPairData = useAllPairData()
 
@@ -404,6 +404,7 @@ export const Search = ({ small = false }) => {
   // refs to detect clicks outside modal
   const wrapperRef = useRef()
   const menuRef = useRef()
+  const { t } = useTranslation()
 
   const handleClick = (e) => {
     if (

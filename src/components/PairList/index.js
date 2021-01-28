@@ -132,11 +132,11 @@ function PairList({ pairs, color, disbaleLinks, maxItems = 10 }) {
   const below600 = useMedia('(max-width: 600px)')
   const below740 = useMedia('(max-width: 740px)')
   const below1080 = useMedia('(max-width: 1080px)')
-  const { t } = useTranslation()
   // pagination
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
   const ITEMS_PER_PAGE = maxItems
+  const { t } = useTranslation()
 
   // sorting
   const [sortDirection, setSortDirection] = useState(true)

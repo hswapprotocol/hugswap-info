@@ -13,7 +13,6 @@ import { useDarkModeManager } from '../../contexts/LocalStorage'
 import Toggle from '../Toggle'
 import Language from '../Toggle/language'
 import { useTranslation } from 'react-i18next'
-
 import { ReactSVG } from 'react-svg'
 import iconOverview from '../../assets/icon_overview.svg'
 import iconTokens from '../../assets/icon_tokens.svg'
@@ -144,8 +143,10 @@ function SideNav({ history }) {
   const below1180 = useMedia('(max-width: 1180px)')
 
   const seconds = useSessionStart()
-  const { t } = useTranslation()
   const [isDark, toggleDarkMode] = useDarkModeManager()
+
+  const { t } = useTranslation()
+
 
   return (
     <Wrapper isMobile={below1080}>

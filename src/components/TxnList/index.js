@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
-
 import { formatTime, formattedNum, urls } from '../../utils'
 import { useMedia } from 'react-use'
 import { useCurrentCurrency } from '../../contexts/Application'
 import { RowFixed, RowBetween } from '../Row'
-import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
+import { useTranslation } from 'react-i18next'
 import LocalLoader from '../LocalLoader'
 import { Box, Flex, Text } from 'rebass'
 import {OutLink} from '../Link'
@@ -170,7 +169,6 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
   // page state
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
-  const { t } = useTranslation()
   // sorting
   const [sortDirection, setSortDirection] = useState(true)
   const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.TIMESTAMP)
@@ -282,6 +280,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
 
   const below1080 = useMedia('(max-width: 1080px)')
   const below780 = useMedia('(max-width: 780px)')
+  const { t } = useTranslation()
 
   const ListItem = ({ item }) => {
     return (

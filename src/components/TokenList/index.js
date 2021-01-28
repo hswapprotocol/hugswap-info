@@ -100,7 +100,7 @@ export const HeaderText = styled(Text)`
 const DashGridHeader = wrapDashGridHead(DashGrid)
 
 const ListWrapper = styled.div`
-  // padding: 1.875rem 1.25rem;
+  // padding: 1.875rem 1.25rem;paddingpadding
 `
 
 const ClickableText = styled(Text)`
@@ -145,7 +145,6 @@ function TopTokenList({ tokens, itemMax = 10 }) {
   // page state
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
-  const { t } = useTranslation()
   // sorting
   const [sortDirection, setSortDirection] = useState(true)
   const [sortedColumn, setSortedColumn] = useState(SORT_FIELD.LIQ)
@@ -153,6 +152,7 @@ function TopTokenList({ tokens, itemMax = 10 }) {
   const below1080 = useMedia('(max-width: 1080px)')
   const below680 = useMedia('(max-width: 680px)')
   const below600 = useMedia('(max-width: 600px)')
+  const { t } = useTranslation()
 
   useEffect(() => {
     setMaxPage(1) // edit this to do modular

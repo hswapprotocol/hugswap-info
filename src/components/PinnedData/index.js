@@ -12,6 +12,8 @@ import { Bookmark, ChevronRight, X } from 'react-feather'
 import { ButtonFaded } from '../ButtonStyled'
 import FormattedName from '../FormattedName'
 import { useTranslation } from 'react-i18next'
+
+
 const RightColumn = styled.div`
   position: fixed;
   right: 0;
@@ -50,7 +52,9 @@ const StyledIcon = styled.div`
 function PinnedData({ history, open, setSavedOpen }) {
   const [savedPairs, , removePair] = useSavedPairs()
   const [savedTokens, , removeToken] = useSavedTokens()
+
   const { t } = useTranslation()
+
   return !open ? (
     <RightColumn open={open} onClick={() => setSavedOpen(true)}>
       <SavedButton open={open}>
